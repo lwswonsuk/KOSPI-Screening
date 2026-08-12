@@ -15,6 +15,8 @@ interface ResultsPayload {
   as_of_date: string | null;
   financial_year: number | null;
   generated_at: string | null;
+  quote_text: string | null;
+  quote_author: string | null;
   universe_total: number;
   universe_passed: number;
   columns: string[];
@@ -36,7 +38,9 @@ export default function Home() {
       <div className="mb-6">
         <h1 className="text-2xl font-bold tracking-tight">한국 가치투자 스크리닝</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Stock Note 투자원칙 기반 코스피 종목 스크리닝
+          {data.quote_text
+            ? `"${data.quote_text}" — ${data.quote_author}`
+            : "Stock Note 투자원칙 기반 코스피 종목 스크리닝"}
         </p>
       </div>
 
