@@ -1,0 +1,26 @@
+주식 스크리닝 폴더로 이동
+cd "C:\Users\lwswo\OneDrive\1. WS\2. Projects\stock_screen"
+
+주식 스크리닝 실행하기
+py ws_alpha.py --run --date 20260807 --top 30
+
+재무정보 업데이트
+py data_pipeline.py --build --year 2025 --ttm-quarter H1 --date 20260807 --force
+
+GitHub token key
+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
+
+DART_API_KEY
+2efe3a521f902d7b2a52d6618ed2e8ee2dbd464c
+
+KRX_API_KEY
+A4F31B35496B488191730C04D06B81068F06E0F1
+
+GH_PAT
+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
+
+GH_OWNER
+lwswonsuk
+
+GH_REPO
+KOSPI-Screening

@@ -4,6 +4,15 @@ import { useMemo, useState } from "react";
 
 type ResultRow = Record<string, string | number | null>;
 
+// 화면에서 아예 안 보여줄 컬럼 (JSON에 남아있어도 숨김)
+const HIDDEN_COLUMNS = new Set(["ret_12m", "op_yoy", "fluc_rt"]);
+
+// 소수점 2자리 + 우측 정렬로 보여줄 컬럼
+const TWO_DECIMAL_RIGHT_ALIGN = new Set(["per", "pbr", "roe_3y_avg", "debt_ratio"]);
+
+// 우측 정렬만 적용할 컬럼 (숫자 포맷은 기본값 유지)
+const RIGHT_ALIGN_ONLY = new Set(["close"]);
+
 export default function ScreeningTable({
   columns,
   labels,
@@ -20,6 +29,11 @@ export default function ScreeningTable({
   const [priceLoading, setPriceLoading] = useState(false);
   const [priceError, setPriceError] = useState<string | null>(null);
 
+  const displayColumns = useMemo(
+    () => columns.filter((c) => !HIDDEN_COLUMNS.has(c)),
+    [columns]
+  );
+
   async function refreshPrices() {
     setPriceLoading(true);
     setPriceError(null);
@@ -34,7 +48,7 @@ export default function ScreeningTable({
           const code = String(r.stock_code);
           const live = data.prices[code];
           if (!live) return r;
-          return { ...r, close: live.close, fluc_rt: live.fluc_rt };
+          return { ...r, close: live.close };   // 등락률(fluc_rt)은 더 이상 반영하지 않음
         })
       );
       setPriceAsOf(data.as_of);
@@ -44,14 +58,6 @@ export default function ScreeningTable({
       setPriceLoading(false);
     }
   }
-
-  const displayColumns = useMemo(() => {
-    if (!columns.includes("close")) return columns;
-    // fluc_rt(등락률)이 아직 컬럼 목록에 없으면 close 바로 뒤에 추가
-    if (columns.includes("fluc_rt")) return columns;
-    const idx = columns.indexOf("close");
-    return [...columns.slice(0, idx + 1), "fluc_rt", ...columns.slice(idx + 1)];
-  }, [columns]);
 
   const sorted = useMemo(() => {
     const copy = [...liveRows];
@@ -121,10 +127,10 @@ export default function ScreeningTable({
               {displayColumns.map((col) => (
                 <th
                   key={col}
-                  style={{ ...thStyle, cursor: "pointer", userSelect: "none" }}
+                  style={{ ...thStyle, ...alignStyle(col), cursor: "pointer", userSelect: "none" }}
                   onClick={() => onSort(col)}
                 >
-                  {labels[col] ?? (col === "fluc_rt" ? "등락률(%)" : col)}
+                  {labels[col] ?? col}
                   {sortKey === col ? (sortDir === "asc" ? " ▲" : " ▼") : ""}
                 </th>
               ))}
@@ -141,20 +147,7 @@ export default function ScreeningTable({
               >
                 <td style={tdStyle}>{i + 1}</td>
                 {displayColumns.map((col) => (
-                  <td
-                    key={col}
-                    style={{
-                      ...tdStyle,
-                      color:
-                        col === "fluc_rt" && typeof row[col] === "number"
-                          ? (row[col] as number) > 0
-                            ? "#f87171"
-                            : (row[col] as number) < 0
-                            ? "#60a5fa"
-                            : tdStyle.color
-                          : tdStyle.color,
-                    }}
-                  >
+                  <td key={col} style={{ ...tdStyle, ...alignStyle(col) }}>
                     {formatValue(row[col], col)}
                   </td>
                 ))}
@@ -167,10 +160,24 @@ export default function ScreeningTable({
   );
 }
 
+function alignStyle(col: string): React.CSSProperties {
+  if (TWO_DECIMAL_RIGHT_ALIGN.has(col) || RIGHT_ALIGN_ONLY.has(col) || col === "mktcap_eok") {
+    return { textAlign: "right" };
+  }
+  return {};
+}
+
 function formatValue(v: string | number | null, col?: string) {
   if (v === null || v === undefined) return "-";
   if (typeof v === "number") {
-    if (col === "fluc_rt") return (v > 0 ? "+" : "") + v.toFixed(2) + "%";
+    if (col === "mktcap_eok") {
+      // 시가총액: 천 단위 콤마 + 소수점 1자리
+      return v.toLocaleString("ko-KR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    }
+    if (col && TWO_DECIMAL_RIGHT_ALIGN.has(col)) {
+      // PER/PBR/ROE/부채비율: 소수점 2자리
+      return v.toLocaleString("ko-KR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
     return Number.isInteger(v) ? v.toLocaleString("ko-KR") : v.toFixed(3);
   }
   return v;
