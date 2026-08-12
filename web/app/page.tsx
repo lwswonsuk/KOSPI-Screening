@@ -5,6 +5,7 @@ import UpdateControls from "./UpdateControls";
 import AlgorithmInfo from "./AlgorithmInfo";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { formatKoreanDate } from "@/lib/format";
 
 export const dynamic = "force-static"; // 빌드 시점 JSON을 그대로 굽는다 (커밋될 때마다 재배포되며 갱신됨)
 
@@ -50,13 +51,16 @@ export default function Home() {
       ) : (
         <>
           <div className="mb-5 flex flex-wrap items-center gap-2">
-            <Badge variant="secondary">가격 기준일 {data.as_of_date}</Badge>
+            <Badge variant="secondary">가격 기준일 {formatKoreanDate(data.as_of_date)}</Badge>
             <Badge variant="secondary">재무 기준연도 {data.financial_year}</Badge>
             <Badge variant="secondary">
               필터 통과 {data.universe_passed} / {data.universe_total}
             </Badge>
             <Badge variant="outline">
-              갱신 {data.generated_at ? new Date(data.generated_at).toLocaleString("ko-KR") : "-"}
+              갱신{" "}
+              {data.generated_at
+                ? new Date(data.generated_at).toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })
+                : "-"}
             </Badge>
           </div>
 
