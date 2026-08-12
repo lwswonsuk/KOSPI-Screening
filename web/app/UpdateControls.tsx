@@ -14,7 +14,7 @@ export default function UpdateControls() {
       const res = await fetch("/api/update-finance", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ forceFinance, ttmQuarter: "H1" }),
+        body: JSON.stringify({ forceFinance, ttmQuarter: "auto" }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "요청 실패");

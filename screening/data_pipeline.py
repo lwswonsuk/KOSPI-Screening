@@ -28,6 +28,39 @@ import pandas as pd
 
 CACHE_DIR = Path(".cache")
 CACHE_DIR.mkdir(exist_ok=True)
+ANNUAL_YEAR_FILE = CACHE_DIR / "annual_year.txt"  # 자동 감지된 사업연도를 다른 스크립트와 공유하기 위한 파일
+
+
+def auto_ttm_params(today=None) -> tuple[int, int, str]:
+    """
+    오늘 날짜를 보고 '지금 시점에 이미 공시되어 있을 최신 분기'를 자동으로 추정한다.
+    공시 마감 기한 기준 (45일/90일 규정):
+      1분기보고서: 5월 15일경 마감      3분기보고서: 11월 14일경 마감
+      반기보고서:  8월 14일경 마감      사업(연간)보고서: 다음해 3월 31일경 마감
+
+    반환값: (annual_year, ttm_year, ttm_quarter)
+      annual_year — 이미 확정된 직전 연간 사업보고서 연도
+      ttm_year    — TTM 계산에 쓸 '올해' 분기누적 연도
+      ttm_quarter — 그 분기 코드 (Q1/H1/Q3)
+    """
+    from datetime import date as _date
+    if today is None:
+        today = _date.today()
+    y = today.year
+    md = (today.month, today.day)
+
+    if md < (5, 15):
+        # 올해 1분기 보고서도 아직 안 나온 시기 → 작년 3분기 누적이 최신
+        return y - 2, y - 1, "Q3"
+    elif md < (8, 15):
+        # 1분기는 나왔고(5/15~), 반기는 아직(8/15부터)
+        return y - 1, y, "Q1"
+    elif md < (11, 15):
+        # 반기는 나왔고(8/15~), 3분기는 아직(11/15부터)
+        return y - 1, y, "H1"
+    else:
+        # 3분기까지 나온 시기 (11/15~12월말)
+        return y - 1, y, "Q3"
 CORP_CODE_CACHE = CACHE_DIR / "corp_codes.parquet"
 FINANCE_CACHE = CACHE_DIR / "finance.parquet"
 
@@ -284,6 +317,7 @@ def fetch_finance_one(dart, stock_code: str, corp_code: str, annual_year: int,
 
 def build_finance_cache(annual_year: int, ttm_year: int, ttm_quarter: str, date: str,
                          force: bool = False, sleep_sec: float = 0.3):
+    ANNUAL_YEAR_FILE.write_text(str(annual_year), encoding="utf-8")  # ws_alpha.py 등이 같은 연도 참조하도록 기록
     corp_codes = get_corp_codes(force=force)
     universe = get_kospi_universe(date).reset_index()
 
@@ -344,6 +378,8 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--build", action="store_true")
     ap.add_argument("--force", action="store_true")
+    ap.add_argument("--auto", action="store_true",
+                     help="오늘 날짜를 기준으로 사업연도·TTM분기를 자동 판단 (--year/--ttm-quarter 무시)")
     ap.add_argument("--year", type=int, default=2025,
                      help="직전 완료 사업연도 (예: 2025 = 2025년 연간 사업보고서, 장기 안정성 지표용)")
     ap.add_argument("--ttm-quarter", choices=["Q1", "H1", "Q3", "FY"], default="H1",
@@ -355,6 +391,12 @@ if __name__ == "__main__":
     if a.status:
         status()
     elif a.build:
-        build_finance_cache(a.year, a.year + 1, a.ttm_quarter, a.date, force=a.force)
+        if a.auto:
+            annual_year, ttm_year, ttm_quarter = auto_ttm_params()
+            print(f"[auto] 오늘 날짜 기준 자동 판단: 사업연도={annual_year}, "
+                  f"TTM기준={ttm_year}년 {ttm_quarter}")
+        else:
+            annual_year, ttm_year, ttm_quarter = a.year, a.year + 1, a.ttm_quarter
+        build_finance_cache(annual_year, ttm_year, ttm_quarter, a.date, force=a.force)
     else:
         print("사용법: python data_pipeline.py --build  또는  --status")

@@ -14,10 +14,10 @@ on:
         type: boolean
         default: false
       ttm_quarter:
-        description: "TTM 계산 기준 분기"
+        description: "TTM 계산 기준 분기 (auto = 오늘 날짜로 자동 판단, 평소엔 이거 추천)"
         type: choice
-        options: [Q1, H1, Q3, FY]
-        default: H1
+        options: [auto, Q1, H1, Q3, FY]
+        default: auto
 
 jobs:
   screen:
@@ -54,8 +54,12 @@ jobs:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
           KRX_API_KEY: ${{ secrets.KRX_API_KEY }}
         run: |
-          Q="${{ github.event.inputs.ttm_quarter || 'H1' }}"
-          python data_pipeline.py --build --year 2025 --ttm-quarter "$Q" --date $(date -d '1 day ago' +%Y%m%d) --force
+          Q="${{ github.event.inputs.ttm_quarter || 'auto' }}"
+          if [ "$Q" = "auto" ]; then
+            python data_pipeline.py --build --auto --date $(date -d '1 day ago' +%Y%m%d) --force
+          else
+            python data_pipeline.py --build --year 2025 --ttm-quarter "$Q" --date $(date -d '1 day ago' +%Y%m%d) --force
+          fi
 
       - name: 오늘자 가격 기준 스크리닝 실행 + JSON 저장
         working-directory: screening
@@ -63,7 +67,8 @@ jobs:
           KRX_API_KEY: ${{ secrets.KRX_API_KEY }}
         run: |
           TODAY=$(date -d '1 day ago' +%Y%m%d)
-          python ws_alpha.py --run --date $TODAY --year 2025 --top 60 --export "" --export-json "../web/data/results.json"
+          YEAR=$(cat .cache/annual_year.txt 2>/dev/null || echo 2025)
+          python ws_alpha.py --run --date $TODAY --year $YEAR --top 60 --export "" --export-json "../web/data/results.json"
 
       - name: 결과를 저장소에 커밋 (→ Vercel 자동 재배포 트리거)
         run: |

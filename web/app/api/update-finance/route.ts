@@ -26,11 +26,11 @@ export async function POST(req: Request) {
   }
 
   let forceFinance = false;
-  let ttmQuarter = "H1";
+  let ttmQuarter = "auto";
   try {
     const body = await req.json();
     forceFinance = Boolean(body?.forceFinance);
-    ttmQuarter = body?.ttmQuarter || "H1";
+    ttmQuarter = body?.ttmQuarter || "auto";
   } catch {
     // body 없이 호출된 경우 기본값 사용
   }
