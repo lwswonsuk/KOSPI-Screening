@@ -22,7 +22,12 @@ const HIDDEN_COLUMNS = new Set([
 ]);
 
 // 소수점 2자리 + 우측 정렬로 보여줄 컬럼
-const TWO_DECIMAL_RIGHT_ALIGN = new Set(["per", "pbr", "roe_3y_avg", "debt_ratio"]);
+const TWO_DECIMAL_RIGHT_ALIGN = new Set([
+  "per", "pbr", "roe_3y_avg", "debt_ratio", "div_yield", "payout_ratio",
+]);
+
+// 소수점 4자리 + 우측 정렬 (종합점수 전용)
+const FOUR_DECIMAL_RIGHT_ALIGN = new Set(["score"]);
 
 // 우측 정렬만 적용할 컬럼 (숫자 포맷은 기본값 유지)
 const RIGHT_ALIGN_ONLY = new Set(["close"]);
@@ -87,7 +92,7 @@ export default function ScreeningTable({
         ? String(av).localeCompare(String(bv), "ko")
         : String(bv).localeCompare(String(av), "ko");
     });
-    return copy;
+    return copy.slice(0, 50);
   }, [liveRows, sortKey, sortDir]);
 
   function onSort(col: string) {
@@ -167,7 +172,12 @@ export default function ScreeningTable({
 }
 
 function alignClass(col: string): string {
-  if (TWO_DECIMAL_RIGHT_ALIGN.has(col) || RIGHT_ALIGN_ONLY.has(col) || col === "mktcap_eok") {
+  if (
+    TWO_DECIMAL_RIGHT_ALIGN.has(col) ||
+    FOUR_DECIMAL_RIGHT_ALIGN.has(col) ||
+    RIGHT_ALIGN_ONLY.has(col) ||
+    col === "mktcap_eok"
+  ) {
     return "text-right";
   }
   return "";
@@ -180,8 +190,12 @@ function formatValue(v: string | number | null, col?: string) {
       // 시가총액: 천 단위 콤마 + 소수점 1자리
       return v.toLocaleString("ko-KR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
     }
+    if (col && FOUR_DECIMAL_RIGHT_ALIGN.has(col)) {
+      // 종합점수: 소수점 4자리
+      return v.toLocaleString("ko-KR", { minimumFractionDigits: 4, maximumFractionDigits: 4 });
+    }
     if (col && TWO_DECIMAL_RIGHT_ALIGN.has(col)) {
-      // PER/PBR/ROE/부채비율: 소수점 2자리
+      // PER/PBR/ROE/부채비율/배당수익률/배당성향: 소수점 2자리
       return v.toLocaleString("ko-KR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
     return Number.isInteger(v) ? v.toLocaleString("ko-KR") : v.toFixed(3);
