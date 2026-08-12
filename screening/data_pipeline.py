@@ -245,6 +245,35 @@ def _extract_financials(fs: pd.DataFrame) -> tuple[dict, dict]:
     )
 
 
+def parse_dividend_report(fs_div: pd.DataFrame) -> dict:
+    """DART 배당 공시(report(key_word='배당')) 응답에서 총현금배당금(원 단위)과
+    공시된 배당성향(%)을 뽑는다. 항목이 없으면 np.nan."""
+    if fs_div is None or len(fs_div) == 0 or "se" not in fs_div.columns:
+        return {"cash_dividend_total": np.nan, "payout_ratio_reported": np.nan}
+
+    def find_value(substr: str):
+        matched = fs_div[fs_div["se"].astype(str).str.contains(substr, na=False)]
+        if len(matched) == 0:
+            return np.nan
+        return _to_float(matched.iloc[0].get("thstrm"))
+
+    cash_total_million = find_value("현금배당금총액")
+    payout_reported = find_value("현금배당성향")
+
+    cash_total = cash_total_million * 1_000_000 if not np.isnan(cash_total_million) else np.nan
+    return {"cash_dividend_total": cash_total, "payout_ratio_reported": payout_reported}
+
+
+def fetch_dividend_one(dart, corp_code: str, annual_year: int) -> dict:
+    """직전 사업연도(annual_year) 사업보고서(FY)의 배당에 관한 사항을 조회한다."""
+    try:
+        fs_div = dart.report(corp_code, "배당", annual_year, QUARTER_CODES["FY"])
+    except Exception as e:
+        print(f"  [WARN] {corp_code} 배당 공시 조회 실패: {e}")
+        return {"cash_dividend_total": np.nan, "payout_ratio_reported": np.nan}
+    return parse_dividend_report(fs_div)
+
+
 def fetch_finance_one(dart, stock_code: str, corp_code: str, annual_year: int,
                        ttm_year: int, ttm_quarter: str) -> Optional[dict]:
     """
@@ -340,6 +369,18 @@ def fetch_finance_one(dart, stock_code: str, corp_code: str, annual_year: int,
     debt_ratio = safe_div(total_liab_latest, total_equity_latest) * 100
     op_margin = safe_div(op_income_ttm, revenue_ttm) * 100
 
+    div = fetch_dividend_one(dart, corp_code, annual_year)
+    div_yield = np.nan
+    payout_ratio = np.nan
+    if not np.isnan(div["cash_dividend_total"]):
+        # 시가총액은 fetch 시점에 알 수 없으므로 여기서는 총배당금(원)만 저장하고,
+        # 시가배당수익률은 load_real()에서 당일 시가총액과 결합해 계산한다.
+        pass
+    if not np.isnan(div["payout_ratio_reported"]):
+        payout_ratio = div["payout_ratio_reported"]
+    elif not np.isnan(div["cash_dividend_total"]) and not np.isnan(net_income_ttm) and net_income_ttm > 0:
+        payout_ratio = div["cash_dividend_total"] / net_income_ttm * 100
+
     return {
         "stock_code": stock_code,
         "corp_code": corp_code,
@@ -357,6 +398,8 @@ def fetch_finance_one(dart, stock_code: str, corp_code: str, annual_year: int,
         "net_income_ttm": net_income_ttm,
         "revenue_ttm": revenue_ttm,
         "total_equity": total_equity_latest,
+        "cash_dividend_total": div["cash_dividend_total"],
+        "payout_ratio": payout_ratio,
     }
 
 
