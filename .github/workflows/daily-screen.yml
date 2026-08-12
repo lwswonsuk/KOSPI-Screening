@@ -26,7 +26,7 @@ jobs:
       - name: Python 설치
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
 
       - name: 패키지 설치
         run: pip install -r screening/requirements.txt
