@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <main className="mx-auto max-w-6xl px-5 py-10">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight">주식 스크리닝 결과</h1>
+        <h1 className="text-2xl font-bold tracking-tight">한국 가치투자 스크리닝</h1>
         <p className="mt-1 text-sm text-muted-foreground">
           Stock Note 투자원칙 기반 코스피 종목 스크리닝
         </p>
