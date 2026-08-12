@@ -22,10 +22,13 @@ from __future__ import annotations
 import argparse
 import os
 from dataclasses import dataclass, field
+from datetime import date as _date
 from typing import Optional
 
 import numpy as np
 import pandas as pd
+
+from quotes import pick_quote_for_week
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -587,6 +590,8 @@ def run_real(date: str, bsns_year: int, top_n: int, export: str | None,
             "as_of_date": date,
             "financial_year": bsns_year,
             "generated_at": pd.Timestamp.now("UTC").isoformat(),
+            "quote_text": pick_quote_for_week()["text"],
+            "quote_author": pick_quote_for_week()["author"],
             "universe_total": int(len(d)),
             "universe_passed": int(filt["passed"].sum()),
             "columns": cols,
