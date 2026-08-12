@@ -10,7 +10,7 @@ on:
     # 분기 공시기한 다음날 한국시간 오전 6시 — 재무데이터 강제 재수집
     - cron: "0 21 15 5 *"   # 1분기보고서 마감(5/15) 다음날 06:00 KST
     - cron: "0 21 14 8 *"   # 반기보고서 마감(8/14) 다음날 06:00 KST
-    - cron: "0 21 13 11 *"  # 3분기보고서 마감(11/14) 다음날 06:00 KST
+    - cron: "0 21 14 11 *"  # 3분기보고서 마감(11/14) 다음날 06:00 KST
     - cron: "0 21 31 3 *"   # 사업보고서 마감(3/31) 다음날 06:00 KST
   workflow_dispatch:
     inputs:
@@ -56,7 +56,7 @@ jobs:
         if: >-
           steps.finance-cache.outputs.cache-hit != 'true' ||
           github.event.inputs.force_finance == 'true' ||
-          contains(fromJSON('["0 21 15 5 *","0 21 14 8 *","0 21 13 11 *","0 21 31 3 *"]'), github.event.schedule)
+          contains(fromJSON('["0 21 15 5 *","0 21 14 8 *","0 21 14 11 *","0 21 31 3 *"]'), github.event.schedule)
         working-directory: screening
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
