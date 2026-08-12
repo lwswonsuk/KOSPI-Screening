@@ -31,9 +31,10 @@ export async function POST(req: Request) {
 
   const token = sessionToken();
   const res = Response.json({ ok: true });
+  const secureFlag = process.env.NODE_ENV === "production" ? "; Secure" : "";
   res.headers.set(
     "Set-Cookie",
-    `admin_session=${token}; Path=/; HttpOnly; Max-Age=86400; SameSite=Lax`
+    `admin_session=${token}; Path=/; HttpOnly; Max-Age=86400; SameSite=Lax${secureFlag}`
   );
   return res;
 }
