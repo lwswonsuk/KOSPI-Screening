@@ -492,7 +492,7 @@ def run_demo():
 
 
 def run_real(date: str, bsns_year: int, top_n: int, export: str | None,
-             export_json: str | None = None):
+             export_json: str | None = None, filtered_json: str | None = None):
     """
     종목 스크리닝 전용 실행기. (포트폴리오 비중 구성은 하지 않음 —
     이건 '어떤 종목을 볼지' 후보를 추리는 용도이지, 실제 매매 비중 결정용이 아님)
@@ -599,6 +599,37 @@ def run_real(date: str, bsns_year: int, top_n: int, export: str | None,
         out_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
         print(f"\n[export] JSON 저장 완료 → {export_json} ({len(records)}종목)")
 
+    if filtered_json:
+        import json
+        from pathlib import Path as _Path
+
+        passed_all = ranked[ranked["passed"]][cols]
+        records = []
+        for code, row in passed_all.iterrows():
+            rec = {"stock_code": str(code)}
+            for c in cols:
+                v = row[c]
+                if pd.isna(v):
+                    rec[c] = None
+                elif isinstance(v, (int, float, np.floating, np.integer)):
+                    rec[c] = round(float(v), 4)
+                else:
+                    rec[c] = str(v)
+            records.append(rec)
+
+        payload = {
+            "as_of_date": date,
+            "financial_year": bsns_year,
+            "generated_at": pd.Timestamp.now("UTC").isoformat(),
+            "columns": cols,
+            "column_labels_ko": {c: KOR_NAMES.get(c, c) for c in cols},
+            "results": records,
+        }
+        out_path = _Path(filtered_json)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(f"\n[export] 필터통과 전체 JSON 저장 완료 → {filtered_json} ({len(records)}종목)")
+
     return ranked
 
 
@@ -608,12 +639,14 @@ if __name__ == "__main__":
     ap.add_argument("--run", action="store_true")
     ap.add_argument("--date", default="20260810")
     ap.add_argument("--year", type=int, default=2025, help="재무캐시 사업연도")
-    ap.add_argument("--top", type=int, default=60, help="화면·엑셀에 보여줄 상위 종목 수")
+    ap.add_argument("--top", type=int, default=50, help="화면·엑셀에 보여줄 상위 종목 수")
     ap.add_argument("--export", default="screening_result.xlsx", help="엑셀로 저장할 파일명 (빈 문자열이면 저장 안 함)")
     ap.add_argument("--export-json", default="", help="웹사이트용 JSON 저장 경로 (예: web/data/results.json)")
+    ap.add_argument("--filtered-json", default="", help="필터통과 전체 종목 JSON 저장 경로 (예: web/data/filtered_full.json)")
     a = ap.parse_args()
     if a.run:
         run_real(a.date, a.year, a.top, a.export if a.export else None,
-                  a.export_json if a.export_json else None)
+                  a.export_json if a.export_json else None,
+                  a.filtered_json if a.filtered_json else None)
     else:
         run_demo()
