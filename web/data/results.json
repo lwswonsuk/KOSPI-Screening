@@ -1,7 +1,7 @@
 {
   "as_of_date": "20260811",
   "financial_year": 2025,
-  "generated_at": "2026-08-12T07:48:10.838017+00:00",
+  "generated_at": "2026-08-12T08:55:45.793438+00:00",
   "universe_total": 829,
   "universe_passed": 219,
   "columns": [
@@ -13,12 +13,6 @@
     "pbr",
     "roe_3y_avg",
     "debt_ratio",
-    "ret_12m",
-    "op_yoy",
-    "s_quality",
-    "s_value",
-    "s_gap",
-    "s_payout",
     "score"
   ],
   "column_labels_ko": {
@@ -30,12 +24,6 @@
     "pbr": "PBR",
     "roe_3y_avg": "ROE(3년평균%)",
     "debt_ratio": "부채비율(%)",
-    "ret_12m": "12개월수익률",
-    "op_yoy": "영업이익YoY",
-    "s_quality": "체력점수",
-    "s_value": "가격점수",
-    "s_gap": "괴리점수",
-    "s_payout": "환원여력점수",
     "score": "종합점수"
   },
   "results": [
@@ -49,12 +37,6 @@
       "pbr": 0.6253,
       "roe_3y_avg": 5.7426,
       "debt_ratio": 89.8744,
-      "ret_12m": null,
-      "op_yoy": 2.5014,
-      "s_quality": 0.5591,
-      "s_value": 0.576,
-      "s_gap": 0.6042,
-      "s_payout": 0.5267,
       "score": 0.5711
     },
     {
@@ -67,12 +49,6 @@
       "pbr": 1.2201,
       "roe_3y_avg": 15.4645,
       "debt_ratio": 78.0622,
-      "ret_12m": null,
-      "op_yoy": 0.3459,
-      "s_quality": 0.5882,
-      "s_value": 0.5767,
-      "s_gap": 0.5312,
-      "s_payout": 0.585,
       "score": 0.5691
     },
     {
@@ -85,12 +61,6 @@
       "pbr": 1.4398,
       "roe_3y_avg": 7.6311,
       "debt_ratio": 20.5075,
-      "ret_12m": null,
-      "op_yoy": 1.5328,
-      "s_quality": 0.6587,
-      "s_value": 0.4302,
-      "s_gap": 0.599,
-      "s_payout": 0.546,
       "score": 0.5617
     },
     {
@@ -103,12 +73,6 @@
       "pbr": 0.5345,
       "roe_3y_avg": 13.3937,
       "debt_ratio": 14.5602,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.7718,
-      "s_value": 0.718,
-      "s_gap": 0.15,
-      "s_payout": 0.5788,
       "score": 0.5599
     },
     {
@@ -121,12 +85,6 @@
       "pbr": 0.8667,
       "roe_3y_avg": 7.3513,
       "debt_ratio": 37.1086,
-      "ret_12m": null,
-      "op_yoy": -0.0399,
-      "s_quality": 0.605,
-      "s_value": 0.5743,
-      "s_gap": 0.4844,
-      "s_payout": 0.5423,
       "score": 0.5544
     },
     {
@@ -139,12 +97,6 @@
       "pbr": 0.5871,
       "roe_3y_avg": 8.7395,
       "debt_ratio": 10.5654,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.7391,
-      "s_value": 0.675,
-      "s_gap": 0.15,
-      "s_payout": 0.5544,
       "score": 0.5344
     },
     {
@@ -157,12 +109,6 @@
       "pbr": 1.7357,
       "roe_3y_avg": 8.8943,
       "debt_ratio": 36.935,
-      "ret_12m": null,
-      "op_yoy": 0.0808,
-      "s_quality": 0.7209,
-      "s_value": 0.3597,
-      "s_gap": 0.4948,
-      "s_payout": 0.5556,
       "score": 0.5339
     },
     {
@@ -175,12 +121,6 @@
       "pbr": 0.4588,
       "roe_3y_avg": 11.2849,
       "debt_ratio": 13.2321,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6886,
-      "s_value": 0.7167,
-      "s_gap": 0.15,
-      "s_payout": 0.5686,
       "score": 0.5331
     },
     {
@@ -193,12 +133,6 @@
       "pbr": 0.4855,
       "roe_3y_avg": 8.9421,
       "debt_ratio": 23.046,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.703,
-      "s_value": 0.6984,
-      "s_gap": 0.15,
-      "s_payout": 0.5561,
       "score": 0.5304
     },
     {
@@ -211,12 +145,6 @@
       "pbr": 0.2803,
       "roe_3y_avg": 8.8514,
       "debt_ratio": 54.1774,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6183,
-      "s_value": 0.7841,
-      "s_gap": 0.15,
-      "s_payout": 0.5549,
       "score": 0.5288
     },
     {
@@ -229,12 +157,6 @@
       "pbr": 0.3266,
       "roe_3y_avg": 7.5419,
       "debt_ratio": 87.7661,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6291,
-      "s_value": 0.7719,
-      "s_gap": 0.15,
-      "s_payout": 0.5443,
       "score": 0.527
     },
     {
@@ -247,12 +169,6 @@
       "pbr": 0.3653,
       "roe_3y_avg": 8.2545,
       "debt_ratio": 18.4781,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6396,
-      "s_value": 0.7576,
-      "s_gap": 0.15,
-      "s_payout": 0.5493,
       "score": 0.5269
     },
     {
@@ -265,12 +181,6 @@
       "pbr": 0.3928,
       "roe_3y_avg": 5.2943,
       "debt_ratio": 20.9303,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6801,
-      "s_value": 0.7266,
-      "s_gap": 0.15,
-      "s_payout": 0.518,
       "score": 0.5257
     },
     {
@@ -283,12 +193,6 @@
       "pbr": 0.4343,
       "roe_3y_avg": 7.5737,
       "debt_ratio": 34.2448,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6864,
-      "s_value": 0.7026,
-      "s_gap": 0.15,
-      "s_payout": 0.545,
       "score": 0.5249
     },
     {
@@ -301,12 +205,6 @@
       "pbr": 0.611,
       "roe_3y_avg": 7.6276,
       "debt_ratio": 9.6182,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.7181,
-      "s_value": 0.6629,
-      "s_gap": 0.15,
-      "s_payout": 0.5457,
       "score": 0.5234
     },
     {
@@ -319,12 +217,6 @@
       "pbr": 0.4681,
       "roe_3y_avg": 20.8884,
       "debt_ratio": 134.2211,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5736,
-      "s_value": 0.7577,
-      "s_gap": 0.15,
-      "s_payout": 0.593,
       "score": 0.5137
     },
     {
@@ -337,12 +229,6 @@
       "pbr": 0.3719,
       "roe_3y_avg": 5.5154,
       "debt_ratio": 48.2182,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6484,
-      "s_value": 0.7137,
-      "s_gap": 0.15,
-      "s_payout": 0.5221,
       "score": 0.5132
     },
     {
@@ -355,12 +241,6 @@
       "pbr": 0.4309,
       "roe_3y_avg": 13.9643,
       "debt_ratio": 74.2287,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5624,
-      "s_value": 0.7705,
-      "s_gap": 0.15,
-      "s_payout": 0.58,
       "score": 0.512
     },
     {
@@ -373,12 +253,6 @@
       "pbr": 0.2002,
       "roe_3y_avg": 7.9982,
       "debt_ratio": 144.8921,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5046,
-      "s_value": 0.8412,
-      "s_gap": 0.15,
-      "s_payout": 0.5472,
       "score": 0.5095
     },
     {
@@ -391,12 +265,6 @@
       "pbr": 0.4883,
       "roe_3y_avg": 12.6453,
       "debt_ratio": 98.1737,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6115,
-      "s_value": 0.7103,
-      "s_gap": 0.15,
-      "s_payout": 0.5764,
       "score": 0.5093
     },
     {
@@ -409,12 +277,6 @@
       "pbr": 0.8361,
       "roe_3y_avg": 19.8625,
       "debt_ratio": 36.0116,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.653,
-      "s_value": 0.6553,
-      "s_gap": 0.15,
-      "s_payout": 0.5925,
       "score": 0.5088
     },
     {
@@ -427,12 +289,6 @@
       "pbr": 0.7333,
       "roe_3y_avg": 8.9748,
       "debt_ratio": 33.3124,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.7181,
-      "s_value": 0.599,
-      "s_gap": 0.15,
-      "s_payout": 0.5563,
       "score": 0.5071
     },
     {
@@ -445,12 +301,6 @@
       "pbr": 0.6379,
       "roe_3y_avg": 9.7201,
       "debt_ratio": 22.6416,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6722,
-      "s_value": 0.6222,
-      "s_gap": 0.15,
-      "s_payout": 0.5595,
       "score": 0.5003
     },
     {
@@ -463,12 +313,6 @@
       "pbr": 0.2869,
       "roe_3y_avg": 8.5504,
       "debt_ratio": 149.6724,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.4975,
-      "s_value": 0.812,
-      "s_gap": 0.15,
-      "s_payout": 0.5532,
       "score": 0.5001
     },
     {
@@ -481,12 +325,6 @@
       "pbr": 0.3465,
       "roe_3y_avg": 12.8545,
       "debt_ratio": 101.102,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5328,
-      "s_value": 0.7614,
-      "s_gap": 0.15,
-      "s_payout": 0.5771,
       "score": 0.5001
     },
     {
@@ -499,12 +337,6 @@
       "pbr": 0.9243,
       "roe_3y_avg": 12.8204,
       "debt_ratio": 9.9307,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.7176,
-      "s_value": 0.5536,
-      "s_gap": 0.15,
-      "s_payout": 0.5768,
       "score": 0.4973
     },
     {
@@ -517,12 +349,6 @@
       "pbr": 0.5076,
       "roe_3y_avg": 15.2485,
       "debt_ratio": 173.7035,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5673,
-      "s_value": 0.7045,
-      "s_gap": 0.15,
-      "s_payout": 0.5846,
       "score": 0.4956
     },
     {
@@ -535,12 +361,6 @@
       "pbr": 5.3071,
       "roe_3y_avg": 26.8206,
       "debt_ratio": 49.3357,
-      "ret_12m": null,
-      "op_yoy": -0.0224,
-      "s_quality": 0.5912,
-      "s_value": 0.3441,
-      "s_gap": 0.4896,
-      "s_payout": 0.5957,
       "score": 0.4953
     },
     {
@@ -553,12 +373,6 @@
       "pbr": 0.7201,
       "roe_3y_avg": 9.2655,
       "debt_ratio": 26.0515,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6936,
-      "s_value": 0.5814,
-      "s_gap": 0.15,
-      "s_payout": 0.5571,
       "score": 0.4949
     },
     {
@@ -571,12 +385,6 @@
       "pbr": 0.2902,
       "roe_3y_avg": 10.9995,
       "debt_ratio": 61.7591,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5526,
-      "s_value": 0.7267,
-      "s_gap": 0.15,
-      "s_payout": 0.5672,
       "score": 0.4949
     },
     {
@@ -589,12 +397,6 @@
       "pbr": 0.3742,
       "roe_3y_avg": 5.3992,
       "debt_ratio": 7.4263,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6454,
-      "s_value": 0.6513,
-      "s_gap": 0.15,
-      "s_payout": 0.5201,
       "score": 0.4945
     },
     {
@@ -607,12 +409,6 @@
       "pbr": 1.3635,
       "roe_3y_avg": 25.4386,
       "debt_ratio": 24.6034,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6611,
-      "s_value": 0.5829,
-      "s_gap": 0.15,
-      "s_payout": 0.5954,
       "score": 0.4913
     },
     {
@@ -625,12 +421,6 @@
       "pbr": 0.4297,
       "roe_3y_avg": 5.8476,
       "debt_ratio": 10.5908,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6469,
-      "s_value": 0.6326,
-      "s_gap": 0.15,
-      "s_payout": 0.5281,
       "score": 0.4909
     },
     {
@@ -643,12 +433,6 @@
       "pbr": 0.5643,
       "roe_3y_avg": 6.83,
       "debt_ratio": 22.8213,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6467,
-      "s_value": 0.6211,
-      "s_gap": 0.15,
-      "s_payout": 0.5382,
       "score": 0.4892
     },
     {
@@ -661,12 +445,6 @@
       "pbr": 0.8139,
       "roe_3y_avg": 9.8486,
       "debt_ratio": 41.8207,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6456,
-      "s_value": 0.6081,
-      "s_gap": 0.15,
-      "s_payout": 0.5607,
       "score": 0.4886
     },
     {
@@ -679,12 +457,6 @@
       "pbr": 0.3104,
       "roe_3y_avg": 7.4077,
       "debt_ratio": 129.5989,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5141,
-      "s_value": 0.745,
-      "s_gap": 0.15,
-      "s_payout": 0.5428,
       "score": 0.4847
     },
     {
@@ -697,12 +469,6 @@
       "pbr": 0.344,
       "roe_3y_avg": 8.2846,
       "debt_ratio": 108.5754,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5263,
-      "s_value": 0.7275,
-      "s_gap": 0.15,
-      "s_payout": 0.5496,
       "score": 0.4845
     },
     {
@@ -715,12 +481,6 @@
       "pbr": 0.4756,
       "roe_3y_avg": 7.5512,
       "debt_ratio": 154.5854,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5714,
-      "s_value": 0.6812,
-      "s_gap": 0.15,
-      "s_payout": 0.5448,
       "score": 0.4844
     },
     {
@@ -733,12 +493,6 @@
       "pbr": 0.9097,
       "roe_3y_avg": 8.3224,
       "debt_ratio": 59.5321,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6679,
-      "s_value": 0.5738,
-      "s_gap": 0.15,
-      "s_payout": 0.5505,
       "score": 0.4841
     },
     {
@@ -751,12 +505,6 @@
       "pbr": 0.4997,
       "roe_3y_avg": 11.2466,
       "debt_ratio": 66.0821,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5886,
-      "s_value": 0.6455,
-      "s_gap": 0.15,
-      "s_payout": 0.5684,
       "score": 0.4831
     },
     {
@@ -769,12 +517,6 @@
       "pbr": 0.9812,
       "roe_3y_avg": 8.2955,
       "debt_ratio": 12.0671,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.7252,
-      "s_value": 0.5028,
-      "s_gap": 0.15,
-      "s_payout": 0.5498,
       "score": 0.4813
     },
     {
@@ -787,12 +529,6 @@
       "pbr": 0.9405,
       "roe_3y_avg": 10.3566,
       "debt_ratio": 46.5149,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6404,
-      "s_value": 0.5816,
-      "s_gap": 0.15,
-      "s_payout": 0.5633,
       "score": 0.48
     },
     {
@@ -805,12 +541,6 @@
       "pbr": 0.3468,
       "roe_3y_avg": 11.3899,
       "debt_ratio": 64.6774,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5562,
-      "s_value": 0.6671,
-      "s_gap": 0.15,
-      "s_payout": 0.5689,
       "score": 0.4795
     },
     {
@@ -823,12 +553,6 @@
       "pbr": 0.6787,
       "roe_3y_avg": 8.4067,
       "debt_ratio": 34.7529,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6255,
-      "s_value": 0.5987,
-      "s_gap": 0.15,
-      "s_payout": 0.552,
       "score": 0.4786
     },
     {
@@ -841,12 +565,6 @@
       "pbr": 0.4565,
       "roe_3y_avg": 5.8968,
       "debt_ratio": 13.5609,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6455,
-      "s_value": 0.5873,
-      "s_gap": 0.15,
-      "s_payout": 0.5291,
       "score": 0.4779
     },
     {
@@ -859,12 +577,6 @@
       "pbr": 2.1688,
       "roe_3y_avg": 15.9894,
       "debt_ratio": 30.6827,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.7741,
-      "s_value": 0.4169,
-      "s_gap": 0.15,
-      "s_payout": 0.5867,
       "score": 0.4775
     },
     {
@@ -877,12 +589,6 @@
       "pbr": 1.214,
       "roe_3y_avg": 13.062,
       "debt_ratio": 34.6672,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.7205,
-      "s_value": 0.4775,
-      "s_gap": 0.15,
-      "s_payout": 0.578,
       "score": 0.4771
     },
     {
@@ -895,12 +601,6 @@
       "pbr": 0.6212,
       "roe_3y_avg": 5.0118,
       "debt_ratio": 32.0425,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6386,
-      "s_value": 0.5995,
-      "s_gap": 0.15,
-      "s_payout": 0.5131,
       "score": 0.4769
     },
     {
@@ -913,12 +613,6 @@
       "pbr": 0.5824,
       "roe_3y_avg": 9.8526,
       "debt_ratio": 34.8112,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6629,
-      "s_value": 0.5469,
-      "s_gap": 0.15,
-      "s_payout": 0.5609,
       "score": 0.4766
     },
     {
@@ -931,12 +625,6 @@
       "pbr": 0.8246,
       "roe_3y_avg": 9.5827,
       "debt_ratio": 23.3376,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6891,
-      "s_value": 0.5182,
-      "s_gap": 0.15,
-      "s_payout": 0.5587,
       "score": 0.4761
     },
     {
@@ -949,12 +637,6 @@
       "pbr": 1.5653,
       "roe_3y_avg": 16.4433,
       "debt_ratio": 57.2617,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6789,
-      "s_value": 0.5135,
-      "s_gap": 0.15,
-      "s_payout": 0.5877,
       "score": 0.4761
     },
     {
@@ -967,12 +649,6 @@
       "pbr": 0.4565,
       "roe_3y_avg": 5.1183,
       "debt_ratio": 81.1181,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5103,
-      "s_value": 0.7307,
-      "s_gap": 0.15,
-      "s_payout": 0.5156,
       "score": 0.4755
     },
     {
@@ -985,12 +661,6 @@
       "pbr": 0.4493,
       "roe_3y_avg": 5.1867,
       "debt_ratio": 112.8999,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.577,
-      "s_value": 0.6503,
-      "s_gap": 0.15,
-      "s_payout": 0.5163,
       "score": 0.4731
     },
     {
@@ -1003,12 +673,6 @@
       "pbr": 0.6512,
       "roe_3y_avg": 10.6362,
       "debt_ratio": 109.085,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5546,
-      "s_value": 0.6475,
-      "s_gap": 0.15,
-      "s_payout": 0.565,
       "score": 0.4729
     },
     {
@@ -1021,12 +685,6 @@
       "pbr": 0.6456,
       "roe_3y_avg": 5.2763,
       "debt_ratio": 60.4316,
-      "ret_12m": null,
-      "op_yoy": 0.1426,
-      "s_quality": 0.5071,
-      "s_value": 0.3705,
-      "s_gap": 0.5156,
-      "s_payout": 0.5175,
       "score": 0.4727
     },
     {
@@ -1039,12 +697,6 @@
       "pbr": 0.656,
       "roe_3y_avg": 10.5609,
       "debt_ratio": 93.6277,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5277,
-      "s_value": 0.671,
-      "s_gap": 0.15,
-      "s_payout": 0.5641,
       "score": 0.4713
     },
     {
@@ -1057,12 +709,6 @@
       "pbr": 0.6589,
       "roe_3y_avg": 11.0468,
       "debt_ratio": 46.1204,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5982,
-      "s_value": 0.5932,
-      "s_gap": 0.15,
-      "s_payout": 0.5674,
       "score": 0.4712
     },
     {
@@ -1075,12 +721,6 @@
       "pbr": 0.5575,
       "roe_3y_avg": 6.01,
       "debt_ratio": 31.6344,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.6429,
-      "s_value": 0.5651,
-      "s_gap": 0.15,
-      "s_payout": 0.53,
       "score": 0.4711
     },
     {
@@ -1093,12 +733,6 @@
       "pbr": 0.5156,
       "roe_3y_avg": 8.1849,
       "debt_ratio": 104.9454,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5123,
-      "s_value": 0.6913,
-      "s_gap": 0.15,
-      "s_payout": 0.5486,
       "score": 0.4701
     },
     {
@@ -1111,12 +745,6 @@
       "pbr": 0.4351,
       "roe_3y_avg": 6.6247,
       "debt_ratio": 69.7543,
-      "ret_12m": null,
-      "op_yoy": null,
-      "s_quality": 0.5646,
-      "s_value": 0.641,
-      "s_gap": 0.15,
-      "s_payout": 0.5368,
       "score": 0.4699
     }
   ]
