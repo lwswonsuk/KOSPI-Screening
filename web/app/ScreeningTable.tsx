@@ -5,7 +5,10 @@ import { useMemo, useState } from "react";
 type ResultRow = Record<string, string | number | null>;
 
 // 화면에서 아예 안 보여줄 컬럼 (JSON에 남아있어도 숨김)
-const HIDDEN_COLUMNS = new Set(["ret_12m", "op_yoy", "fluc_rt"]);
+const HIDDEN_COLUMNS = new Set([
+  "ret_12m", "op_yoy", "fluc_rt",
+  "s_quality", "s_value", "s_gap", "s_payout",   // 개별 팩터 점수는 숨기고 종합점수만 노출
+]);
 
 // 소수점 2자리 + 우측 정렬로 보여줄 컬럼
 const TWO_DECIMAL_RIGHT_ALIGN = new Set(["per", "pbr", "roe_3y_avg", "debt_ratio"]);

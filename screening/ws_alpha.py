@@ -514,8 +514,7 @@ def run_real(date: str, bsns_year: int, top_n: int, export: str | None,
     print("\n" + "=" * 78)
     print(f"STEP 2 — 종합 랭킹 상위 {top_n}  (점수 높은 순 = 4대 팩터 종합 매력도)")
     print("=" * 78)
-    cols = ["name", "sector_raw", "close", "per", "pbr", "roe_3y_avg", "debt_ratio",
-            "s_quality", "s_value", "s_gap", "s_payout", "score"]
+    cols = ["name", "sector_raw", "close", "per", "pbr", "roe_3y_avg", "debt_ratio", "score"]
     cols = [c for c in cols if c in ranked.columns]
     if "mktcap_eok" in ranked.columns:
         cols = cols[:2] + ["mktcap_eok"] + cols[2:]  # name, sector_raw 다음에 시가총액 삽입

@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import ScreeningTable from "./ScreeningTable";
 import UpdateControls from "./UpdateControls";
+import AlgorithmInfo from "./AlgorithmInfo";
 
 export const dynamic = "force-static"; // 빌드 시점 JSON을 그대로 굽는다 (커밋될 때마다 재배포되며 갱신됨)
 
@@ -66,6 +67,7 @@ export default function Home() {
             </span>
             <span>갱신: {data.generated_at ? new Date(data.generated_at).toLocaleString("ko-KR") : "-"}</span>
           </div>
+          <AlgorithmInfo />
           <ScreeningTable
             columns={data.columns}
             labels={data.column_labels_ko}
