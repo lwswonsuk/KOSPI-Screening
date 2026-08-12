@@ -372,8 +372,6 @@ def load_real(date: str, bsns_year: int = 2025) -> pd.DataFrame:
     df["drawdown_52w"] = np.nan  # TODO: 일별 시세 히스토리 필요 (아래 보완 계획 참고)
 
     # ---- 밸류/재무 캐시 merge ----
-    df["div_yield"] = np.nan    # TODO: KRX API에 배당수익률 서비스가 없어 비워둠. 필요시 DART 배당 공시로 보완
-    df["payout_ratio"] = np.nan # TODO: 위와 동일
     df["fcf_yield"] = np.nan
     df["net_cash_to_mktcap"] = np.nan
     df["treasury_ratio"] = np.nan
@@ -382,6 +380,11 @@ def load_real(date: str, bsns_year: int = 2025) -> pd.DataFrame:
     fin = pd.read_parquet(FINANCE_CACHE)
     fin = fin[fin["bsns_year"] == bsns_year].set_index("stock_code")
     df = df.join(fin, how="inner")
+
+    # 시가배당수익률(연환산, 직전 FY 총배당금 기준) — 무배당 종목은 0
+    df["div_yield"] = (df["cash_dividend_total"] / df["mktcap"] * 100).fillna(0.0)
+    df["div_yield"] = df["div_yield"].clip(lower=0)
+    df["payout_ratio"] = df["payout_ratio"].fillna(0.0).clip(lower=0)
 
     # PER/PBR은 "시가총액 ÷ 재무값" 방식으로 계산 (1주당 EPS/BPS를 따로 구할 필요 없음)
     #   PER = 시가총액 / 당기순이익  (= 주가 / EPS 와 수학적으로 동일)
@@ -514,7 +517,8 @@ def run_real(date: str, bsns_year: int, top_n: int, export: str | None,
     print("\n" + "=" * 78)
     print(f"STEP 2 — 종합 랭킹 상위 {top_n}  (점수 높은 순 = 4대 팩터 종합 매력도)")
     print("=" * 78)
-    cols = ["name", "sector_raw", "close", "per", "pbr", "roe_3y_avg", "debt_ratio", "score"]
+    cols = ["name", "sector_raw", "close", "per", "pbr", "roe_3y_avg", "debt_ratio",
+            "div_yield", "payout_ratio", "score"]
     cols = [c for c in cols if c in ranked.columns]
     if "mktcap_eok" in ranked.columns:
         cols = cols[:2] + ["mktcap_eok"] + cols[2:]  # name, sector_raw 다음에 시가총액 삽입
@@ -525,7 +529,8 @@ def run_real(date: str, bsns_year: int, top_n: int, export: str | None,
     KOR_NAMES = {
         "name": "종목명", "sector_raw": "시장", "mktcap_eok": "시가총액(억)",
         "close": "종가", "per": "PER", "pbr": "PBR", "roe_3y_avg": "ROE(3년평균%)",
-        "debt_ratio": "부채비율(%)", "ret_12m": "12개월수익률", "op_yoy": "영업이익YoY",
+        "debt_ratio": "부채비율(%)", "div_yield": "시가배당수익률(%)", "payout_ratio": "배당성향(%)",
+        "ret_12m": "12개월수익률", "op_yoy": "영업이익YoY",
         "s_quality": "체력점수", "s_value": "가격점수", "s_gap": "괴리점수",
         "s_payout": "환원여력점수", "score": "종합점수",
     }
