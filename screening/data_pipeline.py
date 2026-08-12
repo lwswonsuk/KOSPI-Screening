@@ -144,6 +144,51 @@ def get_kospi_universe(date: str) -> pd.DataFrame:
     return df.set_index("stock_code")
 
 
+def get_kosdaq_universe(date: str) -> pd.DataFrame:
+    """KRX 공식 Open API(코스닥 일별매매정보)로 코스닥 전종목의
+    가격·시가총액 스냅샷을 가져온다. get_kospi_universe와 동일한 스키마."""
+    import requests
+
+    key = os.environ.get("KRX_API_KEY")
+    if not key:
+        raise RuntimeError(
+            "KRX_API_KEY 환경변수가 없습니다. "
+            "터미널에서 setx KRX_API_KEY \"발급받은키\" 로 등록 후 새 터미널을 여세요."
+        )
+
+    url = "https://data-dbg.krx.co.kr/svc/apis/sto/ksq_bydd_trd"
+    r = requests.get(url, params={"basDd": date}, headers={"AUTH_KEY": key}, timeout=30)
+    r.raise_for_status()
+    rows = r.json().get("OutBlock_1", [])
+    if not rows:
+        raise RuntimeError(f"KRX 코스닥 API 응답이 비어 있습니다 (날짜 {date} 확인 필요, 휴장일일 수 있음)")
+
+    df = pd.DataFrame(rows)
+    num_cols = ["TDD_CLSPRC", "CMPPREVDD_PRC", "FLUC_RT", "TDD_OPNPRC", "TDD_HGPRC",
+                "TDD_LWPRC", "ACC_TRDVOL", "ACC_TRDVAL", "MKTCAP", "LIST_SHRS"]
+    for c in num_cols:
+        df[c] = pd.to_numeric(df[c].astype(str).str.replace(",", ""), errors="coerce")
+
+    df = df.rename(columns={
+        "ISU_CD": "stock_code", "ISU_NM": "name", "SECT_TP_NM": "sector_raw",
+        "TDD_CLSPRC": "close", "FLUC_RT": "fluc_rt",
+        "ACC_TRDVAL": "trdval", "MKTCAP": "mktcap", "LIST_SHRS": "list_shrs",
+    })
+    df["stock_code"] = df["stock_code"].str.zfill(6)
+    return df.set_index("stock_code")
+
+
+def get_full_universe(date: str) -> pd.DataFrame:
+    """코스피 + 코스닥 전종목을 합본하고, sector_raw(시장) 필드를 "코스피"/"코스닥"으로 강제 지정한다.
+    (KRX SECT_TP_NM이 비어 있거나 다른 값을 줄 수 있어 여기서 명시적으로 덮어쓴다)"""
+    kospi = get_kospi_universe(date).copy()
+    kospi["sector_raw"] = "코스피"
+    kosdaq = get_kosdaq_universe(date).copy()
+    kosdaq["sector_raw"] = "코스닥"
+    combined = pd.concat([kospi, kosdaq])
+    return combined[~combined.index.duplicated(keep="first")]
+
+
 # ═══════════════════════════════════════════════════════════════
 # 2. 종목별 재무데이터 추출 (finstate 1콜 = 3개년)
 # ═══════════════════════════════════════════════════════════════
@@ -319,10 +364,10 @@ def build_finance_cache(annual_year: int, ttm_year: int, ttm_quarter: str, date:
                          force: bool = False, sleep_sec: float = 0.3):
     ANNUAL_YEAR_FILE.write_text(str(annual_year), encoding="utf-8")  # ws_alpha.py 등이 같은 연도 참조하도록 기록
     corp_codes = get_corp_codes(force=force)
-    universe = get_kospi_universe(date).reset_index()
+    universe = get_full_universe(date).reset_index()
 
     merged = universe.merge(corp_codes[["stock_code", "corp_code"]], on="stock_code", how="inner")
-    print(f"[universe] KOSPI {len(universe)}개 중 DART 매핑 성공 {len(merged)}개")
+    print(f"[universe] 전체(코스피+코스닥) {len(universe)}개 중 DART 매핑 성공 {len(merged)}개")
 
     existing = pd.DataFrame()
     done_codes = set()

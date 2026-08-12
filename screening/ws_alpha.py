@@ -354,7 +354,7 @@ def load_real(date: str, bsns_year: int = 2025) -> pd.DataFrame:
       2) python data_pipeline.py --build --year 2025 --date 20260807  실행해서
          .cache/finance.parquet 만들어둘 것
     """
-    from data_pipeline import FINANCE_CACHE, get_kospi_universe
+    from data_pipeline import FINANCE_CACHE, get_full_universe
 
     if not FINANCE_CACHE.exists():
         raise RuntimeError(
@@ -363,7 +363,7 @@ def load_real(date: str, bsns_year: int = 2025) -> pd.DataFrame:
         )
 
     # ---- 가격·시가총액 (KRX 공식 API, 유가증권 일별매매정보) ----
-    df = get_kospi_universe(date)   # index=stock_code, columns: name, close, fluc_rt, trdval, mktcap, ...
+    df = get_full_universe(date)   # index=stock_code, columns: name, close, fluc_rt, trdval, mktcap, ...
     df["mktcap_eok"] = df["mktcap"] / 1e8
     df["turnover_eok_20d"] = df["trdval"] / 1e8   # TODO: 20일 평균으로 교체 (현재는 당일 값)
     df["sector"] = "미분류"  # TODO: 종목기본정보 API(SECT_TP_NM)로 업종 채워 넣을 것
