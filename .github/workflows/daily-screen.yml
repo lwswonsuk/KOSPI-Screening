@@ -5,8 +5,13 @@ permissions:
 
 on:
   schedule:
-    # 한국시간 오전 8시 (UTC 23:00, 전날) — 평일에만 의미있지만 매일 실행해도 무방
+    # 매일 한국시간 오전 8시 (UTC 23:00, 전날) — 가격만 갱신, 재무는 캐시
     - cron: "0 23 * * *"
+    # 분기 공시기한 다음날 한국시간 오전 6시 — 재무데이터 강제 재수집
+    - cron: "0 21 15 5 *"   # 1분기보고서 마감(5/15) 다음날 06:00 KST
+    - cron: "0 21 14 8 *"   # 반기보고서 마감(8/14) 다음날 06:00 KST
+    - cron: "0 21 13 11 *"  # 3분기보고서 마감(11/14) 다음날 06:00 KST
+    - cron: "0 21 31 3 *"   # 사업보고서 마감(3/31) 다음날 06:00 KST
   workflow_dispatch:
     inputs:
       force_finance:
@@ -47,8 +52,11 @@ jobs:
           restore-keys: |
             finance-cache-
 
-      - name: 재무데이터 없거나 강제갱신 요청 시 새로 받기
-        if: steps.finance-cache.outputs.cache-hit != 'true' || github.event.inputs.force_finance == 'true'
+      - name: 재무데이터 없거나 강제갱신 요청/분기 공시일정 시 새로 받기
+        if: >-
+          steps.finance-cache.outputs.cache-hit != 'true' ||
+          github.event.inputs.force_finance == 'true' ||
+          contains(fromJSON('["0 21 15 5 *","0 21 14 8 *","0 21 13 11 *","0 21 31 3 *"]'), github.event.schedule)
         working-directory: screening
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
@@ -68,13 +76,15 @@ jobs:
         run: |
           TODAY=$(date -d '1 day ago' +%Y%m%d)
           YEAR=$(cat .cache/annual_year.txt 2>/dev/null || echo 2025)
-          python ws_alpha.py --run --date $TODAY --year $YEAR --top 60 --export "" --export-json "../web/data/results.json"
+          python ws_alpha.py --run --date $TODAY --year $YEAR --top 50 --export "" \
+            --export-json "../web/data/results.json" \
+            --filtered-json "../web/data/filtered_full.json"
 
       - name: 결과를 저장소에 커밋 (→ Vercel 자동 재배포 트리거)
         run: |
           git config user.name "screening-bot"
           git config user.email "screening-bot@users.noreply.github.com"
-          git add web/data/results.json
+          git add web/data/results.json web/data/filtered_full.json
           git diff --cached --quiet || git commit -m "chore: 스크리닝 결과 자동 갱신 $(date +%Y-%m-%d)"
           git push
 
