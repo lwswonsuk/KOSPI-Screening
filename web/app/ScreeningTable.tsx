@@ -1,6 +1,17 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ArrowUpDown, ArrowUp, ArrowDown, RefreshCw } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 
 type ResultRow = Record<string, string | number | null>;
 
@@ -88,86 +99,78 @@ export default function ScreeningTable({
     }
   }
 
+  function SortIcon({ col }: { col: string }) {
+    if (sortKey !== col) return <ArrowUpDown className="ml-1 inline size-3 opacity-40" />;
+    return sortDir === "asc" ? (
+      <ArrowUp className="ml-1 inline size-3" />
+    ) : (
+      <ArrowDown className="ml-1 inline size-3" />
+    );
+  }
+
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 12,
-          marginBottom: 10,
-          flexWrap: "wrap",
-        }}
-      >
-        <button
+      <div className="mb-3 flex flex-wrap items-center gap-3">
+        <Button
+          variant="outline"
+          size="sm"
           onClick={refreshPrices}
           disabled={priceLoading}
-          style={{
-            padding: "6px 14px",
-            borderRadius: 6,
-            border: "1px solid #3b82f6",
-            background: "transparent",
-            color: "#93c5fd",
-            cursor: priceLoading ? "default" : "pointer",
-            fontSize: 13,
-          }}
         >
+          <RefreshCw className={cn("size-3.5", priceLoading && "animate-spin")} />
           {priceLoading ? "불러오는 중…" : "최신 종가 새로고침"}
-        </button>
+        </Button>
         {priceAsOf && (
-          <span style={{ fontSize: 13, color: "#9aa0a6" }}>
+          <span className="text-xs text-muted-foreground">
             시세 기준일: {priceAsOf} (장마감 확정 종가 기준, 실시간 체결가 아님)
           </span>
         )}
-        {priceError && <span style={{ fontSize: 13, color: "#f87171" }}>{priceError}</span>}
+        {priceError && <span className="text-xs text-destructive">{priceError}</span>}
       </div>
 
-      <div style={{ overflowX: "auto", border: "1px solid #2a2f3a", borderRadius: 8 }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
-          <thead>
-            <tr style={{ background: "#161a22" }}>
-              <th style={thStyle}>#</th>
+      <div className="rounded-lg border">
+        <Table>
+          <TableHeader>
+            <TableRow className="hover:bg-transparent">
+              <TableHead className="w-10">#</TableHead>
               {displayColumns.map((col) => (
-                <th
+                <TableHead
                   key={col}
-                  style={{ ...thStyle, ...alignStyle(col), cursor: "pointer", userSelect: "none" }}
+                  className={cn(
+                    "cursor-pointer select-none",
+                    alignClass(col)
+                  )}
                   onClick={() => onSort(col)}
                 >
                   {labels[col] ?? col}
-                  {sortKey === col ? (sortDir === "asc" ? " ▲" : " ▼") : ""}
-                </th>
+                  <SortIcon col={col} />
+                </TableHead>
               ))}
-            </tr>
-          </thead>
-          <tbody>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {sorted.map((row, i) => (
-              <tr
-                key={row.stock_code ?? i}
-                style={{
-                  borderTop: "1px solid #232733",
-                  background: i % 2 === 0 ? "transparent" : "#0f1218",
-                }}
-              >
-                <td style={tdStyle}>{i + 1}</td>
+              <TableRow key={(row.stock_code as string) ?? i}>
+                <TableCell className="text-muted-foreground">{i + 1}</TableCell>
                 {displayColumns.map((col) => (
-                  <td key={col} style={{ ...tdStyle, ...alignStyle(col) }}>
+                  <TableCell key={col} className={alignClass(col)}>
                     {formatValue(row[col], col)}
-                  </td>
+                  </TableCell>
                 ))}
-              </tr>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
     </div>
   );
 }
 
-function alignStyle(col: string): React.CSSProperties {
+function alignClass(col: string): string {
   if (TWO_DECIMAL_RIGHT_ALIGN.has(col) || RIGHT_ALIGN_ONLY.has(col) || col === "mktcap_eok") {
-    return { textAlign: "right" };
+    return "text-right";
   }
-  return {};
+  return "";
 }
 
 function formatValue(v: string | number | null, col?: string) {
@@ -186,17 +189,4 @@ function formatValue(v: string | number | null, col?: string) {
   return v;
 }
 
-const thStyle: React.CSSProperties = {
-  textAlign: "left",
-  padding: "10px 12px",
-  fontWeight: 600,
-  color: "#c7cad1",
-  whiteSpace: "nowrap",
-};
-
-const tdStyle: React.CSSProperties = {
-  padding: "8px 12px",
-  whiteSpace: "nowrap",
-  color: "#e6e6e6",
-};
 

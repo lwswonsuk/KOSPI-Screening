@@ -3,6 +3,8 @@ import path from "path";
 import ScreeningTable from "./ScreeningTable";
 import UpdateControls from "./UpdateControls";
 import AlgorithmInfo from "./AlgorithmInfo";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export const dynamic = "force-static"; // 빌드 시점 JSON을 그대로 굽는다 (커밋될 때마다 재배포되며 갱신됨)
 
@@ -29,45 +31,37 @@ export default function Home() {
   const data = loadResults();
 
   return (
-    <main style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 20px" }}>
-      <h1 style={{ fontSize: 26, marginBottom: 4 }}>주식 스크리닝 결과</h1>
-      <p style={{ color: "#9aa0a6", marginTop: 0, marginBottom: 20 }}>
-        Stock Note 투자원칙 기반 코스피 종목 스크리닝
-      </p>
+    <main className="mx-auto max-w-6xl px-5 py-10">
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold tracking-tight">주식 스크리닝 결과</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Stock Note 투자원칙 기반 코스피 종목 스크리닝
+        </p>
+      </div>
 
       <UpdateControls />
 
       {data.results.length === 0 ? (
-        <div
-          style={{
-            padding: 24,
-            border: "1px solid #2a2f3a",
-            borderRadius: 8,
-            background: "#12151c",
-          }}
-        >
-          아직 결과가 없습니다. GitHub Actions가 처음 실행되면 자동으로 채워집니다.
-        </div>
+        <Card>
+          <CardContent className="text-sm text-muted-foreground">
+            아직 결과가 없습니다. GitHub Actions가 처음 실행되면 자동으로 채워집니다.
+          </CardContent>
+        </Card>
       ) : (
         <>
-          <div
-            style={{
-              display: "flex",
-              gap: 20,
-              marginBottom: 20,
-              flexWrap: "wrap",
-              color: "#9aa0a6",
-              fontSize: 14,
-            }}
-          >
-            <span>가격 기준일: {data.as_of_date}</span>
-            <span>재무 기준연도: {data.financial_year}</span>
-            <span>
-              필터 통과: {data.universe_passed} / {data.universe_total}
-            </span>
-            <span>갱신: {data.generated_at ? new Date(data.generated_at).toLocaleString("ko-KR") : "-"}</span>
+          <div className="mb-5 flex flex-wrap items-center gap-2">
+            <Badge variant="secondary">가격 기준일 {data.as_of_date}</Badge>
+            <Badge variant="secondary">재무 기준연도 {data.financial_year}</Badge>
+            <Badge variant="secondary">
+              필터 통과 {data.universe_passed} / {data.universe_total}
+            </Badge>
+            <Badge variant="outline">
+              갱신 {data.generated_at ? new Date(data.generated_at).toLocaleString("ko-KR") : "-"}
+            </Badge>
           </div>
+
           <AlgorithmInfo />
+
           <ScreeningTable
             columns={data.columns}
             labels={data.column_labels_ko}
@@ -78,3 +72,4 @@ export default function Home() {
     </main>
   );
 }
+

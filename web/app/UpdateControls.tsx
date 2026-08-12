@@ -1,6 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { RefreshCw } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 export default function UpdateControls() {
   const [forceFinance, setForceFinance] = useState(false);
@@ -27,49 +32,27 @@ export default function UpdateControls() {
   }
 
   return (
-    <div
-      style={{
-        border: "1px solid #2a2f3a",
-        borderRadius: 8,
-        padding: 16,
-        marginBottom: 20,
-        display: "flex",
-        alignItems: "center",
-        gap: 16,
-        flexWrap: "wrap",
-        background: "#12151c",
-      }}
-    >
-      <button
-        onClick={handleUpdate}
-        disabled={loading}
-        style={{
-          padding: "8px 16px",
-          borderRadius: 6,
-          border: "none",
-          background: loading ? "#555" : "#3b82f6",
-          color: "white",
-          cursor: loading ? "default" : "pointer",
-          fontWeight: 600,
-        }}
-      >
-        {loading ? "요청 중…" : "스크리닝 업데이트 실행"}
-      </button>
+    <Card className="mb-5 py-4">
+      <CardContent className="flex flex-wrap items-center gap-4">
+        <Button onClick={handleUpdate} disabled={loading} size="sm">
+          <RefreshCw className={cn("size-3.5", loading && "animate-spin")} />
+          {loading ? "요청 중…" : "스크리닝 업데이트 실행"}
+        </Button>
 
-      <label style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 14, color: "#c7cad1" }}>
-        <input
-          type="checkbox"
-          checked={forceFinance}
-          onChange={(e) => setForceFinance(e.target.checked)}
-        />
-        재무데이터도 강제로 새로 받기 (평소엔 체크 안 해도 됨, 몇 분 더 걸림)
-      </label>
+        <label className="flex cursor-pointer items-center gap-2 text-sm text-muted-foreground">
+          <Checkbox
+            checked={forceFinance}
+            onCheckedChange={(v) => setForceFinance(v === true)}
+          />
+          재무데이터도 강제로 새로 받기 (평소엔 체크 안 해도 됨, 몇 분 더 걸림)
+        </label>
 
-      {message && (
-        <span style={{ fontSize: 13, color: message.error ? "#f87171" : "#4ade80" }}>
-          {message.text}
-        </span>
-      )}
-    </div>
+        {message && (
+          <span className={cn("text-xs", message.error ? "text-destructive" : "text-green-500")}>
+            {message.text}
+          </span>
+        )}
+      </CardContent>
+    </Card>
   );
 }
