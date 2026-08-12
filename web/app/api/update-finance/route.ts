@@ -9,7 +9,25 @@
  *   GH_OWNER : GitHub 사용자명/조직명
  *   GH_REPO  : 저장소 이름
  */
+import { createHmac, timingSafeEqual } from "crypto";
+
+function isAdminRequest(req: Request): boolean {
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  if (!adminPassword) return false;
+  const cookieHeader = req.headers.get("cookie") ?? "";
+  const match = cookieHeader.match(/admin_session=([^;]+)/);
+  if (!match) return false;
+  const expected = createHmac("sha256", adminPassword).update("admin").digest("hex");
+  const a = Buffer.from(match[1]);
+  const b = Buffer.from(expected);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+
 export async function POST(req: Request) {
+  if (!isAdminRequest(req)) {
+    return Response.json({ error: "관리자 인증이 필요합니다." }, { status: 401 });
+  }
+
   const token = process.env.GH_PAT;
   const owner = process.env.GH_OWNER;
   const repo = process.env.GH_REPO;
