@@ -3,6 +3,7 @@ import path from "path";
 import ScreeningTable from "./ScreeningTable";
 import UpdateControls from "./UpdateControls";
 import AlgorithmInfo from "./AlgorithmInfo";
+import AdminGate from "./AdminGate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatKoreanDate } from "@/lib/format";
@@ -44,8 +45,6 @@ export default function Home() {
         </p>
       </div>
 
-      <UpdateControls />
-
       {data.results.length === 0 ? (
         <Card>
           <CardContent className="text-sm text-muted-foreground">
@@ -77,6 +76,10 @@ export default function Home() {
           />
         </>
       )}
+
+      <AdminGate>
+        <UpdateControls />
+      </AdminGate>
     </main>
   );
 }
