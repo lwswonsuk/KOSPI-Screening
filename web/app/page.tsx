@@ -11,7 +11,9 @@ import { formatKoreanDate } from "@/lib/format";
 
 export const dynamic = "force-static"; // 빌드 시점 JSON을 그대로 굽는다 (커밋될 때마다 재배포되며 갱신됨)
 
-type ResultRow = Record<string, string | number | null>;
+type ResultRow = Record<string, string | number | null> & {
+  commentary?: { peter_lynch: string | null; warren_buffett: string | null; bill_ackman: string | null } | null;
+};
 
 interface ResultsPayload {
   as_of_date: string | null;

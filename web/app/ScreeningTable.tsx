@@ -12,8 +12,9 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
+import StockCommentaryDialog, { Commentary } from "./StockCommentaryDialog";
 
-type ResultRow = Record<string, string | number | null>;
+type ResultRow = Record<string, string | number | null> & { commentary?: Commentary | null };
 
 // 화면에서 아예 안 보여줄 컬럼 (JSON에 남아있어도 숨김)
 const HIDDEN_COLUMNS = new Set([
@@ -47,6 +48,7 @@ export default function ScreeningTable({
   const [priceAsOf, setPriceAsOf] = useState<string | null>(null);
   const [priceLoading, setPriceLoading] = useState(false);
   const [priceError, setPriceError] = useState<string | null>(null);
+  const [dialogRow, setDialogRow] = useState<ResultRow | null>(null);
 
   const displayColumns = useMemo(
     () => columns.filter((c) => !HIDDEN_COLUMNS.has(c)),
@@ -67,7 +69,7 @@ export default function ScreeningTable({
           const code = String(r.stock_code);
           const live = data.prices[code];
           if (!live) return r;
-          return { ...r, close: live.close };   // 등락률(fluc_rt)은 더 이상 반영하지 않음
+          return { ...r, close: live.close } as ResultRow;   // 등락률(fluc_rt)은 더 이상 반영하지 않음
         })
       );
       setPriceAsOf(data.as_of);
@@ -159,7 +161,17 @@ export default function ScreeningTable({
                 <TableCell className="text-muted-foreground">{i + 1}</TableCell>
                 {displayColumns.map((col) => (
                   <TableCell key={col} className={alignClass(col)}>
-                    {formatValue(row[col], col)}
+                    {col === "name" ? (
+                      <button
+                        type="button"
+                        className="underline decoration-dotted underline-offset-2 hover:text-primary"
+                        onClick={() => setDialogRow(row)}
+                      >
+                        {formatValue(row[col], col)}
+                      </button>
+                    ) : (
+                      formatValue(row[col], col)
+                    )}
                   </TableCell>
                 ))}
               </TableRow>
@@ -167,6 +179,13 @@ export default function ScreeningTable({
           </TableBody>
         </Table>
       </div>
+
+      <StockCommentaryDialog
+        open={dialogRow !== null}
+        onOpenChange={(open) => !open && setDialogRow(null)}
+        stockName={dialogRow ? String(dialogRow.name ?? "") : ""}
+        commentary={dialogRow?.commentary}
+      />
     </div>
   );
 }
