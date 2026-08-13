@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from data_pipeline import parse_dividend_report
+from data_pipeline import parse_dividend_report, _prefer_quarterly
 
 
 def test_extracts_cash_dividend_total_and_payout_ratio():
@@ -28,16 +28,9 @@ def test_empty_dataframe_returns_nan():
     assert np.isnan(out["payout_ratio_reported"])
 
 
-def test_debt_ratio_prefers_quarterly_over_annual():
-    """fetch_finance_one 내부 로직과 동일한 우선순위(분기 우선, 연간 폴백)를 별도 함수로
-    검증하기 어려우므로, 여기서는 safe_div 기반 계산식 자체가 분기 값을 쓸 때와
-    연간 값을 쓸 때 다른 결과를 낸다는 것만 확인해 회귀를 방지한다."""
-    import numpy as np
+def test_prefers_quarterly_when_available():
+    assert _prefer_quarterly(1000.0, 900.0) == 1000.0
 
-    quarterly_equity, quarterly_liab = 1000.0, 500.0
-    annual_equity, annual_liab = 900.0, 600.0
 
-    debt_ratio_quarterly = quarterly_liab / quarterly_equity * 100
-    debt_ratio_annual = annual_liab / annual_equity * 100
-    assert debt_ratio_quarterly != debt_ratio_annual
-    assert not np.isnan(debt_ratio_quarterly)
+def test_falls_back_to_annual_when_quarterly_missing():
+    assert _prefer_quarterly(np.nan, 900.0) == 900.0

@@ -211,6 +211,11 @@ def _to_float(v) -> float:
         return np.nan
 
 
+def _prefer_quarterly(quarterly_value: float, annual_value: float) -> float:
+    """분기 값이 있으면 우선 사용, 없으면(NaN) 연간값으로 폴백."""
+    return quarterly_value if not np.isnan(quarterly_value) else annual_value
+
+
 def _extract_financials_3col(fs: pd.DataFrame) -> tuple[dict, dict, dict]:
     """finstate 응답 하나에서 당기/전기/전전기 3개 시점 금액을 계정별로 뽑는다."""
     row_by_account: dict[str, dict] = {}
@@ -353,8 +358,8 @@ def fetch_finance_one(dart, stock_code: str, corp_code: str, annual_year: int,
         rev_yoy = safe_div(cur_cum["revenue"] - prior_cum["revenue"], abs(prior_cum["revenue"])) \
             if not np.isnan(prior_cum.get("revenue", np.nan)) else np.nan
         # 재무상태표 항목은 분기 시점(가장 최신) 값 사용
-        total_equity_latest = cur_cum["total_equity"] if not np.isnan(cur_cum.get("total_equity", np.nan)) else y0["total_equity"]
-        total_liab_latest = cur_cum["total_liabilities"] if not np.isnan(cur_cum.get("total_liabilities", np.nan)) else y0["total_liabilities"]
+        total_equity_latest = _prefer_quarterly(cur_cum.get("total_equity", np.nan), y0["total_equity"])
+        total_liab_latest = _prefer_quarterly(cur_cum.get("total_liabilities", np.nan), y0["total_liabilities"])
         if q_used != ttm_quarter:
             ttm_basis = f"TTM 실패, {q_used} 누적치로 대체 (완전한 4분기 합산 아님)"
     else:
