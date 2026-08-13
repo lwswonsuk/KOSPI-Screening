@@ -48,9 +48,9 @@ jobs:
         id: finance-cache
         with:
           path: screening/.cache
-          key: finance-cache-${{ steps.week.outputs.value }}
+          key: finance-cache-v2-${{ steps.week.outputs.value }}
           restore-keys: |
-            finance-cache-
+            finance-cache-v2-
 
       - name: 재무데이터 없거나 강제갱신 요청/분기 공시일정 시 새로 받기
         if: >-
