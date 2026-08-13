@@ -29,6 +29,7 @@ import numpy as np
 import pandas as pd
 
 from quotes import pick_quote_for_week
+from commentary import generate_all_commentary
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -593,6 +594,12 @@ def run_real(date: str, bsns_year: int, top_n: int, export: str | None,
                 else:
                     rec[c] = str(v)
             records.append(rec)
+
+        commentary_map = generate_all_commentary(records)
+        for rec in records:
+            rec["commentary"] = commentary_map.get(rec["stock_code"], {
+                "peter_lynch": None, "warren_buffett": None, "bill_ackman": None,
+            })
 
         payload = {
             "as_of_date": date,
