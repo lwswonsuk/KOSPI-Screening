@@ -27,7 +27,7 @@ export default function FilteredDownloadButton({
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/data/filtered_full.json", { cache: "no-store" });
+      const res = await fetch("/api/filtered", { cache: "no-store" });
       if (!res.ok) throw new Error("필터통과 종목 데이터를 불러오지 못했습니다.");
       const data: FilteredPayload = await res.json();
 
