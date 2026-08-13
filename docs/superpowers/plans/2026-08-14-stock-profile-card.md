@@ -287,18 +287,13 @@ def test_generate_all_profiles_returns_none_when_client_construction_fails(monke
 Run: `cd screening && python -m pytest tests/test_profile.py -v`
 Expected: PASS (전체 테스트, 9개 이상)
 
-- [ ] **Step 7: 기존 `commentary.py`/`test_commentary.py` 삭제**
+**주의:** 이 시점에서는 `screening/commentary.py`와 `screening/tests/test_commentary.py`를 아직
+삭제하지 않는다. `screening/ws_alpha.py`가 여전히 `from commentary import generate_all_commentary`를
+참조하고 있고(Task 2에서 교체 예정), `screening/tests/test_scoring.py`가 `ws_alpha`를 import하므로,
+`commentary.py`를 먼저 지우면 `ws_alpha` import가 깨져 `python -m pytest`(전체 스위트) 수집 자체가
+실패한다. 삭제는 Task 2에서 `ws_alpha.py`의 import를 고친 직후에 한다.
 
-```bash
-git rm screening/commentary.py screening/tests/test_commentary.py
-```
-
-- [ ] **Step 8: 전체 스크리닝 테스트 스위트 실행 확인**
-
-Run: `cd screening && python -m pytest -v`
-Expected: PASS (기존 테스트 전부 + 신규 `test_profile.py`, `commentary` 관련 테스트는 더 이상 존재하지 않음)
-
-- [ ] **Step 9: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
 git add screening/profile.py screening/tests/test_profile.py
@@ -307,10 +302,11 @@ git commit -m "feat: 투자자 코멘트 대신 종목 프로필(사업내용/�
 
 ---
 
-### Task 2: `screening/ws_alpha.py` — 프로필 생성 호출부 교체
+### Task 2: `screening/ws_alpha.py` — 프로필 생성 호출부 교체 및 `commentary.py` 제거
 
 **Files:**
 - Modify: `screening/ws_alpha.py:32` (import), `screening/ws_alpha.py:615-633` (코멘트 생성 → 프로필 생성)
+- Delete: `screening/commentary.py`, `screening/tests/test_commentary.py`
 
 **Interfaces:**
 - Consumes: `screening.profile.generate_all_profiles(records: list[dict]) -> dict[str, dict | None]` (Task 1에서 정의)
@@ -327,7 +323,15 @@ from commentary import generate_all_commentary
 from profile import generate_all_profiles
 ```
 
-- [ ] **Step 2: 코멘트 생성 호출부를 프로필 생성 호출부로 교체**
+- [ ] **Step 2: 기존 `commentary.py`/`test_commentary.py` 삭제**
+
+`ws_alpha.py`가 더 이상 `commentary` 모듈을 참조하지 않으므로 이제 안전하게 삭제한다:
+
+```bash
+git rm screening/commentary.py screening/tests/test_commentary.py
+```
+
+- [ ] **Step 3: 코멘트 생성 호출부를 프로필 생성 호출부로 교체**
 
 `screening/ws_alpha.py:615-629` 블록을 아래로 교체:
 
@@ -349,17 +353,17 @@ from profile import generate_all_profiles
 
 (뒤이은 `payload = _build_payload(records)` 및 저장 라인은 그대로 유지)
 
-- [ ] **Step 3: 파이썬 문법/임포트 오류 없는지 확인**
+- [ ] **Step 4: 파이썬 문법/임포트 오류 없는지 확인**
 
 Run: `cd screening && python -c "import ws_alpha"`
 Expected: 에러 없이 종료 (import 시점에 `commentary` 모듈을 찾지 못해 나던 오류가 없어야 함)
 
-- [ ] **Step 4: 전체 스크리닝 테스트 스위트 실행 확인**
+- [ ] **Step 5: 전체 스크리닝 테스트 스위트 실행 확인**
 
 Run: `cd screening && python -m pytest -v`
-Expected: PASS
+Expected: PASS (기존 테스트 전부 + 신규 `test_profile.py`, `commentary` 관련 테스트는 더 이상 존재하지 않음)
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 6: Commit**
 
 ```bash
 git add screening/ws_alpha.py
