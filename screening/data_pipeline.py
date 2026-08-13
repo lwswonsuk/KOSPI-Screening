@@ -180,11 +180,21 @@ def get_kosdaq_universe(date: str) -> pd.DataFrame:
 
 def get_full_universe(date: str) -> pd.DataFrame:
     """코스피 + 코스닥 전종목을 합본하고, sector_raw(시장) 필드를 "코스피"/"코스닥"으로 강제 지정한다.
-    (KRX SECT_TP_NM이 비어 있거나 다른 값을 줄 수 있어 여기서 명시적으로 덮어쓴다)"""
+    (KRX SECT_TP_NM이 비어 있거나 다른 값을 줄 수 있어 여기서 명시적으로 덮어쓴다)
+
+    코스닥 API(ksq_bydd_trd)는 KRX Open API 포털에서 별도 승인이 필요하다. 아직 승인 전이거나
+    일시적으로 실패하면(401 등) 코스피만으로 계속 진행한다 — 승인이 완료되면 코드 수정 없이
+    자동으로 코스닥이 합류한다."""
     kospi = get_kospi_universe(date).copy()
     kospi["sector_raw"] = "코스피"
-    kosdaq = get_kosdaq_universe(date).copy()
-    kosdaq["sector_raw"] = "코스닥"
+
+    try:
+        kosdaq = get_kosdaq_universe(date).copy()
+        kosdaq["sector_raw"] = "코스닥"
+    except Exception as e:
+        print(f"[WARN] 코스닥 유니버스 조회 실패, 코스피만으로 계속 진행합니다: {e}")
+        return kospi
+
     combined = pd.concat([kospi, kosdaq])
     return combined[~combined.index.duplicated(keep="first")]
 
