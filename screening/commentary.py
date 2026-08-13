@@ -90,8 +90,14 @@ def generate_all_commentary(records: list[dict]) -> dict[str, dict[str, str | No
             result[rec["stock_code"]] = {investor: None for investor in INVESTORS}
         return result
 
-    import anthropic
-    client = anthropic.Anthropic()
+    try:
+        import anthropic
+        client = anthropic.Anthropic()
+    except Exception as e:
+        print(f"[commentary] anthropic 클라이언트 초기화 실패, 코멘트 생성을 건너뜁니다: {e}")
+        for rec in records:
+            result[rec["stock_code"]] = {investor: None for investor in INVESTORS}
+        return result
 
     total = len(records) * len(INVESTORS)
     done = 0

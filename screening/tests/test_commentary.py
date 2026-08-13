@@ -76,3 +76,18 @@ def test_generate_all_commentary_skips_when_no_api_key(monkeypatch):
     records = [{"stock_code": "005930", "name": "테스트전자", "per": 7.3}]
     result = generate_all_commentary(records)
     assert result == {"005930": {"peter_lynch": None, "warren_buffett": None, "bill_ackman": None}}
+
+
+def test_generate_all_commentary_returns_all_none_when_client_construction_fails(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "fake-key-for-test")
+
+    import anthropic
+
+    def _raise(*args, **kwargs):
+        raise RuntimeError("클라이언트 초기화 실패 시뮬레이션")
+
+    monkeypatch.setattr(anthropic, "Anthropic", _raise)
+
+    records = [{"stock_code": "005930", "name": "테스트전자", "per": 7.3}]
+    result = generate_all_commentary(records)
+    assert result == {"005930": {"peter_lynch": None, "warren_buffett": None, "bill_ackman": None}}
