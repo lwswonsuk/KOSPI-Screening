@@ -4,3 +4,4 @@ requests
 opendartreader==0.3.3
 pyarrow
 pytest
+anthropic
