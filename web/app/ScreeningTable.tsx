@@ -23,7 +23,7 @@ const HIDDEN_COLUMNS = new Set([
 
 // 소수점 2자리 + 우측 정렬로 보여줄 컬럼
 const TWO_DECIMAL_RIGHT_ALIGN = new Set([
-  "per", "pbr", "roe_3y_avg", "debt_ratio", "div_yield", "payout_ratio",
+  "per", "pbr", "roe_3y_avg", "debt_ratio", "div_yield", "payout_ratio_pct",
 ]);
 
 // 소수점 4자리 + 우측 정렬 (종합점수 전용)

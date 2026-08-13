@@ -387,7 +387,15 @@ def load_real(date: str, bsns_year: int = 2025) -> pd.DataFrame:
     # 시가배당수익률(연환산, 직전 FY 총배당금 기준) — 무배당 종목은 0
     df["div_yield"] = (df["cash_dividend_total"] / df["mktcap"] * 100).fillna(0.0)
     df["div_yield"] = df["div_yield"].clip(lower=0)
-    df["payout_ratio"] = df["payout_ratio"].fillna(0.0).clip(lower=0)
+
+    # payout_ratio: DART 원본은 "%" 단위(예: 23.5 = 23.5%)로 들어온다.
+    # score_payout()과 make_demo()는 둘 다 "0.50 = 50%"인 소수(fraction) 단위를 전제로 하므로,
+    # 여기서 100으로 나눠 단위를 맞춘다 (그렇지 않으면 무배당 종목이 room=0.50으로 만점 처리되고
+    # 실제 배당지급 종목은 room=0으로 클립되어 s_payout 스코어가 통째로 뒤집히는 버그가 생긴다).
+    # 화면/엑셀/JSON에는 사람이 읽는 "배당성향(%)"이 그대로 나와야 하므로 percent 값은
+    # payout_ratio_pct에 별도로 남겨 export 쪽에서 사용한다.
+    df["payout_ratio_pct"] = df["payout_ratio"].fillna(0.0).clip(lower=0)
+    df["payout_ratio"] = (df["payout_ratio_pct"] / 100).clip(upper=1.0)
 
     # PER/PBR은 "시가총액 ÷ 재무값" 방식으로 계산 (1주당 EPS/BPS를 따로 구할 필요 없음)
     #   PER = 시가총액 / 당기순이익  (= 주가 / EPS 와 수학적으로 동일)
@@ -521,7 +529,7 @@ def run_real(date: str, bsns_year: int, top_n: int, export: str | None,
     print(f"STEP 2 — 종합 랭킹 상위 {top_n}  (점수 높은 순 = 4대 팩터 종합 매력도)")
     print("=" * 78)
     cols = ["name", "sector_raw", "close", "per", "pbr", "roe_3y_avg", "debt_ratio",
-            "div_yield", "payout_ratio", "score"]
+            "div_yield", "payout_ratio_pct", "score"]
     cols = [c for c in cols if c in ranked.columns]
     if "mktcap_eok" in ranked.columns:
         cols = cols[:2] + ["mktcap_eok"] + cols[2:]  # name, sector_raw 다음에 시가총액 삽입
@@ -532,7 +540,7 @@ def run_real(date: str, bsns_year: int, top_n: int, export: str | None,
     KOR_NAMES = {
         "name": "종목명", "sector_raw": "시장", "mktcap_eok": "시가총액(억)",
         "close": "종가", "per": "PER", "pbr": "PBR", "roe_3y_avg": "ROE(3년평균%)",
-        "debt_ratio": "부채비율(%)", "div_yield": "시가배당수익률(%)", "payout_ratio": "배당성향(%)",
+        "debt_ratio": "부채비율(%)", "div_yield": "시가배당수익률(%)", "payout_ratio_pct": "배당성향(%)",
         "ret_12m": "12개월수익률", "op_yoy": "영업이익YoY",
         "s_quality": "체력점수", "s_value": "가격점수", "s_gap": "괴리점수",
         "s_payout": "환원여력점수", "score": "종합점수",
