@@ -73,6 +73,7 @@ jobs:
         working-directory: screening
         env:
           KRX_API_KEY: ${{ secrets.KRX_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           TODAY=$(date -d '1 day ago' +%Y%m%d)
           YEAR=$(cat .cache/annual_year.txt 2>/dev/null || echo 2025)
