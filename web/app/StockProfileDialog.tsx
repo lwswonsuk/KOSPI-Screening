@@ -6,20 +6,32 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
 
 export interface StockProfile {
   business: string;
   sector: string;
   products: string;
-  competitors: string;
+  competitors: string[];
 }
 
-const PROFILE_SECTIONS: { key: keyof StockProfile; label: string }[] = [
+const TEXT_SECTIONS: { key: "business" | "sector" | "products"; label: string }[] = [
   { key: "business", label: "사업 내용" },
   { key: "sector", label: "섹터" },
   { key: "products", label: "대표 상품·브랜드" },
-  { key: "competitors", label: "주요 경쟁사" },
 ];
+
+// results.json이 다음 파이프라인 실행 전까지는 예전(콤마로 구분된 문자열) 형식의
+// competitors를 담고 있을 수 있어, 배열이 아니어도 안전하게 표시되도록 정규화한다.
+function normalizeCompetitors(value: unknown): string[] {
+  if (Array.isArray(value)) {
+    return value.filter((v): v is string => typeof v === "string" && v.trim().length > 0);
+  }
+  if (typeof value === "string") {
+    return value.split(/,\s*/).map((s) => s.trim()).filter(Boolean);
+  }
+  return [];
+}
 
 export default function StockProfileDialog({
   open,
@@ -42,12 +54,22 @@ export default function StockProfileDialog({
         <div className="mt-2 rounded-2xl rounded-tl-none bg-muted p-4 text-sm leading-relaxed">
           {profile ? (
             <div className="space-y-3">
-              {PROFILE_SECTIONS.map(({ key, label }) => (
+              {TEXT_SECTIONS.map(({ key, label }) => (
                 <div key={key}>
                   <div className="font-medium text-foreground">{label}</div>
                   <div className="mt-0.5 text-muted-foreground">{profile[key]}</div>
                 </div>
               ))}
+              <div>
+                <div className="font-medium text-foreground">주요 경쟁사</div>
+                <div className="mt-1 flex flex-wrap gap-1.5">
+                  {normalizeCompetitors(profile.competitors).map((competitor) => (
+                    <Badge key={competitor} variant="secondary">
+                      {competitor}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
             </div>
           ) : (
             "아직 분석이 준비되지 않았습니다."
