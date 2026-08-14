@@ -12,9 +12,9 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
-import StockCommentaryDialog, { Commentary } from "./StockCommentaryDialog";
+import StockProfileDialog, { StockProfile } from "./StockProfileDialog";
 
-type ResultRow = Record<string, string | number | null> & { commentary?: Commentary | null };
+type ResultRow = Record<string, string | number | null> & { profile?: StockProfile | null };
 
 // 화면에서 아예 안 보여줄 컬럼 (JSON에 남아있어도 숨김)
 const HIDDEN_COLUMNS = new Set([
@@ -180,11 +180,11 @@ export default function ScreeningTable({
         </Table>
       </div>
 
-      <StockCommentaryDialog
+      <StockProfileDialog
         open={dialogRow !== null}
         onOpenChange={(open) => !open && setDialogRow(null)}
         stockName={dialogRow ? String(dialogRow.name ?? "") : ""}
-        commentary={dialogRow?.commentary}
+        profile={dialogRow?.profile}
       />
     </div>
   );
