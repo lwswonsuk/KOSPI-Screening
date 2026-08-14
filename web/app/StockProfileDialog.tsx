@@ -53,6 +53,12 @@ export default function StockProfileDialog({
             "아직 분석이 준비되지 않았습니다."
           )}
         </div>
+
+        {profile && (
+          <p className="mt-1 text-xs text-muted-foreground">
+            AI가 생성한 정보로 부정확하거나 최신이 아닐 수 있습니다.
+          </p>
+        )}
       </DialogContent>
     </Dialog>
   );
