@@ -8,11 +8,12 @@ import FilteredDownloadButton from "./FilteredDownloadButton";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatKoreanDate } from "@/lib/format";
+import { StockProfile } from "./StockProfileDialog";
 
 export const dynamic = "force-static"; // 빌드 시점 JSON을 그대로 굽는다 (커밋될 때마다 재배포되며 갱신됨)
 
 type ResultRow = Record<string, string | number | null> & {
-  commentary?: { peter_lynch: string | null; warren_buffett: string | null; bill_ackman: string | null } | null;
+  profile?: StockProfile | null;
 };
 
 interface ResultsPayload {
