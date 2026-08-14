@@ -1,7 +1,7 @@
 {
   "as_of_date": "20260812",
   "financial_year": 2025,
-  "generated_at": "2026-08-13T05:22:10.050849+00:00",
+  "generated_at": "2026-08-13T09:40:21.919828+00:00",
   "columns": [
     "name",
     "sector_raw",
@@ -69,7 +69,7 @@
       "debt_ratio": 89.8744,
       "div_yield": 6.4892,
       "payout_ratio_pct": 74.5,
-      "score": 0.5814
+      "score": 0.5813
     },
     {
       "stock_code": "003650",
@@ -307,7 +307,7 @@
       "debt_ratio": 18.4781,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.5384
+      "score": 0.5383
     },
     {
       "stock_code": "043150",
@@ -447,7 +447,7 @@
       "debt_ratio": 74.2287,
       "div_yield": 2.8277,
       "payout_ratio_pct": 7.17,
-      "score": 0.5315
+      "score": 0.5314
     },
     {
       "stock_code": "214180",
@@ -517,7 +517,7 @@
       "debt_ratio": 16.4218,
       "div_yield": 1.9614,
       "payout_ratio_pct": 100.8,
-      "score": 0.5279
+      "score": 0.5278
     },
     {
       "stock_code": "037710",
@@ -545,7 +545,7 @@
       "debt_ratio": 16.5706,
       "div_yield": 1.1901,
       "payout_ratio_pct": 2.06,
-      "score": 0.5256
+      "score": 0.5257
     },
     {
       "stock_code": "010690",
@@ -615,7 +615,7 @@
       "debt_ratio": 51.5454,
       "div_yield": 6.1731,
       "payout_ratio_pct": 27.6,
-      "score": 0.5207
+      "score": 0.5208
     },
     {
       "stock_code": "069080",
@@ -629,7 +629,7 @@
       "debt_ratio": 15.8107,
       "div_yield": 5.5775,
       "payout_ratio_pct": 84.6,
-      "score": 0.5202
+      "score": 0.5203
     },
     {
       "stock_code": "049520",
@@ -783,7 +783,7 @@
       "debt_ratio": 37.323,
       "div_yield": 7.6778,
       "payout_ratio_pct": 36.3,
-      "score": 0.5132
+      "score": 0.5133
     },
     {
       "stock_code": "340570",
@@ -923,7 +923,7 @@
       "debt_ratio": 10.5908,
       "div_yield": 3.0645,
       "payout_ratio_pct": 32.5,
-      "score": 0.5058
+      "score": 0.5057
     },
     {
       "stock_code": "108380",
@@ -951,7 +951,7 @@
       "debt_ratio": 42.2952,
       "div_yield": 4.6408,
       "payout_ratio_pct": 29.77,
-      "score": 0.5052
+      "score": 0.5053
     },
     {
       "stock_code": "019010",
@@ -1091,7 +1091,7 @@
       "debt_ratio": 43.1826,
       "div_yield": 2.4764,
       "payout_ratio_pct": 20.1,
-      "score": 0.5006
+      "score": 0.5007
     },
     {
       "stock_code": "042500",
@@ -1105,7 +1105,7 @@
       "debt_ratio": 40.5781,
       "div_yield": 6.2104,
       "payout_ratio_pct": 56.06,
-      "score": 0.5006
+      "score": 0.5007
     },
     {
       "stock_code": "029530",
@@ -1133,7 +1133,7 @@
       "debt_ratio": 16.2318,
       "div_yield": 1.3106,
       "payout_ratio_pct": 13.8,
-      "score": 0.5
+      "score": 0.5001
     },
     {
       "stock_code": "054950",
@@ -1203,7 +1203,7 @@
       "debt_ratio": 6.9833,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4975
+      "score": 0.4974
     },
     {
       "stock_code": "179290",
@@ -1220,20 +1220,6 @@
       "score": 0.4973
     },
     {
-      "stock_code": "004980",
-      "name": "성신양회",
-      "sector_raw": "코스피",
-      "mktcap_eok": 2010.318,
-      "close": 8200.0,
-      "per": 6.828,
-      "pbr": 0.3456,
-      "roe_3y_avg": 8.2846,
-      "debt_ratio": 108.5754,
-      "div_yield": 4.3446,
-      "payout_ratio_pct": 33.57,
-      "score": 0.4971
-    },
-    {
       "stock_code": "138040",
       "name": "메리츠금융지주",
       "sector_raw": "코스피",
@@ -1245,6 +1231,20 @@
       "debt_ratio": 49.3357,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
+      "score": 0.4971
+    },
+    {
+      "stock_code": "004980",
+      "name": "성신양회",
+      "sector_raw": "코스피",
+      "mktcap_eok": 2010.318,
+      "close": 8200.0,
+      "per": 6.828,
+      "pbr": 0.3456,
+      "roe_3y_avg": 8.2846,
+      "debt_ratio": 108.5754,
+      "div_yield": 4.3446,
+      "payout_ratio_pct": 33.57,
       "score": 0.4971
     },
     {
@@ -1497,21 +1497,7 @@
       "debt_ratio": 32.8997,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4865
-    },
-    {
-      "stock_code": "136490",
-      "name": "선진",
-      "sector_raw": "코스피",
-      "mktcap_eok": 2580.087,
-      "close": 10850.0,
-      "per": 7.1042,
-      "pbr": 0.5103,
-      "roe_3y_avg": 5.3936,
-      "debt_ratio": 84.752,
-      "div_yield": 1.8433,
-      "payout_ratio_pct": 3.77,
-      "score": 0.486
+      "score": 0.4866
     },
     {
       "stock_code": "251270",
@@ -1528,18 +1514,18 @@
       "score": 0.486
     },
     {
-      "stock_code": "036530",
-      "name": "SNT홀딩스",
+      "stock_code": "136490",
+      "name": "선진",
       "sector_raw": "코스피",
-      "mktcap_eok": 7915.5367,
-      "close": 48550.0,
-      "per": 5.2941,
-      "pbr": 1.3471,
-      "roe_3y_avg": 11.5608,
-      "debt_ratio": 23.4751,
-      "div_yield": 5.5557,
-      "payout_ratio_pct": 33.85,
-      "score": 0.4853
+      "mktcap_eok": 2580.087,
+      "close": 10850.0,
+      "per": 7.1042,
+      "pbr": 0.5103,
+      "roe_3y_avg": 5.3936,
+      "debt_ratio": 84.752,
+      "div_yield": 1.8433,
+      "payout_ratio_pct": 3.77,
+      "score": 0.486
     },
     {
       "stock_code": "212560",
@@ -1553,6 +1539,20 @@
       "debt_ratio": 56.9698,
       "div_yield": 1.6728,
       "payout_ratio_pct": 16.0,
+      "score": 0.4854
+    },
+    {
+      "stock_code": "036530",
+      "name": "SNT홀딩스",
+      "sector_raw": "코스피",
+      "mktcap_eok": 7915.5367,
+      "close": 48550.0,
+      "per": 5.2941,
+      "pbr": 1.3471,
+      "roe_3y_avg": 11.5608,
+      "debt_ratio": 23.4751,
+      "div_yield": 5.5557,
+      "payout_ratio_pct": 33.85,
       "score": 0.4853
     },
     {
@@ -1623,7 +1623,7 @@
       "debt_ratio": 21.9162,
       "div_yield": 5.8229,
       "payout_ratio_pct": 64.8,
-      "score": 0.484
+      "score": 0.4839
     },
     {
       "stock_code": "348350",
@@ -1637,7 +1637,7 @@
       "debt_ratio": 24.1681,
       "div_yield": 1.9227,
       "payout_ratio_pct": 30.33,
-      "score": 0.4836
+      "score": 0.4835
     },
     {
       "stock_code": "110990",
@@ -1721,7 +1721,7 @@
       "debt_ratio": 37.936,
       "div_yield": 2.0775,
       "payout_ratio_pct": 20.3,
-      "score": 0.4803
+      "score": 0.4802
     },
     {
       "stock_code": "187870",
@@ -1749,7 +1749,7 @@
       "debt_ratio": 116.6885,
       "div_yield": 0.944,
       "payout_ratio_pct": 6.6,
-      "score": 0.4789
+      "score": 0.4788
     },
     {
       "stock_code": "194370",
@@ -1777,7 +1777,7 @@
       "debt_ratio": 38.6932,
       "div_yield": 2.3548,
       "payout_ratio_pct": 28.2,
-      "score": 0.4784
+      "score": 0.4785
     },
     {
       "stock_code": "243070",
@@ -1794,20 +1794,6 @@
       "score": 0.4783
     },
     {
-      "stock_code": "101160",
-      "name": "월덱스",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 4788.188,
-      "close": 29000.0,
-      "per": 10.1619,
-      "pbr": 1.3345,
-      "roe_3y_avg": 19.4594,
-      "debt_ratio": 16.8222,
-      "div_yield": 0.3448,
-      "payout_ratio_pct": 4.0,
-      "score": 0.478
-    },
-    {
       "stock_code": "013990",
       "name": "아가방컴퍼니",
       "sector_raw": "코스닥",
@@ -1819,6 +1805,20 @@
       "debt_ratio": 28.1871,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
+      "score": 0.478
+    },
+    {
+      "stock_code": "101160",
+      "name": "월덱스",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 4788.188,
+      "close": 29000.0,
+      "per": 10.1619,
+      "pbr": 1.3345,
+      "roe_3y_avg": 19.4594,
+      "debt_ratio": 16.8222,
+      "div_yield": 0.3448,
+      "payout_ratio_pct": 4.0,
       "score": 0.478
     },
     {
@@ -1987,7 +1987,7 @@
       "debt_ratio": 55.1386,
       "div_yield": 6.9473,
       "payout_ratio_pct": 67.0,
-      "score": 0.4714
+      "score": 0.4715
     },
     {
       "stock_code": "001060",
@@ -2015,7 +2015,7 @@
       "debt_ratio": 37.4559,
       "div_yield": 2.8929,
       "payout_ratio_pct": 52.1,
-      "score": 0.4706
+      "score": 0.4705
     },
     {
       "stock_code": "009970",
@@ -2057,7 +2057,7 @@
       "debt_ratio": 17.6831,
       "div_yield": 4.0465,
       "payout_ratio_pct": 50.0,
-      "score": 0.4695
+      "score": 0.4694
     },
     {
       "stock_code": "053800",
@@ -2088,20 +2088,6 @@
       "score": 0.4687
     },
     {
-      "stock_code": "105740",
-      "name": "디케이락",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 808.3968,
-      "close": 7950.0,
-      "per": 8.9229,
-      "pbr": 0.5798,
-      "roe_3y_avg": 5.2591,
-      "debt_ratio": 62.3422,
-      "div_yield": 3.7741,
-      "payout_ratio_pct": 45.3,
-      "score": 0.4683
-    },
-    {
       "stock_code": "111770",
       "name": "영원무역",
       "sector_raw": "코스피",
@@ -2113,7 +2099,21 @@
       "debt_ratio": 35.3333,
       "div_yield": 2.3674,
       "payout_ratio_pct": 18.2,
-      "score": 0.4683
+      "score": 0.4682
+    },
+    {
+      "stock_code": "105740",
+      "name": "디케이락",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 808.3968,
+      "close": 7950.0,
+      "per": 8.9229,
+      "pbr": 0.5798,
+      "roe_3y_avg": 5.2591,
+      "debt_ratio": 62.3422,
+      "div_yield": 3.7741,
+      "payout_ratio_pct": 45.3,
+      "score": 0.4682
     },
     {
       "stock_code": "240550",
@@ -2183,7 +2183,7 @@
       "debt_ratio": 85.8093,
       "div_yield": 2.3011,
       "payout_ratio_pct": 21.4,
-      "score": 0.4678
+      "score": 0.4677
     },
     {
       "stock_code": "005850",
@@ -2435,7 +2435,7 @@
       "debt_ratio": 44.8904,
       "div_yield": 2.5356,
       "payout_ratio_pct": 25.86,
-      "score": 0.4603
+      "score": 0.4604
     },
     {
       "stock_code": "018290",
@@ -2519,7 +2519,7 @@
       "debt_ratio": 19.6667,
       "div_yield": 0.3539,
       "payout_ratio_pct": 4.9,
-      "score": 0.4576
+      "score": 0.4575
     },
     {
       "stock_code": "092790",
@@ -2561,7 +2561,7 @@
       "debt_ratio": 69.5208,
       "div_yield": 4.9099,
       "payout_ratio_pct": 50.7,
-      "score": 0.4562
+      "score": 0.4561
     },
     {
       "stock_code": "175330",
@@ -2575,7 +2575,7 @@
       "debt_ratio": 48.5321,
       "div_yield": 4.0905,
       "payout_ratio_pct": 30.0,
-      "score": 0.4552
+      "score": 0.4551
     },
     {
       "stock_code": "086450",
@@ -2673,21 +2673,7 @@
       "debt_ratio": 82.6026,
       "div_yield": 2.9563,
       "payout_ratio_pct": 50.1,
-      "score": 0.4539
-    },
-    {
-      "stock_code": "226400",
-      "name": "오스테오닉",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1008.2861,
-      "close": 4880.0,
-      "per": 11.1315,
-      "pbr": 1.4443,
-      "roe_3y_avg": 9.0471,
-      "debt_ratio": 58.0176,
-      "div_yield": 0.0,
-      "payout_ratio_pct": 0.0,
-      "score": 0.4536
+      "score": 0.4538
     },
     {
       "stock_code": "049720",
@@ -2702,6 +2688,20 @@
       "div_yield": 5.2244,
       "payout_ratio_pct": 53.2,
       "score": 0.4536
+    },
+    {
+      "stock_code": "226400",
+      "name": "오스테오닉",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 1008.2861,
+      "close": 4880.0,
+      "per": 11.1315,
+      "pbr": 1.4443,
+      "roe_3y_avg": 9.0471,
+      "debt_ratio": 58.0176,
+      "div_yield": 0.0,
+      "payout_ratio_pct": 0.0,
+      "score": 0.4535
     },
     {
       "stock_code": "030520",
@@ -2785,7 +2785,7 @@
       "debt_ratio": 110.0286,
       "div_yield": 4.4569,
       "payout_ratio_pct": 53.73,
-      "score": 0.4524
+      "score": 0.4523
     },
     {
       "stock_code": "123690",
@@ -2914,20 +2914,6 @@
       "score": 0.4502
     },
     {
-      "stock_code": "003280",
-      "name": "흥아해운",
-      "sector_raw": "코스피",
-      "mktcap_eok": 4116.0743,
-      "close": 1712.0,
-      "per": 15.8242,
-      "pbr": 1.6917,
-      "roe_3y_avg": 14.2552,
-      "debt_ratio": 75.7355,
-      "div_yield": 0.0,
-      "payout_ratio_pct": 0.0,
-      "score": 0.4487
-    },
-    {
       "stock_code": "014620",
       "name": "성광벤드",
       "sector_raw": "코스닥",
@@ -2942,17 +2928,31 @@
       "score": 0.4486
     },
     {
-      "stock_code": "381970",
-      "name": "케이카",
+      "stock_code": "003280",
+      "name": "흥아해운",
       "sector_raw": "코스피",
-      "mktcap_eok": 3783.6157,
-      "close": 7750.0,
-      "per": 8.1056,
-      "pbr": 1.7131,
-      "roe_3y_avg": 18.09,
-      "debt_ratio": 151.0569,
-      "div_yield": 15.3826,
-      "payout_ratio_pct": 114.4,
+      "mktcap_eok": 4116.0743,
+      "close": 1712.0,
+      "per": 15.8242,
+      "pbr": 1.6917,
+      "roe_3y_avg": 14.2552,
+      "debt_ratio": 75.7355,
+      "div_yield": 0.0,
+      "payout_ratio_pct": 0.0,
+      "score": 0.4486
+    },
+    {
+      "stock_code": "204610",
+      "name": "티쓰리",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 1833.5203,
+      "close": 3300.0,
+      "per": 13.9672,
+      "pbr": 2.0165,
+      "roe_3y_avg": 9.7625,
+      "debt_ratio": 15.0345,
+      "div_yield": 4.0021,
+      "payout_ratio_pct": 43.3,
       "score": 0.4485
     },
     {
@@ -2970,17 +2970,17 @@
       "score": 0.4485
     },
     {
-      "stock_code": "204610",
-      "name": "티쓰리",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1833.5203,
-      "close": 3300.0,
-      "per": 13.9672,
-      "pbr": 2.0165,
-      "roe_3y_avg": 9.7625,
-      "debt_ratio": 15.0345,
-      "div_yield": 4.0021,
-      "payout_ratio_pct": 43.3,
+      "stock_code": "381970",
+      "name": "케이카",
+      "sector_raw": "코스피",
+      "mktcap_eok": 3783.6157,
+      "close": 7750.0,
+      "per": 8.1056,
+      "pbr": 1.7131,
+      "roe_3y_avg": 18.09,
+      "debt_ratio": 151.0569,
+      "div_yield": 15.3826,
+      "payout_ratio_pct": 114.4,
       "score": 0.4485
     },
     {
@@ -3051,7 +3051,7 @@
       "debt_ratio": 25.5082,
       "div_yield": 1.5678,
       "payout_ratio_pct": 33.1,
-      "score": 0.4465
+      "score": 0.4464
     },
     {
       "stock_code": "024720",
@@ -3107,21 +3107,7 @@
       "debt_ratio": 16.8282,
       "div_yield": 4.1556,
       "payout_ratio_pct": 31.96,
-      "score": 0.4441
-    },
-    {
-      "stock_code": "126640",
-      "name": "화신정공",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1426.7755,
-      "close": 4070.0,
-      "per": 7.7598,
-      "pbr": 1.1065,
-      "roe_3y_avg": 6.2721,
-      "debt_ratio": 84.2294,
-      "div_yield": 1.8426,
-      "payout_ratio_pct": 25.5,
-      "score": 0.4438
+      "score": 0.444
     },
     {
       "stock_code": "069620",
@@ -3135,7 +3121,21 @@
       "debt_ratio": 107.309,
       "div_yield": 0.4775,
       "payout_ratio_pct": 3.5,
-      "score": 0.4438
+      "score": 0.4437
+    },
+    {
+      "stock_code": "126640",
+      "name": "화신정공",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 1426.7755,
+      "close": 4070.0,
+      "per": 7.7598,
+      "pbr": 1.1065,
+      "roe_3y_avg": 6.2721,
+      "debt_ratio": 84.2294,
+      "div_yield": 1.8426,
+      "payout_ratio_pct": 25.5,
+      "score": 0.4437
     },
     {
       "stock_code": "493280",
@@ -3166,20 +3166,6 @@
       "score": 0.4435
     },
     {
-      "stock_code": "008490",
-      "name": "서흥",
-      "sector_raw": "코스피",
-      "mktcap_eok": 3164.1524,
-      "close": 27350.0,
-      "per": 10.18,
-      "pbr": 0.8677,
-      "roe_3y_avg": 5.6601,
-      "debt_ratio": 63.6674,
-      "div_yield": 1.7597,
-      "payout_ratio_pct": 11.8,
-      "score": 0.4435
-    },
-    {
       "stock_code": "004370",
       "name": "농심",
       "sector_raw": "코스피",
@@ -3191,6 +3177,20 @@
       "debt_ratio": 38.8528,
       "div_yield": 1.4756,
       "payout_ratio_pct": 20.58,
+      "score": 0.4435
+    },
+    {
+      "stock_code": "008490",
+      "name": "서흥",
+      "sector_raw": "코스피",
+      "mktcap_eok": 3164.1524,
+      "close": 27350.0,
+      "per": 10.18,
+      "pbr": 0.8677,
+      "roe_3y_avg": 5.6601,
+      "debt_ratio": 63.6674,
+      "div_yield": 1.7597,
+      "payout_ratio_pct": 11.8,
       "score": 0.4435
     },
     {
@@ -3247,7 +3247,7 @@
       "debt_ratio": 43.5948,
       "div_yield": 3.6977,
       "payout_ratio_pct": 60.6,
-      "score": 0.4421
+      "score": 0.442
     },
     {
       "stock_code": "011780",
@@ -3275,7 +3275,7 @@
       "debt_ratio": 25.559,
       "div_yield": 0.4199,
       "payout_ratio_pct": 6.4,
-      "score": 0.441
+      "score": 0.4409
     },
     {
       "stock_code": "352480",
@@ -3289,7 +3289,7 @@
       "debt_ratio": 18.5233,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.441
+      "score": 0.4409
     },
     {
       "stock_code": "336570",
@@ -3306,20 +3306,6 @@
       "score": 0.4409
     },
     {
-      "stock_code": "244920",
-      "name": "에이플러스에셋",
-      "sector_raw": "코스피",
-      "mktcap_eok": 2792.0501,
-      "close": 12350.0,
-      "per": 10.0702,
-      "pbr": 1.6243,
-      "roe_3y_avg": 12.1959,
-      "debt_ratio": 95.7244,
-      "div_yield": 2.429,
-      "payout_ratio_pct": 30.66,
-      "score": 0.4402
-    },
-    {
       "stock_code": "065710",
       "name": "서호전기",
       "sector_raw": "코스닥",
@@ -3331,6 +3317,20 @@
       "debt_ratio": 41.2497,
       "div_yield": 11.7519,
       "payout_ratio_pct": 130.9,
+      "score": 0.4402
+    },
+    {
+      "stock_code": "244920",
+      "name": "에이플러스에셋",
+      "sector_raw": "코스피",
+      "mktcap_eok": 2792.0501,
+      "close": 12350.0,
+      "per": 10.0702,
+      "pbr": 1.6243,
+      "roe_3y_avg": 12.1959,
+      "debt_ratio": 95.7244,
+      "div_yield": 2.429,
+      "payout_ratio_pct": 30.66,
       "score": 0.4401
     },
     {
@@ -3345,7 +3345,7 @@
       "debt_ratio": 107.8103,
       "div_yield": 2.7286,
       "payout_ratio_pct": 23.13,
-      "score": 0.44
+      "score": 0.4399
     },
     {
       "stock_code": "272110",
@@ -3359,7 +3359,7 @@
       "debt_ratio": 87.123,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4399
+      "score": 0.4398
     },
     {
       "stock_code": "101490",
@@ -3387,7 +3387,7 @@
       "debt_ratio": 8.2585,
       "div_yield": 0.8809,
       "payout_ratio_pct": 26.69,
-      "score": 0.4389
+      "score": 0.4388
     },
     {
       "stock_code": "042000",
@@ -3415,7 +3415,7 @@
       "debt_ratio": 59.2158,
       "div_yield": 2.1457,
       "payout_ratio_pct": 10.7,
-      "score": 0.4381
+      "score": 0.438
     },
     {
       "stock_code": "093520",
@@ -3443,7 +3443,7 @@
       "debt_ratio": 48.4733,
       "div_yield": 0.4334,
       "payout_ratio_pct": 0.0,
-      "score": 0.4379
+      "score": 0.438
     },
     {
       "stock_code": "382800",
@@ -3457,7 +3457,7 @@
       "debt_ratio": 23.9273,
       "div_yield": 2.062,
       "payout_ratio_pct": 60.5,
-      "score": 0.4379
+      "score": 0.4378
     },
     {
       "stock_code": "083500",
@@ -3471,7 +3471,7 @@
       "debt_ratio": 36.7305,
       "div_yield": 2.4272,
       "payout_ratio_pct": 30.22,
-      "score": 0.4373
+      "score": 0.4372
     },
     {
       "stock_code": "114810",
@@ -3527,7 +3527,7 @@
       "debt_ratio": 15.4952,
       "div_yield": 1.1928,
       "payout_ratio_pct": 27.1035,
-      "score": 0.4363
+      "score": 0.4364
     },
     {
       "stock_code": "054540",
@@ -3544,20 +3544,6 @@
       "score": 0.4362
     },
     {
-      "stock_code": "003550",
-      "name": "LG",
-      "sector_raw": "코스피",
-      "mktcap_eok": 165706.4364,
-      "close": 109600.0,
-      "per": 20.7818,
-      "pbr": 1.6576,
-      "roe_3y_avg": 7.0089,
-      "debt_ratio": 8.1707,
-      "div_yield": 2.8857,
-      "payout_ratio_pct": 64.86,
-      "score": 0.4359
-    },
-    {
       "stock_code": "003350",
       "name": "한국화장품제조",
       "sector_raw": "코스피",
@@ -3569,6 +3555,20 @@
       "debt_ratio": 93.0756,
       "div_yield": 0.4048,
       "payout_ratio_pct": 3.97,
+      "score": 0.4359
+    },
+    {
+      "stock_code": "003550",
+      "name": "LG",
+      "sector_raw": "코스피",
+      "mktcap_eok": 165706.4364,
+      "close": 109600.0,
+      "per": 20.7818,
+      "pbr": 1.6576,
+      "roe_3y_avg": 7.0089,
+      "debt_ratio": 8.1707,
+      "div_yield": 2.8857,
+      "payout_ratio_pct": 64.86,
       "score": 0.4358
     },
     {
@@ -3614,20 +3614,6 @@
       "score": 0.4353
     },
     {
-      "stock_code": "145020",
-      "name": "휴젤",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 33603.2395,
-      "close": 268500.0,
-      "per": 37.9752,
-      "pbr": 4.7158,
-      "roe_3y_avg": 11.8578,
-      "debt_ratio": 11.2174,
-      "div_yield": 0.0,
-      "payout_ratio_pct": 0.0,
-      "score": 0.4351
-    },
-    {
       "stock_code": "079900",
       "name": "전진건설로봇",
       "sector_raw": "코스피",
@@ -3639,6 +3625,20 @@
       "debt_ratio": 40.4262,
       "div_yield": 3.996,
       "payout_ratio_pct": 64.0,
+      "score": 0.4351
+    },
+    {
+      "stock_code": "145020",
+      "name": "휴젤",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 33603.2395,
+      "close": 268500.0,
+      "per": 37.9752,
+      "pbr": 4.7158,
+      "roe_3y_avg": 11.8578,
+      "debt_ratio": 11.2174,
+      "div_yield": 0.0,
+      "payout_ratio_pct": 0.0,
       "score": 0.4351
     },
     {
@@ -3667,21 +3667,7 @@
       "debt_ratio": 9.2341,
       "div_yield": 3.0281,
       "payout_ratio_pct": 35.6,
-      "score": 0.4346
-    },
-    {
-      "stock_code": "251970",
-      "name": "펌텍코리아",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 7303.6,
-      "close": 58900.0,
-      "per": 27.8479,
-      "pbr": 2.7132,
-      "roe_3y_avg": 10.7115,
-      "debt_ratio": 29.9029,
-      "div_yield": 0.0,
-      "payout_ratio_pct": 0.0,
-      "score": 0.4344
+      "score": 0.4345
     },
     {
       "stock_code": "187790",
@@ -3693,6 +3679,20 @@
       "pbr": 2.1948,
       "roe_3y_avg": 34.0736,
       "debt_ratio": 109.7247,
+      "div_yield": 0.0,
+      "payout_ratio_pct": 0.0,
+      "score": 0.4344
+    },
+    {
+      "stock_code": "251970",
+      "name": "펌텍코리아",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 7303.6,
+      "close": 58900.0,
+      "per": 27.8479,
+      "pbr": 2.7132,
+      "roe_3y_avg": 10.7115,
+      "debt_ratio": 29.9029,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
       "score": 0.4344
@@ -3751,7 +3751,7 @@
       "debt_ratio": 36.1008,
       "div_yield": 2.2807,
       "payout_ratio_pct": 38.1,
-      "score": 0.434
+      "score": 0.4339
     },
     {
       "stock_code": "064760",
@@ -3793,7 +3793,7 @@
       "debt_ratio": 25.955,
       "div_yield": 4.0307,
       "payout_ratio_pct": 29.5,
-      "score": 0.4335
+      "score": 0.4334
     },
     {
       "stock_code": "192080",
@@ -3849,7 +3849,7 @@
       "debt_ratio": 53.0078,
       "div_yield": 0.4865,
       "payout_ratio_pct": 8.3,
-      "score": 0.4331
+      "score": 0.433
     },
     {
       "stock_code": "001540",
@@ -3964,20 +3964,6 @@
       "score": 0.4302
     },
     {
-      "stock_code": "047770",
-      "name": "코데즈컴바인",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1029.3188,
-      "close": 2720.0,
-      "per": 32.2775,
-      "pbr": 1.5145,
-      "roe_3y_avg": 5.1693,
-      "debt_ratio": 4.6559,
-      "div_yield": 0.0,
-      "payout_ratio_pct": 0.0,
-      "score": 0.4299
-    },
-    {
       "stock_code": "064400",
       "name": "LG씨엔에스",
       "sector_raw": "코스피",
@@ -3989,6 +3975,20 @@
       "debt_ratio": 65.6171,
       "div_yield": 2.3933,
       "payout_ratio_pct": 40.9,
+      "score": 0.4298
+    },
+    {
+      "stock_code": "047770",
+      "name": "코데즈컴바인",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 1029.3188,
+      "close": 2720.0,
+      "per": 32.2775,
+      "pbr": 1.5145,
+      "roe_3y_avg": 5.1693,
+      "debt_ratio": 4.6559,
+      "div_yield": 0.0,
+      "payout_ratio_pct": 0.0,
       "score": 0.4298
     },
     {
@@ -4048,6 +4048,20 @@
       "score": 0.4275
     },
     {
+      "stock_code": "282330",
+      "name": "BGF리테일",
+      "sector_raw": "코스피",
+      "mktcap_eok": 25148.0832,
+      "close": 145500.0,
+      "per": 13.4957,
+      "pbr": 2.1075,
+      "roe_3y_avg": 15.7998,
+      "debt_ratio": 181.8186,
+      "div_yield": 2.8164,
+      "payout_ratio_pct": 36.3,
+      "score": 0.4274
+    },
+    {
       "stock_code": "439090",
       "name": "마녀공장",
       "sector_raw": "코스닥",
@@ -4059,7 +4073,7 @@
       "debt_ratio": 9.1593,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4275
+      "score": 0.4274
     },
     {
       "stock_code": "007310",
@@ -4073,20 +4087,6 @@
       "debt_ratio": 52.6019,
       "div_yield": 2.3764,
       "payout_ratio_pct": 44.72,
-      "score": 0.4275
-    },
-    {
-      "stock_code": "282330",
-      "name": "BGF리테일",
-      "sector_raw": "코스피",
-      "mktcap_eok": 25148.0832,
-      "close": 145500.0,
-      "per": 13.4957,
-      "pbr": 2.1075,
-      "roe_3y_avg": 15.7998,
-      "debt_ratio": 181.8186,
-      "div_yield": 2.8164,
-      "payout_ratio_pct": 36.3,
       "score": 0.4274
     },
     {
@@ -4132,6 +4132,20 @@
       "score": 0.4268
     },
     {
+      "stock_code": "097520",
+      "name": "엠씨넥스",
+      "sector_raw": "코스피",
+      "mktcap_eok": 3584.709,
+      "close": 20600.0,
+      "per": 19.7525,
+      "pbr": 1.1305,
+      "roe_3y_avg": 6.9278,
+      "debt_ratio": 57.003,
+      "div_yield": 4.5195,
+      "payout_ratio_pct": 31.4,
+      "score": 0.4264
+    },
+    {
       "stock_code": "033100",
       "name": "제룡전기",
       "sector_raw": "코스닥",
@@ -4143,7 +4157,7 @@
       "debt_ratio": 21.1141,
       "div_yield": 2.161,
       "payout_ratio_pct": 33.9511,
-      "score": 0.4262
+      "score": 0.4261
     },
     {
       "stock_code": "028100",
@@ -4157,7 +4171,7 @@
       "debt_ratio": 103.1215,
       "div_yield": 3.0064,
       "payout_ratio_pct": 38.85,
-      "score": 0.4255
+      "score": 0.4254
     },
     {
       "stock_code": "389260",
@@ -4199,7 +4213,7 @@
       "debt_ratio": 39.001,
       "div_yield": 2.2802,
       "payout_ratio_pct": 49.4,
-      "score": 0.425
+      "score": 0.4249
     },
     {
       "stock_code": "102710",
@@ -4227,7 +4241,7 @@
       "debt_ratio": 22.8857,
       "div_yield": 2.3753,
       "payout_ratio_pct": 41.4,
-      "score": 0.4245
+      "score": 0.4244
     },
     {
       "stock_code": "091580",
@@ -4255,7 +4269,7 @@
       "debt_ratio": 21.8622,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4238
+      "score": 0.4237
     },
     {
       "stock_code": "037460",
@@ -4269,7 +4283,7 @@
       "debt_ratio": 35.4854,
       "div_yield": 1.266,
       "payout_ratio_pct": 10.8,
-      "score": 0.4238
+      "score": 0.4237
     },
     {
       "stock_code": "094840",
@@ -4286,20 +4300,6 @@
       "score": 0.4231
     },
     {
-      "stock_code": "489500",
-      "name": "엘케이켐",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1489.1585,
-      "close": 23300.0,
-      "per": 27.9654,
-      "pbr": 2.4353,
-      "roe_3y_avg": 18.6398,
-      "debt_ratio": 10.7716,
-      "div_yield": 0.0,
-      "payout_ratio_pct": 0.0,
-      "score": 0.4222
-    },
-    {
       "stock_code": "006910",
       "name": "보성파워텍",
       "sector_raw": "코스닥",
@@ -4311,7 +4311,21 @@
       "debt_ratio": 22.8789,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4222
+      "score": 0.4221
+    },
+    {
+      "stock_code": "489500",
+      "name": "엘케이켐",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 1489.1585,
+      "close": 23300.0,
+      "per": 27.9654,
+      "pbr": 2.4353,
+      "roe_3y_avg": 18.6398,
+      "debt_ratio": 10.7716,
+      "div_yield": 0.0,
+      "payout_ratio_pct": 0.0,
+      "score": 0.4221
     },
     {
       "stock_code": "222080",
@@ -4325,7 +4339,7 @@
       "debt_ratio": 30.8251,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4221
+      "score": 0.422
     },
     {
       "stock_code": "214430",
@@ -4342,20 +4356,6 @@
       "score": 0.4219
     },
     {
-      "stock_code": "036200",
-      "name": "유니셈",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 2686.1859,
-      "close": 8760.0,
-      "per": 26.7236,
-      "pbr": 1.1111,
-      "roe_3y_avg": 6.306,
-      "debt_ratio": 17.885,
-      "div_yield": 0.876,
-      "payout_ratio_pct": 26.25,
-      "score": 0.4219
-    },
-    {
       "stock_code": "160980",
       "name": "싸이맥스",
       "sector_raw": "코스닥",
@@ -4367,7 +4367,21 @@
       "debt_ratio": 22.9318,
       "div_yield": 1.1783,
       "payout_ratio_pct": 29.2,
-      "score": 0.4219
+      "score": 0.4218
+    },
+    {
+      "stock_code": "036200",
+      "name": "유니셈",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 2686.1859,
+      "close": 8760.0,
+      "per": 26.7236,
+      "pbr": 1.1111,
+      "roe_3y_avg": 6.306,
+      "debt_ratio": 17.885,
+      "div_yield": 0.876,
+      "payout_ratio_pct": 26.25,
+      "score": 0.4218
     },
     {
       "stock_code": "005290",
@@ -4409,7 +4423,7 @@
       "debt_ratio": 10.6626,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4213
+      "score": 0.4212
     },
     {
       "stock_code": "058470",
@@ -4423,7 +4437,7 @@
       "debt_ratio": 17.0449,
       "div_yield": 1.1158,
       "payout_ratio_pct": 39.96,
-      "score": 0.4211
+      "score": 0.421
     },
     {
       "stock_code": "041920",
@@ -4437,7 +4451,7 @@
       "debt_ratio": 9.5466,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4209
+      "score": 0.4207
     },
     {
       "stock_code": "073010",
@@ -4465,7 +4479,7 @@
       "debt_ratio": 22.1688,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4207
+      "score": 0.4206
     },
     {
       "stock_code": "493330",
@@ -4510,20 +4524,6 @@
       "score": 0.4201
     },
     {
-      "stock_code": "001040",
-      "name": "CJ",
-      "sector_raw": "코스피",
-      "mktcap_eok": 40351.7882,
-      "close": 138300.0,
-      "per": 20.8772,
-      "pbr": 1.3558,
-      "roe_3y_avg": 5.3221,
-      "debt_ratio": 16.1857,
-      "div_yield": 2.745,
-      "payout_ratio_pct": 57.3076,
-      "score": 0.42
-    },
-    {
       "stock_code": "018670",
       "name": "SK가스",
       "sector_raw": "코스피",
@@ -4538,18 +4538,18 @@
       "score": 0.42
     },
     {
-      "stock_code": "004090",
-      "name": "한국석유",
+      "stock_code": "001040",
+      "name": "CJ",
       "sector_raw": "코스피",
-      "mktcap_eok": 1392.545,
-      "close": 10970.0,
-      "per": 16.9079,
-      "pbr": 0.6747,
-      "roe_3y_avg": 5.6728,
-      "debt_ratio": 85.8045,
-      "div_yield": 1.0894,
-      "payout_ratio_pct": 29.1,
-      "score": 0.4192
+      "mktcap_eok": 40351.7882,
+      "close": 138300.0,
+      "per": 20.8772,
+      "pbr": 1.3558,
+      "roe_3y_avg": 5.3221,
+      "debt_ratio": 16.1857,
+      "div_yield": 2.745,
+      "payout_ratio_pct": 57.3076,
+      "score": 0.4199
     },
     {
       "stock_code": "142210",
@@ -4566,6 +4566,20 @@
       "score": 0.4192
     },
     {
+      "stock_code": "004090",
+      "name": "한국석유",
+      "sector_raw": "코스피",
+      "mktcap_eok": 1392.545,
+      "close": 10970.0,
+      "per": 16.9079,
+      "pbr": 0.6747,
+      "roe_3y_avg": 5.6728,
+      "debt_ratio": 85.8045,
+      "div_yield": 1.0894,
+      "payout_ratio_pct": 29.1,
+      "score": 0.4192
+    },
+    {
       "stock_code": "041020",
       "name": "폴라리스오피스",
       "sector_raw": "코스닥",
@@ -4577,7 +4591,7 @@
       "debt_ratio": 9.2541,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4186
+      "score": 0.4185
     },
     {
       "stock_code": "100090",
@@ -4605,7 +4619,7 @@
       "debt_ratio": 34.3466,
       "div_yield": 1.3451,
       "payout_ratio_pct": 0.0,
-      "score": 0.4182
+      "score": 0.4181
     },
     {
       "stock_code": "357780",
@@ -4647,7 +4661,7 @@
       "debt_ratio": 21.4625,
       "div_yield": 0.6161,
       "payout_ratio_pct": 16.5831,
-      "score": 0.4177
+      "score": 0.4176
     },
     {
       "stock_code": "014940",
@@ -4678,20 +4692,6 @@
       "score": 0.4167
     },
     {
-      "stock_code": "042510",
-      "name": "라온시큐어",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 925.1155,
-      "close": 8330.0,
-      "per": 21.6267,
-      "pbr": 1.7978,
-      "roe_3y_avg": 6.2473,
-      "debt_ratio": 33.8205,
-      "div_yield": 0.0,
-      "payout_ratio_pct": 0.0,
-      "score": 0.4159
-    },
-    {
       "stock_code": "206650",
       "name": "유바이오로직스",
       "sector_raw": "코스닥",
@@ -4704,6 +4704,20 @@
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
       "score": 0.4159
+    },
+    {
+      "stock_code": "042510",
+      "name": "라온시큐어",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 925.1155,
+      "close": 8330.0,
+      "per": 21.6267,
+      "pbr": 1.7978,
+      "roe_3y_avg": 6.2473,
+      "debt_ratio": 33.8205,
+      "div_yield": 0.0,
+      "payout_ratio_pct": 0.0,
+      "score": 0.4158
     },
     {
       "stock_code": "389650",
@@ -4745,7 +4759,7 @@
       "debt_ratio": 52.3902,
       "div_yield": 3.9137,
       "payout_ratio_pct": 193.8,
-      "score": 0.4142
+      "score": 0.4141
     },
     {
       "stock_code": "145720",
@@ -4773,7 +4787,7 @@
       "debt_ratio": 29.3875,
       "div_yield": 0.5985,
       "payout_ratio_pct": 13.9,
-      "score": 0.4133
+      "score": 0.4132
     },
     {
       "stock_code": "039030",
@@ -4843,7 +4857,7 @@
       "debt_ratio": 64.4352,
       "div_yield": 2.1756,
       "payout_ratio_pct": 47.19,
-      "score": 0.4104
+      "score": 0.4103
     },
     {
       "stock_code": "037270",
@@ -4927,7 +4941,7 @@
       "debt_ratio": 44.7173,
       "div_yield": 0.4976,
       "payout_ratio_pct": 0.0,
-      "score": 0.4083
+      "score": 0.4082
     },
     {
       "stock_code": "0001A0",
@@ -4969,7 +4983,7 @@
       "debt_ratio": 118.6915,
       "div_yield": 1.9548,
       "payout_ratio_pct": 21.4,
-      "score": 0.4072
+      "score": 0.4071
     },
     {
       "stock_code": "192650",
@@ -4983,7 +4997,7 @@
       "debt_ratio": 79.436,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4069
+      "score": 0.4068
     },
     {
       "stock_code": "086710",
@@ -4997,7 +5011,7 @@
       "debt_ratio": 108.4323,
       "div_yield": 2.3629,
       "payout_ratio_pct": 40.3,
-      "score": 0.4067
+      "score": 0.4066
     },
     {
       "stock_code": "448900",
@@ -5025,7 +5039,7 @@
       "debt_ratio": 17.3771,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4055
+      "score": 0.4054
     },
     {
       "stock_code": "214450",
@@ -5109,7 +5123,7 @@
       "debt_ratio": 35.1575,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.404
+      "score": 0.4039
     },
     {
       "stock_code": "010060",
@@ -5137,7 +5151,7 @@
       "debt_ratio": 25.0821,
       "div_yield": 0.6502,
       "payout_ratio_pct": 25.25,
-      "score": 0.4031
+      "score": 0.403
     },
     {
       "stock_code": "096770",
@@ -5151,7 +5165,7 @@
       "debt_ratio": 45.7971,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4023
+      "score": 0.4022
     },
     {
       "stock_code": "484120",
@@ -5165,7 +5179,7 @@
       "debt_ratio": 23.6946,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4021
+      "score": 0.402
     },
     {
       "stock_code": "950210",
@@ -5179,7 +5193,7 @@
       "debt_ratio": 6.079,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.4015
+      "score": 0.4014
     },
     {
       "stock_code": "128940",
@@ -5193,7 +5207,7 @@
       "debt_ratio": 69.9726,
       "div_yield": 0.5002,
       "payout_ratio_pct": 14.6,
-      "score": 0.4015
+      "score": 0.4014
     },
     {
       "stock_code": "119850",
@@ -5221,7 +5235,7 @@
       "debt_ratio": 115.4972,
       "div_yield": 5.3011,
       "payout_ratio_pct": 67.6,
-      "score": 0.4011
+      "score": 0.401
     },
     {
       "stock_code": "078350",
@@ -5249,7 +5263,7 @@
       "debt_ratio": 28.4763,
       "div_yield": 1.9442,
       "payout_ratio_pct": 69.0,
-      "score": 0.4006
+      "score": 0.4005
     },
     {
       "stock_code": "489460",
@@ -5263,7 +5277,7 @@
       "debt_ratio": 6.8445,
       "div_yield": 0.8255,
       "payout_ratio_pct": 36.0,
-      "score": 0.4004
+      "score": 0.4003
     },
     {
       "stock_code": "257720",
@@ -5291,7 +5305,7 @@
       "debt_ratio": 58.2607,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.3989
+      "score": 0.3988
     },
     {
       "stock_code": "256840",
@@ -5305,7 +5319,7 @@
       "debt_ratio": 11.7812,
       "div_yield": 2.5364,
       "payout_ratio_pct": 59.2,
-      "score": 0.3989
+      "score": 0.3987
     },
     {
       "stock_code": "319660",
@@ -5319,7 +5333,7 @@
       "debt_ratio": 25.815,
       "div_yield": 0.512,
       "payout_ratio_pct": 25.1,
-      "score": 0.3984
+      "score": 0.3983
     },
     {
       "stock_code": "003230",
@@ -5347,7 +5361,7 @@
       "debt_ratio": 66.4744,
       "div_yield": 1.452,
       "payout_ratio_pct": 31.84,
-      "score": 0.3982
+      "score": 0.398
     },
     {
       "stock_code": "456160",
@@ -5375,7 +5389,7 @@
       "debt_ratio": 41.1634,
       "div_yield": 1.9721,
       "payout_ratio_pct": 22.9,
-      "score": 0.3973
+      "score": 0.3972
     },
     {
       "stock_code": "204620",
@@ -5389,7 +5403,7 @@
       "debt_ratio": 20.277,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.397
+      "score": 0.3969
     },
     {
       "stock_code": "090460",
@@ -5431,7 +5445,7 @@
       "debt_ratio": 22.8239,
       "div_yield": 0.6555,
       "payout_ratio_pct": 25.14,
-      "score": 0.3963
+      "score": 0.3962
     },
     {
       "stock_code": "333430",
@@ -5459,7 +5473,7 @@
       "debt_ratio": 50.1278,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.3959
+      "score": 0.396
     },
     {
       "stock_code": "051160",
@@ -5473,7 +5487,7 @@
       "debt_ratio": 24.0953,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.3957
+      "score": 0.3956
     },
     {
       "stock_code": "425420",
@@ -5515,7 +5529,7 @@
       "debt_ratio": 42.1329,
       "div_yield": 2.2254,
       "payout_ratio_pct": 11.4,
-      "score": 0.3947
+      "score": 0.3946
     },
     {
       "stock_code": "034230",
@@ -5529,7 +5543,7 @@
       "debt_ratio": 64.5289,
       "div_yield": 1.4318,
       "payout_ratio_pct": 13.9,
-      "score": 0.3942
+      "score": 0.3941
     },
     {
       "stock_code": "005860",
@@ -5543,7 +5557,7 @@
       "debt_ratio": 35.6351,
       "div_yield": 2.9878,
       "payout_ratio_pct": 46.3,
-      "score": 0.3942
+      "score": 0.3941
     },
     {
       "stock_code": "084370",
@@ -5585,7 +5599,7 @@
       "debt_ratio": 22.749,
       "div_yield": 0.9991,
       "payout_ratio_pct": 25.4,
-      "score": 0.3912
+      "score": 0.3911
     },
     {
       "stock_code": "093320",
@@ -5613,7 +5627,7 @@
       "debt_ratio": 36.8533,
       "div_yield": 0.4511,
       "payout_ratio_pct": 18.3,
-      "score": 0.3905
+      "score": 0.3904
     },
     {
       "stock_code": "298050",
@@ -5641,7 +5655,7 @@
       "debt_ratio": 20.8678,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.3894
+      "score": 0.3893
     },
     {
       "stock_code": "115500",
@@ -5655,7 +5669,7 @@
       "debt_ratio": 40.6164,
       "div_yield": 1.9565,
       "payout_ratio_pct": 85.46,
-      "score": 0.3892
+      "score": 0.3891
     },
     {
       "stock_code": "218410",
@@ -5669,7 +5683,7 @@
       "debt_ratio": 26.9198,
       "div_yield": 0.7067,
       "payout_ratio_pct": 29.9,
-      "score": 0.3884
+      "score": 0.3883
     },
     {
       "stock_code": "000100",
@@ -5683,7 +5697,7 @@
       "debt_ratio": 23.9597,
       "div_yield": 0.6779,
       "payout_ratio_pct": 23.1,
-      "score": 0.3876
+      "score": 0.3875
     },
     {
       "stock_code": "099440",
@@ -5697,7 +5711,7 @@
       "debt_ratio": 88.9738,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.3874
+      "score": 0.3873
     },
     {
       "stock_code": "017960",
@@ -5725,7 +5739,7 @@
       "debt_ratio": 34.078,
       "div_yield": 1.2712,
       "payout_ratio_pct": 55.66,
-      "score": 0.3865
+      "score": 0.3864
     },
     {
       "stock_code": "122870",
@@ -5739,7 +5753,7 @@
       "debt_ratio": 20.7976,
       "div_yield": 0.7004,
       "payout_ratio_pct": 15.08,
-      "score": 0.3863
+      "score": 0.3861
     },
     {
       "stock_code": "080220",
@@ -5753,7 +5767,7 @@
       "debt_ratio": 77.0259,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.386
+      "score": 0.3859
     },
     {
       "stock_code": "232680",
@@ -5767,7 +5781,7 @@
       "debt_ratio": 56.9639,
       "div_yield": 1.7274,
       "payout_ratio_pct": 65.0,
-      "score": 0.3855
+      "score": 0.3854
     },
     {
       "stock_code": "290550",
@@ -5795,7 +5809,7 @@
       "debt_ratio": 56.9949,
       "div_yield": 0.2553,
       "payout_ratio_pct": 11.0,
-      "score": 0.385
+      "score": 0.3849
     },
     {
       "stock_code": "010130",
@@ -5809,7 +5823,7 @@
       "debt_ratio": 71.2289,
       "div_yield": 1.6083,
       "payout_ratio_pct": 52.6,
-      "score": 0.3848
+      "score": 0.3847
     },
     {
       "stock_code": "018260",
@@ -5823,7 +5837,7 @@
       "debt_ratio": 20.0746,
       "div_yield": 1.3541,
       "payout_ratio_pct": 32.5,
-      "score": 0.3848
+      "score": 0.3847
     },
     {
       "stock_code": "474650",
@@ -5865,7 +5879,7 @@
       "debt_ratio": 18.6357,
       "div_yield": 0.18,
       "payout_ratio_pct": 12.4,
-      "score": 0.3836
+      "score": 0.3835
     },
     {
       "stock_code": "086520",
@@ -5879,7 +5893,7 @@
       "debt_ratio": 97.8828,
       "div_yield": 0.1638,
       "payout_ratio_pct": 0.0,
-      "score": 0.3834
+      "score": 0.3833
     },
     {
       "stock_code": "078520",
@@ -5893,7 +5907,7 @@
       "debt_ratio": 89.7869,
       "div_yield": 3.0873,
       "payout_ratio_pct": 76.4,
-      "score": 0.3831
+      "score": 0.383
     },
     {
       "stock_code": "039200",
@@ -5935,7 +5949,7 @@
       "debt_ratio": 28.8825,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.3821
+      "score": 0.382
     },
     {
       "stock_code": "195870",
@@ -5949,7 +5963,7 @@
       "debt_ratio": 54.9051,
       "div_yield": 1.5679,
       "payout_ratio_pct": 64.23,
-      "score": 0.3814
+      "score": 0.3813
     },
     {
       "stock_code": "441270",
@@ -5963,7 +5977,7 @@
       "debt_ratio": 54.0449,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.3807
+      "score": 0.3806
     },
     {
       "stock_code": "030000",
@@ -5977,7 +5991,7 @@
       "debt_ratio": 136.4737,
       "div_yield": 5.7294,
       "payout_ratio_pct": 60.0,
-      "score": 0.3805
+      "score": 0.3804
     },
     {
       "stock_code": "241710",
@@ -5991,7 +6005,7 @@
       "debt_ratio": 116.2506,
       "div_yield": 0.2999,
       "payout_ratio_pct": 6.83,
-      "score": 0.3801
+      "score": 0.38
     },
     {
       "stock_code": "064350",
@@ -6005,7 +6019,7 @@
       "debt_ratio": 181.6181,
       "div_yield": 0.4096,
       "payout_ratio_pct": 8.5,
-      "score": 0.3792
+      "score": 0.3791
     },
     {
       "stock_code": "003090",
@@ -6019,7 +6033,7 @@
       "debt_ratio": 12.7257,
       "div_yield": 0.7969,
       "payout_ratio_pct": 4.7,
-      "score": 0.3787
+      "score": 0.3786
     },
     {
       "stock_code": "161580",
@@ -6047,7 +6061,7 @@
       "debt_ratio": 134.6513,
       "div_yield": 1.6024,
       "payout_ratio_pct": 25.1,
-      "score": 0.3764
+      "score": 0.3763
     },
     {
       "stock_code": "125020",
@@ -6089,7 +6103,7 @@
       "debt_ratio": 192.5034,
       "div_yield": 0.7306,
       "payout_ratio_pct": 25.4,
-      "score": 0.3746
+      "score": 0.3745
     },
     {
       "stock_code": "368770",
@@ -6159,7 +6173,7 @@
       "debt_ratio": 47.7114,
       "div_yield": 0.7886,
       "payout_ratio_pct": 31.71,
-      "score": 0.3727
+      "score": 0.3726
     },
     {
       "stock_code": "204270",
@@ -6201,7 +6215,7 @@
       "debt_ratio": 39.7906,
       "div_yield": 0.1216,
       "payout_ratio_pct": 7.1204,
-      "score": 0.3716
+      "score": 0.3715
     },
     {
       "stock_code": "388050",
@@ -6243,7 +6257,7 @@
       "debt_ratio": 26.2988,
       "div_yield": 0.5681,
       "payout_ratio_pct": 41.4,
-      "score": 0.3694
+      "score": 0.3693
     },
     {
       "stock_code": "079940",
@@ -6257,7 +6271,7 @@
       "debt_ratio": 140.2976,
       "div_yield": 0.2249,
       "payout_ratio_pct": 8.3,
-      "score": 0.3693
+      "score": 0.3692
     },
     {
       "stock_code": "267270",
@@ -6271,7 +6285,7 @@
       "debt_ratio": 74.6393,
       "div_yield": 0.3968,
       "payout_ratio_pct": 26.5,
-      "score": 0.3693
+      "score": 0.3692
     },
     {
       "stock_code": "474610",
@@ -6313,7 +6327,7 @@
       "debt_ratio": 70.1715,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.3681
+      "score": 0.368
     },
     {
       "stock_code": "217590",
@@ -6327,7 +6341,7 @@
       "debt_ratio": 87.2682,
       "div_yield": 0.3462,
       "payout_ratio_pct": 0.0,
-      "score": 0.3666
+      "score": 0.3665
     },
     {
       "stock_code": "483650",
@@ -6341,7 +6355,7 @@
       "debt_ratio": 27.2814,
       "div_yield": 0.992,
       "payout_ratio_pct": 41.1,
-      "score": 0.3659
+      "score": 0.3658
     },
     {
       "stock_code": "307950",
@@ -6369,7 +6383,7 @@
       "debt_ratio": 49.0382,
       "div_yield": 1.9749,
       "payout_ratio_pct": 65.7,
-      "score": 0.3655
+      "score": 0.3654
     },
     {
       "stock_code": "180640",
@@ -6383,7 +6397,7 @@
       "debt_ratio": 14.7386,
       "div_yield": 0.3072,
       "payout_ratio_pct": 15.6,
-      "score": 0.3648
+      "score": 0.3647
     },
     {
       "stock_code": "096760",
@@ -6397,7 +6411,7 @@
       "debt_ratio": 103.607,
       "div_yield": 4.8141,
       "payout_ratio_pct": 25.4,
-      "score": 0.3647
+      "score": 0.3646
     },
     {
       "stock_code": "347700",
@@ -6411,7 +6425,7 @@
       "debt_ratio": 76.3015,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.3646
+      "score": 0.3645
     },
     {
       "stock_code": "114190",
@@ -6481,7 +6495,7 @@
       "debt_ratio": 31.2005,
       "div_yield": 0.7504,
       "payout_ratio_pct": 42.4615,
-      "score": 0.3629
+      "score": 0.3628
     },
     {
       "stock_code": "042700",
@@ -6495,7 +6509,7 @@
       "debt_ratio": 17.6184,
       "div_yield": 0.366,
       "payout_ratio_pct": 35.5,
-      "score": 0.3625
+      "score": 0.3624
     },
     {
       "stock_code": "022100",
@@ -6523,7 +6537,7 @@
       "debt_ratio": 104.6132,
       "div_yield": 0.9066,
       "payout_ratio_pct": 34.88,
-      "score": 0.3613
+      "score": 0.3612
     },
     {
       "stock_code": "158430",
@@ -6551,7 +6565,7 @@
       "debt_ratio": 38.3236,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.3608
+      "score": 0.3607
     },
     {
       "stock_code": "095610",
@@ -6579,7 +6593,7 @@
       "debt_ratio": 22.278,
       "div_yield": 0.4271,
       "payout_ratio_pct": 62.8,
-      "score": 0.3606
+      "score": 0.3605
     },
     {
       "stock_code": "008930",
@@ -6593,7 +6607,7 @@
       "debt_ratio": 47.1819,
       "div_yield": 0.6793,
       "payout_ratio_pct": 17.35,
-      "score": 0.3596
+      "score": 0.3595
     },
     {
       "stock_code": "068760",
@@ -6607,7 +6621,7 @@
       "debt_ratio": 76.8113,
       "div_yield": 0.44,
       "payout_ratio_pct": 21.5785,
-      "score": 0.3595
+      "score": 0.3594
     },
     {
       "stock_code": "216080",
@@ -6621,7 +6635,7 @@
       "debt_ratio": 174.7143,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.359
+      "score": 0.3589
     },
     {
       "stock_code": "005090",
@@ -6635,7 +6649,7 @@
       "debt_ratio": 139.2058,
       "div_yield": 2.2763,
       "payout_ratio_pct": 89.8223,
-      "score": 0.3574
+      "score": 0.3572
     },
     {
       "stock_code": "356680",
@@ -6649,7 +6663,7 @@
       "debt_ratio": 33.9209,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.357
+      "score": 0.3569
     },
     {
       "stock_code": "196170",
@@ -6691,7 +6705,7 @@
       "debt_ratio": 33.1346,
       "div_yield": 0.8728,
       "payout_ratio_pct": 79.55,
-      "score": 0.3539
+      "score": 0.354
     },
     {
       "stock_code": "017670",
@@ -6719,7 +6733,7 @@
       "debt_ratio": 166.0766,
       "div_yield": 0.6897,
       "payout_ratio_pct": 22.95,
-      "score": 0.3512
+      "score": 0.3511
     },
     {
       "stock_code": "144960",
@@ -6775,7 +6789,7 @@
       "debt_ratio": 100.4221,
       "div_yield": 0.6546,
       "payout_ratio_pct": 44.7,
-      "score": 0.349
+      "score": 0.3489
     },
     {
       "stock_code": "052690",
@@ -6789,7 +6803,7 @@
       "debt_ratio": 49.1117,
       "div_yield": 1.3516,
       "payout_ratio_pct": 60.0,
-      "score": 0.3486
+      "score": 0.3485
     },
     {
       "stock_code": "437730",
@@ -6831,7 +6845,7 @@
       "debt_ratio": 111.6305,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.3436
+      "score": 0.3435
     },
     {
       "stock_code": "304360",
@@ -6859,7 +6873,7 @@
       "debt_ratio": 88.1405,
       "div_yield": 1.3863,
       "payout_ratio_pct": 35.2,
-      "score": 0.3429
+      "score": 0.3427
     },
     {
       "stock_code": "278470",
@@ -6873,7 +6887,7 @@
       "debt_ratio": 79.2411,
       "div_yield": 1.2819,
       "payout_ratio_pct": 65.8,
-      "score": 0.3428
+      "score": 0.3427
     },
     {
       "stock_code": "420770",
@@ -6887,7 +6901,7 @@
       "debt_ratio": 20.6875,
       "div_yield": 0.6797,
       "payout_ratio_pct": 65.63,
-      "score": 0.3418
+      "score": 0.3417
     },
     {
       "stock_code": "036930",
@@ -6971,7 +6985,7 @@
       "debt_ratio": 53.8589,
       "div_yield": 0.1887,
       "payout_ratio_pct": 194.3,
-      "score": 0.3301
+      "score": 0.33
     },
     {
       "stock_code": "094170",
@@ -6985,7 +6999,7 @@
       "debt_ratio": 70.1409,
       "div_yield": 0.4826,
       "payout_ratio_pct": 60.6477,
-      "score": 0.3242
+      "score": 0.3241
     },
     {
       "stock_code": "078600",
@@ -6999,7 +7013,7 @@
       "debt_ratio": 163.0094,
       "div_yield": 0.1013,
       "payout_ratio_pct": 6.7,
-      "score": 0.3183
+      "score": 0.3182
     },
     {
       "stock_code": "319400",
@@ -7027,7 +7041,7 @@
       "debt_ratio": 66.518,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.3132
+      "score": 0.3131
     }
   ]
 }
