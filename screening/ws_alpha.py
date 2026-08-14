@@ -29,7 +29,7 @@ import numpy as np
 import pandas as pd
 
 from quotes import pick_quote_for_week
-from commentary import generate_all_commentary
+from profile import generate_all_profiles
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -612,21 +612,19 @@ def run_real(date: str, bsns_year: int, top_n: int, export: str | None,
         out_path = _Path(export_json)
         out_path.parent.mkdir(parents=True, exist_ok=True)
 
-        # 코멘트 생성(수 분 소요, 종목당 3회 순차 API 호출)에 앞서 commentary를 전부
+        # 프로필 생성(수 분 소요, 종목당 1회 순차 API 호출)에 앞서 profile을 전부
         # None으로 채운 "초안" 버전을 먼저 저장해 둔다. DART/KRX 스크리닝 결과는 이미
-        # 확보된 상태이므로, 이후 코멘트 생성 도중 외부 요인(타임아웃, OOM, kill 등)으로
-        # 프로세스가 중단되더라도 commentary가 비어 있을 뿐인 유효한 results.json이
+        # 확보된 상태이므로, 이후 프로필 생성 도중 외부 요인(타임아웃, OOM, kill 등)으로
+        # 프로세스가 중단되더라도 profile이 비어 있을 뿐인 유효한 results.json이
         # 디스크에 남는다(둘 다 없는 것보다 낫다).
         for rec in records:
-            rec["commentary"] = {"peter_lynch": None, "warren_buffett": None, "bill_ackman": None}
+            rec["profile"] = None
         draft_payload = _build_payload(records)
         out_path.write_text(json.dumps(draft_payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
-        commentary_map = generate_all_commentary(records)
+        profile_map = generate_all_profiles(records)
         for rec in records:
-            rec["commentary"] = commentary_map.get(rec["stock_code"], {
-                "peter_lynch": None, "warren_buffett": None, "bill_ackman": None,
-            })
+            rec["profile"] = profile_map.get(rec["stock_code"])
 
         payload = _build_payload(records)
         out_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
