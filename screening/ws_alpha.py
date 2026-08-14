@@ -29,7 +29,7 @@ import numpy as np
 import pandas as pd
 
 from quotes import pick_quote_for_week
-from profile import generate_all_profiles
+from stock_profile import generate_all_profiles
 
 
 # ═══════════════════════════════════════════════════════════════
