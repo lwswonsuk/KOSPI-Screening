@@ -1,4 +1,4 @@
-from profile import build_prompt, PROFILE_FIELDS, SYSTEM_PROMPT, generate_profile, generate_all_profiles
+from stock_profile import build_prompt, PROFILE_FIELDS, SYSTEM_PROMPT, generate_profile, generate_all_profiles
 
 
 def test_profile_fields_has_four_keys():
