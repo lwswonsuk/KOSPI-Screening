@@ -14,6 +14,9 @@ from __future__ import annotations
 
 import json
 import os
+from pathlib import Path
+
+import profile_cache
 
 PROFILE_FIELDS: list[str] = ["business", "sector", "products", "competitors"]
 
@@ -92,10 +95,13 @@ def generate_profile(row: dict, client=None) -> dict | None:
         return None
 
 
-def generate_all_profiles(records: list[dict]) -> dict[str, dict | None]:
+def generate_all_profiles(records: list[dict], cache_path: Path = profile_cache.CACHE_PATH) -> dict[str, dict | None]:
     """상위 종목 레코드 리스트(각 dict는 최소 stock_code, name, per, pbr, ... 포함)를 받아
     종목코드별로 프로필을 생성한다. ANTHROPIC_API_KEY가 없으면 전체를 건너뛰고
-    모든 값을 None으로 채운다."""
+    모든 값을 None으로 채운다.
+    같은 종목이 캐시(cache_path)에 신선한 상태로 남아있으면 API를 다시 호출하지 않고
+    재사용한다 — 사업 내용은 하루 만에 바뀌지 않으므로 상위 50위 안에 계속 남아있는
+    종목에 대한 불필요한 반복 호출을 줄인다."""
     result: dict[str, dict | None] = {}
 
     if not os.environ.get("ANTHROPIC_API_KEY"):
@@ -113,14 +119,27 @@ def generate_all_profiles(records: list[dict]) -> dict[str, dict | None]:
             result[rec["stock_code"]] = None
         return result
 
+    cache = profile_cache.load_cache(cache_path)
+
     total = len(records)
     done = 0
+    cache_hits = 0
     for rec in records:
         code = rec["stock_code"]
-        result[code] = generate_profile(rec, client=client)
+        name = rec.get("name", "")
+        cached_profile = profile_cache.get_fresh(cache, code, name)
+        if cached_profile is not None:
+            result[code] = cached_profile
+            cache_hits += 1
+        else:
+            profile = generate_profile(rec, client=client)
+            result[code] = profile
+            if profile is not None:
+                profile_cache.put(cache, code, name, profile)
         done += 1
         if done % 10 == 0:
             print(f"  [profile] 진행 {done}/{total}")
 
-    print(f"[profile] 프로필 생성 완료: {len(records)}종목")
+    profile_cache.save_cache(cache, cache_path)
+    print(f"[profile] 프로필 생성 완료: {len(records)}종목 (캐시 재사용 {cache_hits}건, 신규 생성 {total - cache_hits}건)")
     return result
