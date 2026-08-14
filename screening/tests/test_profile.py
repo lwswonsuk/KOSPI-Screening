@@ -87,6 +87,33 @@ def test_generate_profile_returns_none_on_missing_field():
     assert result is None
 
 
+def test_generate_profile_returns_none_when_field_is_not_string():
+    row = {"name": "테스트전자", "per": 7.3}
+    non_string_field_json = (
+        '{"business": "반도체를 설계·제조한다.", "sector": "반도체", '
+        '"products": "메모리 반도체", "competitors": ["경쟁사A", "경쟁사B"]}'
+    )
+    result = generate_profile(row, client=_FakeClient(non_string_field_json))
+    assert result is None
+
+
+def test_generate_profile_strips_markdown_code_fence():
+    row = {"name": "테스트전자", "per": 7.3}
+    fenced_json = (
+        "```json\n"
+        '{"business": "반도체를 설계·제조한다.", "sector": "반도체", '
+        '"products": "메모리 반도체", "competitors": "경쟁사A, 경쟁사B"}\n'
+        "```"
+    )
+    result = generate_profile(row, client=_FakeClient(fenced_json))
+    assert result == {
+        "business": "반도체를 설계·제조한다.",
+        "sector": "반도체",
+        "products": "메모리 반도체",
+        "competitors": "경쟁사A, 경쟁사B",
+    }
+
+
 def test_generate_all_profiles_skips_when_no_api_key(monkeypatch):
     monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
     records = [{"stock_code": "005930", "name": "테스트전자", "per": 7.3}]

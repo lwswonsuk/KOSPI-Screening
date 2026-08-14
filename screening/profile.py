@@ -43,6 +43,17 @@ def build_prompt(row: dict) -> str:
     )
 
 
+def _strip_code_fence(text: str) -> str:
+    """마크다운 코드펜스(```json ... ``` 또는 ``` ... ```)로 감싸인 응답에서
+    펜스를 제거한다. 펜스가 없으면 입력을 그대로 반환한다."""
+    if text.startswith("```"):
+        lines = text.split("\n")
+        text = "\n".join(lines[1:])
+        if text.rstrip().endswith("```"):
+            text = text.rstrip()[:-3].rstrip()
+    return text
+
+
 def generate_profile(row: dict, client=None) -> dict | None:
     """단일 종목에 대해 Claude Haiku 4.5로 프로필을 생성한다.
     실패(네트워크 오류, API 오류, JSON 파싱 실패, 필드 누락) 시 예외를 삼키고 None을 반환한다.
@@ -66,8 +77,10 @@ def generate_profile(row: dict, client=None) -> dict | None:
         if text is None:
             return None
 
+        text = _strip_code_fence(text)
+
         data = json.loads(text)
-        if not all(field in data and data[field] for field in PROFILE_FIELDS):
+        if not all(isinstance(data.get(field), str) and data[field].strip() for field in PROFILE_FIELDS):
             return None
         return {field: data[field] for field in PROFILE_FIELDS}
     except Exception as e:
