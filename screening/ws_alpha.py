@@ -350,13 +350,16 @@ def decide(h: Holding, cfg: Config = CFG) -> tuple[str, str]:
 # 7. 실데이터 어댑터 (pykrx + OpenDartReader)
 # ═══════════════════════════════════════════════════════════════
 
-def load_real(date: str, bsns_year: int = 2025) -> pd.DataFrame:
+def load_real(date: str, bsns_year: int = 2025) -> tuple[pd.DataFrame, str]:
     """
     KRX 공식 Open API로 가격·시가총액 지표(KOSPI), data_pipeline.py 캐시로 재무 지표를 조립.
     사전 준비:
       1) setx KRX_API_KEY "..."  / setx DART_API_KEY "..." 등록
       2) python data_pipeline.py --build --year 2025 --date 20260807  실행해서
          .cache/finance.parquet 만들어둘 것
+
+    반환값은 (데이터프레임, 실제 사용된 가격 기준일) 튜플이다 — date가 휴장일이면
+    get_full_universe가 최근 개장일로 자동 대체하므로, 호출부는 이 실제 기준일을 사용해야 한다.
     """
     from data_pipeline import FINANCE_CACHE, get_full_universe
 
@@ -367,7 +370,7 @@ def load_real(date: str, bsns_year: int = 2025) -> pd.DataFrame:
         )
 
     # ---- 가격·시가총액 (KRX 공식 API, 유가증권 일별매매정보) ----
-    df = get_full_universe(date)   # index=stock_code, columns: name, close, fluc_rt, trdval, mktcap, ...
+    df, resolved_date = get_full_universe(date)   # index=stock_code, columns: name, close, fluc_rt, trdval, mktcap, ...
     df["mktcap_eok"] = df["mktcap"] / 1e8
     df["turnover_eok_20d"] = df["trdval"] / 1e8   # TODO: 20일 평균으로 교체 (현재는 당일 값)
     df["sector"] = "미분류"  # TODO: 종목기본정보 API(SECT_TP_NM)로 업종 채워 넣을 것
@@ -404,7 +407,7 @@ def load_real(date: str, bsns_year: int = 2025) -> pd.DataFrame:
     df["per"] = df["mktcap"] / df["net_income_ttm"].where(df["net_income_ttm"] > 0)
     df["pbr"] = df["mktcap"] / df["total_equity"].where(df["total_equity"] > 0)
 
-    return df
+    return df, resolved_date
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -515,7 +518,10 @@ def run_real(date: str, bsns_year: int, top_n: int, export: str | None,
       두 시점이 다를 수 있으니 참고할 것.
     """
     pd.set_option("display.width", 200, "display.max_columns", 50)
-    d = load_real(date, bsns_year=bsns_year)
+    d, resolved_date = load_real(date, bsns_year=bsns_year)
+    if resolved_date != date:
+        print(f"[알림] 요청한 기준일 {date}은 휴장일로 보여, 최근 개장일 {resolved_date}로 대체합니다")
+    date = resolved_date
     filt = apply_hard_filters(d)
     ranked = composite(filt)
 

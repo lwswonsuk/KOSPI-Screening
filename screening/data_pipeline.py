@@ -178,25 +178,46 @@ def get_kosdaq_universe(date: str) -> pd.DataFrame:
     return df.set_index("stock_code")
 
 
-def get_full_universe(date: str) -> pd.DataFrame:
+def get_full_universe(date: str, max_lookback: int = 10) -> tuple[pd.DataFrame, str]:
     """코스피 + 코스닥 전종목을 합본하고, sector_raw(시장) 필드를 "코스피"/"코스닥"으로 강제 지정한다.
     (KRX SECT_TP_NM이 비어 있거나 다른 값을 줄 수 있어 여기서 명시적으로 덮어쓴다)
 
     코스닥 API(ksq_bydd_trd)는 KRX Open API 포털에서 별도 승인이 필요하다. 아직 승인 전이거나
     일시적으로 실패하면(401 등) 코스피만으로 계속 진행한다 — 승인이 완료되면 코드 수정 없이
-    자동으로 코스닥이 합류한다."""
-    kospi = get_kospi_universe(date).copy()
-    kospi["sector_raw"] = "코스피"
+    자동으로 코스닥이 합류한다.
 
-    try:
-        kosdaq = get_kosdaq_universe(date).copy()
-        kosdaq["sector_raw"] = "코스닥"
-    except Exception as e:
-        print(f"[WARN] 코스닥 유니버스 조회 실패, 코스피만으로 계속 진행합니다: {e}")
-        return kospi
+    date가 휴장일(주말/공휴일)이면 KRX 응답이 비어 RuntimeError가 나는데, 이 경우 하루씩
+    거슬러 올라가며(최대 max_lookback일) 최근 개장일을 자동으로 찾는다. 반환값은
+    (합본 데이터프레임, 실제 사용된 기준일) 튜플 — 호출부는 요청한 date가 아니라
+    이 실제 기준일을 as_of_date 등에 사용해야 한다."""
+    from datetime import datetime, timedelta
 
-    combined = pd.concat([kospi, kosdaq])
-    return combined[~combined.index.duplicated(keep="first")]
+    base = datetime.strptime(date, "%Y%m%d")
+    last_err: Exception | None = None
+    for i in range(max_lookback + 1):
+        try_date = (base - timedelta(days=i)).strftime("%Y%m%d")
+        try:
+            kospi = get_kospi_universe(try_date).copy()
+        except RuntimeError as e:
+            last_err = e
+            continue
+        if i > 0:
+            print(f"[get_full_universe] {date}은 휴장일로 보여, 최근 개장일 {try_date} 데이터로 대체합니다")
+        kospi["sector_raw"] = "코스피"
+
+        try:
+            kosdaq = get_kosdaq_universe(try_date).copy()
+            kosdaq["sector_raw"] = "코스닥"
+            combined = pd.concat([kospi, kosdaq])
+            combined = combined[~combined.index.duplicated(keep="first")]
+        except Exception as e:
+            print(f"[WARN] 코스닥 유니버스 조회 실패, 코스피만으로 계속 진행합니다: {e}")
+            combined = kospi
+        return combined, try_date
+
+    raise RuntimeError(
+        f"KRX API 응답이 최근 {max_lookback}일간 계속 비어 있습니다 (기준일 {date})"
+    ) from last_err
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -422,7 +443,10 @@ def build_finance_cache(annual_year: int, ttm_year: int, ttm_quarter: str, date:
                          force: bool = False, sleep_sec: float = 0.3):
     ANNUAL_YEAR_FILE.write_text(str(annual_year), encoding="utf-8")  # ws_alpha.py 등이 같은 연도 참조하도록 기록
     corp_codes = get_corp_codes(force=force)
-    universe = get_full_universe(date).reset_index()
+    universe, resolved_date = get_full_universe(date)
+    universe = universe.reset_index()
+    if resolved_date != date:
+        print(f"[universe] 재무캐시 유니버스 기준일 {date} → {resolved_date}(으)로 대체됨")
 
     merged = universe.merge(corp_codes[["stock_code", "corp_code"]], on="stock_code", how="inner")
     print(f"[universe] 전체(코스피+코스닥) {len(universe)}개 중 DART 매핑 성공 {len(merged)}개")
