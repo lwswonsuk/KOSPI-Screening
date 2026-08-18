@@ -50,10 +50,16 @@ def auto_ttm_params(today=None) -> tuple[int, int, str]:
       annual_year — 이미 확정된 직전 연간 사업보고서 연도
       ttm_year    — TTM 계산에 쓸 '올해' 분기누적 연도
       ttm_quarter — 그 분기 코드 (Q1/H1/Q3)
+
+    today를 넘기지 않으면 KST(한국시간) 기준 오늘 날짜를 쓴다. GitHub Actions
+    러너의 시스템 시간대는 UTC라, date.today()를 그대로 쓰면 공시 마감 경계일
+    (5/15, 8/15, 11/15) 근처에서 하루 이른 분기로 잘못 판단하는 버그가 있었다
+    (예: 8/14 21:00 UTC = 8/15 06:00 KST에 도는 강제갱신 크론에서 UTC 날짜는
+    아직 8/14라 H1 대신 Q1로 판단).
     """
-    from datetime import date as _date
+    from datetime import datetime, timedelta, timezone
     if today is None:
-        today = _date.today()
+        today = (datetime.now(timezone.utc) + timedelta(hours=9)).date()
     y = today.year
     md = (today.month, today.day)
 
