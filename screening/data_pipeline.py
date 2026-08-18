@@ -19,12 +19,20 @@ from __future__ import annotations
 
 import argparse
 import os
+import socket
 import time
 from pathlib import Path
 from typing import Optional
 
 import numpy as np
 import pandas as pd
+
+# opendartreader 라이브러리는 내부 requests.get() 호출에 timeout을 걸지 않는다.
+# DART 서버가 특정 종목에서 응답 없이 멈추면 그 요청이 무한정 블로킹되어(2500개+
+# 종목을 순차 조회하는 재무캐시 빌드 중 단 한 번의 hang으로) 전체 파이프라인이
+# GitHub Actions 최대 실행시간(6시간)까지 멈춰 있다가 강제 취소되는 사고가 있었다.
+# 전역 소켓 타임아웃을 걸어, timeout 없이 만들어지는 소켓도 이 값을 기본으로 쓰게 한다.
+socket.setdefaulttimeout(30)
 
 CACHE_DIR = Path(".cache")
 CACHE_DIR.mkdir(exist_ok=True)
