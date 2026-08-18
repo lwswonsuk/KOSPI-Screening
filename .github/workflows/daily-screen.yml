@@ -64,9 +64,9 @@ jobs:
         run: |
           Q="${{ github.event.inputs.ttm_quarter || 'auto' }}"
           if [ "$Q" = "auto" ]; then
-            python data_pipeline.py --build --auto --date $(date -d '1 day ago' +%Y%m%d) --force
+            python data_pipeline.py --build --auto --date $(TZ=Asia/Seoul date -d '1 day ago' +%Y%m%d) --force
           else
-            python data_pipeline.py --build --year 2025 --ttm-quarter "$Q" --date $(date -d '1 day ago' +%Y%m%d) --force
+            python data_pipeline.py --build --year 2025 --ttm-quarter "$Q" --date $(TZ=Asia/Seoul date -d '1 day ago' +%Y%m%d) --force
           fi
 
       - name: 오늘자 가격 기준 스크리닝 실행 + JSON 저장
@@ -75,7 +75,7 @@ jobs:
           KRX_API_KEY: ${{ secrets.KRX_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          TODAY=$(date -d '1 day ago' +%Y%m%d)
+          TODAY=$(TZ=Asia/Seoul date -d '1 day ago' +%Y%m%d)
           YEAR=$(cat .cache/annual_year.txt 2>/dev/null || echo 2025)
           python ws_alpha.py --run --date $TODAY --year $YEAR --top 50 --export "" \
             --export-json "../web/data/results.json" \
