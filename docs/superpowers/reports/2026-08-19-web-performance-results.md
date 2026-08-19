@@ -1,6 +1,6 @@
 # 웹 성능 최적화 결과
 
-측정일: 2026-08-19  
+측정일: 2026-08-19
 대상: `web/` Next.js 15 production build (`npm.cmd run build`)
 
 ## 번들 및 산출물 비교
@@ -11,12 +11,17 @@
 | `/` First Load JS | 197 kB | 130 kB | -67 kB (-34.0%) |
 | 공통 First Load JS | 102 kB | 103 kB | +1 kB |
 | 생성 CSS | 32,639 bytes | 33,050 bytes | +411 bytes (+1.3%) |
-| `filtered_full.json` | 194,742 bytes | 다운로드 전용 | - |
-| `/api/filtered` XLSX body | 예상 106,619 bytes | 106,619 bytes | JSON 대비 -88,123 bytes (-45.2%) |
+| 전체 종목 다운로드 payload | JSON 194,742 bytes | XLSX 106,619 bytes | -88,123 bytes (-45.2%) |
 
 `/api/filtered`의 생성 body는 `PK` 매직 바이트를 확인했다. 클라이언트 chunk의
 `SheetJS`/`xlsx` 검색 결과와 page client-reference manifest의 `radix-ui` 검색 결과는
 모두 0건이다.
+
+측정은 `web/`에서 `npm.cmd run build`를 실행한 뒤 `.next/static/css/*.css`와
+`.next/static/chunks/`를 검사하고, production server의 `/api/filtered` 응답 body를
+`Invoke-WebRequest`로 측정했다. 원본 JSON 경로는 `web/data/filtered_full.json`이며,
+XLSX는 정적 route 산출물 `.next/server/app/api/filtered.body`와 HTTP 응답에서 동일한
+106,619 bytes였다.
 
 ## 적용한 변경과 이유
 
@@ -36,7 +41,11 @@
 - `npm.cmd test`: 4 files, 17 tests PASS
 - `npx.cmd tsc --noEmit`: PASS
 - `npm.cmd run build`: PASS
-- 브라우저 동작 검증: 컨트롤러 검증 예정
+- production HTTP smoke test: 메인 페이지 200, 종목 표 HTML 포함, XLSX route 200,
+  `Content-Type`/`Content-Disposition`, 106,619 bytes 및 `PK` 매직 바이트 확인
+- UI 브라우저 자동화: 실행 환경이 브라우저 런타임 시작 시 `EPERM`으로
+  `C:\Users\lwswo\AppData` 접근을 거부해 수행하지 못했다. 따라서 정렬, Dialog 조작,
+  관리자 인증 흐름은 이번 자동 검증에서 미확인 상태다.
 
 ## 이번에 보류한 항목
 
