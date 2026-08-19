@@ -15,7 +15,15 @@ import {
 import { getErrorMessage } from "@/lib/errors";
 
 const UpdateControls = dynamic(() => import("./UpdateControls"), {
-  loading: () => <p className="mt-10 text-center text-xs text-muted-foreground">관리자 도구를 불러오는 중…</p>,
+  loading: () => (
+    <p
+      role="status"
+      aria-live="polite"
+      className="mt-10 text-center text-xs text-muted-foreground"
+    >
+      관리자 도구를 불러오는 중…
+    </p>
+  ),
 });
 
 export default function AdminGate() {

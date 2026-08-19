@@ -31,4 +31,14 @@ describe("client bundle import boundaries", () => {
     expect(table).toMatch(/dialogRow\s*&&\s*\(\s*<StockProfileDialog/);
     expect(admin).toContain('dynamic(() => import("./UpdateControls")');
   });
+
+  it("Dialog 지연 로딩 fallback은 보조기술에 상태를 알린다", () => {
+    const table = fs.readFileSync(path.join(ROOT, "app/ScreeningTable.tsx"), "utf8");
+    expect(table).toMatch(/loading:\s*\(\)\s*=>\s*\([\s\S]*?role="status"[\s\S]*?aria-live="polite"/);
+  });
+
+  it("관리자 도구 지연 로딩 fallback은 보조기술에 상태를 알린다", () => {
+    const admin = fs.readFileSync(path.join(ROOT, "app/AdminGate.tsx"), "utf8");
+    expect(admin).toMatch(/loading:\s*\(\)\s*=>\s*\([\s\S]*?role="status"[\s\S]*?aria-live="polite"/);
+  });
 });

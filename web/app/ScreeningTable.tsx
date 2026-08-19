@@ -17,7 +17,11 @@ import { getErrorMessage } from "@/lib/errors";
 import type { PriceResponse, ResultRow } from "@/lib/types";
 
 const StockProfileDialog = dynamic(() => import("./StockProfileDialog"), {
-  loading: () => null,
+  loading: () => (
+    <p role="status" aria-live="polite" className="sr-only">
+      종목 프로필을 불러오는 중…
+    </p>
+  ),
 });
 
 // 화면에서 아예 안 보여줄 컬럼 (JSON에 남아있어도 숨김)

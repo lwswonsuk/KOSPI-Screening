@@ -16,7 +16,52 @@ function todayKstString(offsetDays = 0): string {
   return now.toISOString().slice(0, 10).replace(/-/g, "");
 }
 
-async function fetchKrxDay(dateStr: string): Promise<KrxPriceRow[] | null> {
+interface ParsedKrxPriceRow extends KrxPriceRow {
+  ISU_CD: string;
+  TDD_CLSPRC: number;
+  FLUC_RT: number;
+}
+
+const KRX_NUMBER_PATTERN = /^[+-]?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?$/;
+
+function parseStockCode(value: unknown): string | null {
+  if (typeof value === "number") {
+    if (!Number.isInteger(value) || value <= 0 || value > 999999) return null;
+    return String(value).padStart(6, "0");
+  }
+
+  if (typeof value !== "string") return null;
+  const normalized = value.trim();
+  if (!/^\d{1,6}$/.test(normalized) || Number(normalized) === 0) return null;
+  return normalized.padStart(6, "0");
+}
+
+function parseKrxNumber(value: unknown): number | null {
+  if (typeof value === "number") return Number.isFinite(value) ? value : null;
+  if (typeof value !== "string") return null;
+
+  const normalized = value.trim();
+  if (!KRX_NUMBER_PATTERN.test(normalized)) return null;
+
+  const parsed = Number(normalized.replace(/,/g, ""));
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function parseKrxPriceRow(value: unknown): ParsedKrxPriceRow | null {
+  if (typeof value !== "object" || value === null) return null;
+  if (!("ISU_CD" in value) || !("TDD_CLSPRC" in value) || !("FLUC_RT" in value)) {
+    return null;
+  }
+
+  const code = parseStockCode(value.ISU_CD);
+  const close = parseKrxNumber(value.TDD_CLSPRC);
+  const flucRt = parseKrxNumber(value.FLUC_RT);
+  if (code === null || close === null || flucRt === null) return null;
+
+  return { ISU_CD: code, TDD_CLSPRC: close, FLUC_RT: flucRt };
+}
+
+async function fetchKrxDay(dateStr: string): Promise<ParsedKrxPriceRow[] | null> {
   const key = process.env.KRX_API_KEY;
   if (!key) throw new Error("서버에 KRX_API_KEY 환경변수가 설정되어 있지 않습니다.");
 
@@ -28,24 +73,15 @@ async function fetchKrxDay(dateStr: string): Promise<KrxPriceRow[] | null> {
   if (typeof json !== "object" || json === null || !("OutBlock_1" in json)) return null;
 
   const rows = json.OutBlock_1;
-  if (
-    !Array.isArray(rows) ||
-    rows.length === 0 ||
-    !rows.every(
-      (row): row is KrxPriceRow =>
-        typeof row === "object" &&
-        row !== null &&
-        "ISU_CD" in row &&
-        (typeof row.ISU_CD === "string" || typeof row.ISU_CD === "number") &&
-        "TDD_CLSPRC" in row &&
-        (typeof row.TDD_CLSPRC === "string" || typeof row.TDD_CLSPRC === "number") &&
-        "FLUC_RT" in row &&
-        (typeof row.FLUC_RT === "string" || typeof row.FLUC_RT === "number")
-    )
-  ) {
-    return null;
+  if (!Array.isArray(rows) || rows.length === 0) return null;
+
+  const parsedRows: ParsedKrxPriceRow[] = [];
+  for (const row of rows) {
+    const parsedRow = parseKrxPriceRow(row);
+    if (!parsedRow) return null;
+    parsedRows.push(parsedRow);
   }
-  return rows;
+  return parsedRows;
 }
 
 export async function GET(req: NextRequest) {
@@ -54,7 +90,7 @@ export async function GET(req: NextRequest) {
     ? new Set(codesParam.split(",").map((s) => s.trim()).filter(Boolean))
     : null;
 
-  let rows: KrxPriceRow[] | null = null;
+  let rows: ParsedKrxPriceRow[] | null = null;
   let usedDate = "";
 
   try {
@@ -81,11 +117,11 @@ export async function GET(req: NextRequest) {
 
   const prices: Record<string, { close: number; fluc_rt: number }> = {};
   for (const r of rows) {
-    const code = String(r.ISU_CD).padStart(6, "0");
+    const code = r.ISU_CD;
     if (wanted && !wanted.has(code)) continue;
     prices[code] = {
-      close: Number(String(r.TDD_CLSPRC).replace(/,/g, "")),
-      fluc_rt: Number(String(r.FLUC_RT).replace(/,/g, "")),
+      close: r.TDD_CLSPRC,
+      fluc_rt: r.FLUC_RT,
     };
   }
 
