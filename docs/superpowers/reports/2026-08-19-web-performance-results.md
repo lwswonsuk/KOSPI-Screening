@@ -38,7 +38,7 @@ XLSX는 정적 route 산출물 `.next/server/app/api/filtered.body`와 HTTP 응�
 
 ## 검증
 
-- `npm.cmd test`: 4 files, 17 tests PASS
+- `npm.cmd test`: 4 files, 18 tests PASS
 - `npx.cmd tsc --noEmit`: PASS
 - `npm.cmd run build`: PASS
 - production HTTP smoke test: 메인 페이지 200, 종목 표 HTML 포함, XLSX route 200,
