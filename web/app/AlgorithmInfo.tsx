@@ -1,37 +1,22 @@
-"use client";
-
-import { useState } from "react";
-import { ChevronDown, ChevronUp, Info, ShieldAlert } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { ChevronDown, Info, ShieldAlert } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export default function AlgorithmInfo() {
-  const [open, setOpen] = useState(false);
-
   return (
     <div className="mb-5 space-y-3">
-      <Collapsible open={open} onOpenChange={setOpen}>
-        <CollapsibleTrigger asChild>
-          <Button variant="outline" size="sm">
-            <Info className="size-3.5" />
-            이 스크리닝은 어떤 기준으로 종목을 골랐나요?
-            {open ? <ChevronUp className="size-3.5" /> : <ChevronDown className="size-3.5" />}
-          </Button>
-        </CollapsibleTrigger>
-
-        <CollapsibleContent>
-          <Card className="mt-3 py-5">
-            <CardContent className="space-y-4 text-sm leading-relaxed text-foreground/90">
-              <p className="text-muted-foreground">
-                핵심 아이디어:{" "}
-                <b className="text-foreground">
-                  실적·경쟁력은 괜찮은데 주가만 안 오른 종목을 찾아서 모아두고 기다린다.
-                </b>
-              </p>
-
-              <div>
+      <details className="group">
+        <summary className="inline-flex h-8 cursor-pointer list-none items-center justify-center gap-2 rounded-md border bg-background px-3 text-sm font-medium shadow-xs transition-all hover:bg-accent hover:text-accent-foreground [&::-webkit-details-marker]:hidden">
+          <Info className="size-3.5" />
+          이 스크리닝은 어떤 기준으로 종목을 골랐나요?
+          <ChevronDown className="size-3.5 transition-transform group-open:rotate-180" />
+        </summary>
+        <Card className="mt-3 py-5">
+          <CardContent className="space-y-4 text-sm leading-relaxed text-foreground/90">
+            <p className="text-muted-foreground">
+              핵심 아이디어: <b className="text-foreground">실적·경쟁력은 괜찮은데 주가만 안 오른 종목을 찾아서 모아두고 기다린다.</b>
+            </p>
+            <section>
                 <h4 className="mb-2 font-semibold text-foreground">1단계 — 하드 필터 (자동 제외 기준)</h4>
                 <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
                   <li>시가총액 800억 원 이상 ~ 40조 원 이하</li>
@@ -42,35 +27,31 @@ export default function AlgorithmInfo() {
                   <li>최근 3개월 수익률 +60% 이상인 테마 급등 종목 제외</li>
                   <li>관리종목 제외</li>
                 </ul>
-              </div>
-
-              <div>
+            </section>
+            <section>
                 <h4 className="mb-2 font-semibold text-foreground">2단계 — 4대 팩터 종합 점수</h4>
                 <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
                   <li><b className="text-foreground">체력 (30%)</b> — ROE 수준·안정성, 영업이익률, 부채비율, 매출 성장</li>
                   <li><b className="text-foreground">가격 (28%)</b> — PER·PBR 저평가 정도</li>
                   <li><b className="text-foreground">★괴리 (27%, 핵심 팩터)</b> — 실적은 개선되는데 주가는 빠진 정도</li>
-                  <li><b className="text-foreground">환원여력 (15%)</b> — 배당 확대 여력 (낮은 배당성향 + 순현금 보유)</li>
+                  <li><b className="text-foreground">환원여력 (15%)</b> — 배당 확대 여력</li>
                 </ul>
                 <p className="mt-2 text-muted-foreground">
-                  각 팩터는 전체 종목 대비 백분위로 점수화되며, 위 가중치로 합산해{" "}
-                  <b className="text-foreground">종합점수</b>를 만듭니다. 음식료·화장품·방산 등
-                  특정 업종엔 가산점을, 테마성 업종엔 감점을 반영합니다.
+                  각 팩터는 전체 종목 대비 백분위로 점수화되며, 위 가중치로 합산해 <b className="text-foreground">종합점수</b>를 만듭니다.
+                  음식료·화장품·방산 등 특정 업종엔 가산점을, 테마성 업종엔 감점을 반영합니다.
                 </p>
-              </div>
-
-              <div>
+            </section>
+            <section>
                 <h4 className="mb-2 font-semibold text-foreground">데이터 기준</h4>
                 <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
                   <li>가격/시가총액: KRX 공식 API, 표 상단에 표시된 기준일 종가</li>
                   <li>재무데이터: DART 공시자료, 최근 4분기(TTM) 누적 기준</li>
                   <li>대상: 코스피 전종목</li>
                 </ul>
-              </div>
-            </CardContent>
-          </Card>
-        </CollapsibleContent>
-      </Collapsible>
+            </section>
+          </CardContent>
+        </Card>
+      </details>
 
       <Alert className="border-muted-foreground/20 bg-transparent py-2.5">
         <ShieldAlert />
