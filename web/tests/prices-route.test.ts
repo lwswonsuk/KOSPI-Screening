@@ -18,6 +18,10 @@ async function requestPrices() {
   return GET(new NextRequest("http://localhost/api/prices"));
 }
 
+async function requestSelectedPrices(codes: string) {
+  return GET(new NextRequest(`http://localhost/api/prices?codes=${codes}`));
+}
+
 describe("GET /api/prices", () => {
   afterEach(() => {
     vi.unstubAllEnvs();
@@ -56,6 +60,24 @@ describe("GET /api/prices", () => {
     expect(response.status).toBe(502);
     expect(await response.json()).toEqual({
       error: "최근 7일 내 KRX 시세 데이터를 찾지 못했습니다.",
+    });
+  });
+
+  it("요청하지 않은 비정상 행은 건너뛰고 요청 종목의 정상 가격을 반환한다", async () => {
+    vi.stubEnv("KRX_API_KEY", "test-key");
+    stubKrxRows([
+      VALID_ROW,
+      { ISU_CD: "999999", TDD_CLSPRC: "N/A", FLUC_RT: "0" },
+    ]);
+
+    const response = await requestSelectedPrices("005930");
+
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({
+      as_of: expect.stringMatching(/^\d{8}$/),
+      prices: {
+        "005930": { close: 75000, fluc_rt: -1.25 },
+      },
     });
   });
 });

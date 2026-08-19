@@ -78,10 +78,9 @@ async function fetchKrxDay(dateStr: string): Promise<ParsedKrxPriceRow[] | null>
   const parsedRows: ParsedKrxPriceRow[] = [];
   for (const row of rows) {
     const parsedRow = parseKrxPriceRow(row);
-    if (!parsedRow) return null;
-    parsedRows.push(parsedRow);
+    if (parsedRow) parsedRows.push(parsedRow);
   }
-  return parsedRows;
+  return parsedRows.length > 0 ? parsedRows : null;
 }
 
 export async function GET(req: NextRequest) {
