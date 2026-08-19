@@ -1,4 +1,6 @@
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
+import { getErrorMessage } from "@/lib/errors";
+import type { KrxPriceRow } from "@/lib/types";
 
 export const dynamic = "force-dynamic"; // 매 요청마다 새로 실행 (캐시 안 함)
 
@@ -14,7 +16,7 @@ function todayKstString(offsetDays = 0): string {
   return now.toISOString().slice(0, 10).replace(/-/g, "");
 }
 
-async function fetchKrxDay(dateStr: string): Promise<any[] | null> {
+async function fetchKrxDay(dateStr: string): Promise<KrxPriceRow[] | null> {
   const key = process.env.KRX_API_KEY;
   if (!key) throw new Error("서버에 KRX_API_KEY 환경변수가 설정되어 있지 않습니다.");
 
@@ -22,9 +24,27 @@ async function fetchKrxDay(dateStr: string): Promise<any[] | null> {
   const res = await fetch(url, { headers: { AUTH_KEY: key }, cache: "no-store" });
   if (!res.ok) return null;
 
-  const json = await res.json();
-  const rows = json?.OutBlock_1;
-  if (!rows || rows.length === 0) return null;
+  const json: unknown = await res.json();
+  if (typeof json !== "object" || json === null || !("OutBlock_1" in json)) return null;
+
+  const rows = json.OutBlock_1;
+  if (
+    !Array.isArray(rows) ||
+    rows.length === 0 ||
+    !rows.every(
+      (row): row is KrxPriceRow =>
+        typeof row === "object" &&
+        row !== null &&
+        "ISU_CD" in row &&
+        (typeof row.ISU_CD === "string" || typeof row.ISU_CD === "number") &&
+        "TDD_CLSPRC" in row &&
+        (typeof row.TDD_CLSPRC === "string" || typeof row.TDD_CLSPRC === "number") &&
+        "FLUC_RT" in row &&
+        (typeof row.FLUC_RT === "string" || typeof row.FLUC_RT === "number")
+    )
+  ) {
+    return null;
+  }
   return rows;
 }
 
@@ -34,7 +54,7 @@ export async function GET(req: NextRequest) {
     ? new Set(codesParam.split(",").map((s) => s.trim()).filter(Boolean))
     : null;
 
-  let rows: any[] | null = null;
+  let rows: KrxPriceRow[] | null = null;
   let usedDate = "";
 
   try {
@@ -48,8 +68,8 @@ export async function GET(req: NextRequest) {
         break;
       }
     }
-  } catch (e: any) {
-    return Response.json({ error: e.message ?? String(e) }, { status: 500 });
+  } catch (error: unknown) {
+    return Response.json({ error: getErrorMessage(error, "KRX 시세 조회 실패") }, { status: 500 });
   }
 
   if (!rows) {

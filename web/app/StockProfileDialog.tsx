@@ -7,13 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
-
-export interface StockProfile {
-  business: string;
-  sector: string;
-  products: string;
-  competitors: string[];
-}
+import type { StockProfile } from "@/lib/types";
 
 const TEXT_SECTIONS: { key: "business" | "sector" | "products"; label: string }[] = [
   { key: "business", label: "사업 내용" },

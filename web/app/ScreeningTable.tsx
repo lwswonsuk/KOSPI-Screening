@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 import { ArrowUpDown, ArrowUp, ArrowDown, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,9 +13,12 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
-import StockProfileDialog, { StockProfile } from "./StockProfileDialog";
+import { getErrorMessage } from "@/lib/errors";
+import type { PriceResponse, ResultRow } from "@/lib/types";
 
-type ResultRow = Record<string, string | number | null> & { profile?: StockProfile | null };
+const StockProfileDialog = dynamic(() => import("./StockProfileDialog"), {
+  loading: () => null,
+});
 
 // 화면에서 아예 안 보여줄 컬럼 (JSON에 남아있어도 숨김)
 const HIDDEN_COLUMNS = new Set([
@@ -61,20 +65,23 @@ export default function ScreeningTable({
     try {
       const codes = rows.map((r) => String(r.stock_code)).join(",");
       const res = await fetch(`/api/prices?codes=${codes}`, { cache: "no-store" });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "시세 조회 실패");
+      const data: PriceResponse = await res.json();
+      if (!res.ok) {
+        throw new Error("error" in data ? data.error : "시세 조회 실패");
+      }
+      if ("error" in data) throw new Error(data.error || "시세 조회 실패");
 
       setLiveRows(
         rows.map((r) => {
           const code = String(r.stock_code);
           const live = data.prices[code];
           if (!live) return r;
-          return { ...r, close: live.close } as ResultRow;   // 등락률(fluc_rt)은 더 이상 반영하지 않음
+          return { ...r, close: live.close };   // 등락률(fluc_rt)은 더 이상 반영하지 않음
         })
       );
       setPriceAsOf(data.as_of);
-    } catch (e: any) {
-      setPriceError(e.message ?? String(e));
+    } catch (error: unknown) {
+      setPriceError(getErrorMessage(error, "시세 조회 실패"));
     } finally {
       setPriceLoading(false);
     }
@@ -157,7 +164,7 @@ export default function ScreeningTable({
           </TableHeader>
           <TableBody>
             {sorted.map((row, i) => (
-              <TableRow key={(row.stock_code as string) ?? i}>
+              <TableRow key={row.stock_code}>
                 <TableCell className="text-muted-foreground">{i + 1}</TableCell>
                 {displayColumns.map((col) => (
                   <TableCell key={col} className={alignClass(col)}>
@@ -180,12 +187,14 @@ export default function ScreeningTable({
         </Table>
       </div>
 
-      <StockProfileDialog
-        open={dialogRow !== null}
-        onOpenChange={(open) => !open && setDialogRow(null)}
-        stockName={dialogRow ? String(dialogRow.name ?? "") : ""}
-        profile={dialogRow?.profile}
-      />
+      {dialogRow && (
+        <StockProfileDialog
+          open
+          onOpenChange={(open) => !open && setDialogRow(null)}
+          stockName={dialogRow.name}
+          profile={dialogRow.profile}
+        />
+      )}
     </div>
   );
 }
@@ -202,7 +211,7 @@ function alignClass(col: string): string {
   return "";
 }
 
-function formatValue(v: string | number | null, col?: string) {
+function formatValue(v: unknown, col?: string) {
   if (v === null || v === undefined) return "-";
   if (typeof v === "number") {
     if (col === "mktcap_eok") {
@@ -219,7 +228,8 @@ function formatValue(v: string | number | null, col?: string) {
     }
     return Number.isInteger(v) ? v.toLocaleString("ko-KR") : v.toFixed(3);
   }
-  return v;
+  if (typeof v === "string") return v;
+  return "-";
 }
 
 

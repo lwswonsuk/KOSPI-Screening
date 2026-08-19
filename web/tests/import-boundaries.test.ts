@@ -23,4 +23,12 @@ describe("client bundle import boundaries", () => {
     expect(source).not.toContain('"use client"');
     expect(source).not.toContain("Collapsible");
   });
+
+  it("저사용 Dialog와 관리자 컨트롤은 dynamic import한다", () => {
+    const table = fs.readFileSync(path.join(ROOT, "app/ScreeningTable.tsx"), "utf8");
+    const admin = fs.readFileSync(path.join(ROOT, "app/AdminGate.tsx"), "utf8");
+    expect(table).toContain('dynamic(() => import("./StockProfileDialog")');
+    expect(table).toMatch(/dialogRow\s*&&\s*\(\s*<StockProfileDialog/);
+    expect(admin).toContain('dynamic(() => import("./UpdateControls")');
+  });
 });

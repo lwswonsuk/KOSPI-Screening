@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
+import dynamic from "next/dynamic";
 import { ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,8 +12,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { getErrorMessage } from "@/lib/errors";
 
-export default function AdminGate({ children }: { children: ReactNode }) {
+const UpdateControls = dynamic(() => import("./UpdateControls"), {
+  loading: () => <p className="mt-10 text-center text-xs text-muted-foreground">관리자 도구를 불러오는 중…</p>,
+});
+
+export default function AdminGate() {
   const [unlocked, setUnlocked] = useState(false);
   const [open, setOpen] = useState(false);
   const [password, setPassword] = useState("");
@@ -33,15 +39,15 @@ export default function AdminGate({ children }: { children: ReactNode }) {
       setUnlocked(true);
       setOpen(false);
       setPassword("");
-    } catch (e: any) {
-      setError(e.message ?? String(e));
+    } catch (error: unknown) {
+      setError(getErrorMessage(error, "로그인 실패"));
     } finally {
       setLoading(false);
     }
   }
 
   if (unlocked) {
-    return <>{children}</>;
+    return <UpdateControls />;
   }
 
   return (

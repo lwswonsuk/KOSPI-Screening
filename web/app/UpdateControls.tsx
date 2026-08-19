@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { getErrorMessage } from "@/lib/errors";
 
 export default function UpdateControls() {
   const [forceFinance, setForceFinance] = useState(false);
@@ -24,8 +25,8 @@ export default function UpdateControls() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "요청 실패");
       setMessage({ text: data.message, error: false });
-    } catch (e: any) {
-      setMessage({ text: e.message ?? String(e), error: true });
+    } catch (error: unknown) {
+      setMessage({ text: getErrorMessage(error, "요청 실패"), error: true });
     } finally {
       setLoading(false);
     }
