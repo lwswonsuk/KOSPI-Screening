@@ -38,6 +38,8 @@ socket.setdefaulttimeout(30)
 CACHE_DIR = Path(".cache")
 CACHE_DIR.mkdir(exist_ok=True)
 ANNUAL_YEAR_FILE = CACHE_DIR / "annual_year.txt"  # 자동 감지된 사업연도를 다른 스크립트와 공유하기 위한 파일
+PRICE_HISTORY_FILE = Path("data") / "price_history.parquet"  # git 추적 대상 (.cache와 달리 커밋됨)
+PRICE_HISTORY_WINDOW_DAYS = 370
 
 
 def auto_ttm_params(today=None) -> tuple[int, int, str]:
@@ -234,6 +236,35 @@ def get_full_universe(date: str, max_lookback: int = 10) -> tuple[pd.DataFrame, 
     raise RuntimeError(
         f"KRX API 응답이 최근 {max_lookback}일간 계속 비어 있습니다 (기준일 {date})"
     ) from last_err
+
+
+def update_price_history(universe: pd.DataFrame, date: str,
+                          path: Path = PRICE_HISTORY_FILE) -> pd.DataFrame:
+    """universe(get_full_universe 반환값, index=stock_code, "TDD_LWPRC" 컬럼 포함)의
+    당일 일중 저가를 누적 캐시(path)에 append하고, PRICE_HISTORY_WINDOW_DAYS보다 오래된
+    행은 버린 뒤 저장한다. 갱신된 전체 히스토리를 반환한다."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    today_rows = pd.DataFrame({
+        "date": date,
+        "stock_code": universe.index,
+        "low": universe["TDD_LWPRC"].values,
+    })
+    if path.exists():
+        existing = pd.read_parquet(path)
+        combined = pd.concat([existing, today_rows], ignore_index=True)
+    else:
+        combined = today_rows
+    combined = combined.drop_duplicates(subset=["date", "stock_code"], keep="last")
+    cutoff = (pd.Timestamp(date) - pd.Timedelta(days=PRICE_HISTORY_WINDOW_DAYS)).strftime("%Y%m%d")
+    combined = combined[combined["date"] >= cutoff].reset_index(drop=True)
+    combined.to_parquet(path, index=False)
+    return combined
+
+
+def get_52w_low(price_history: pd.DataFrame) -> pd.Series:
+    """stock_code -> 캐시에 쌓인 기간 내 최저가(low의 최솟값). 캐시가 아직 52주치
+    쌓이지 않은 초기에는 '수집된 기간 내 최저가'가 된다."""
+    return price_history.groupby("stock_code")["low"].min()
 
 
 # ═══════════════════════════════════════════════════════════════

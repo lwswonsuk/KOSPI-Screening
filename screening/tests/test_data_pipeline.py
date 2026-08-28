@@ -106,3 +106,60 @@ def test_extract_year_preserves_value_from_first_matching_account_variant():
     # Verify that other eng keys that don't have variants present are still nan
     assert np.isnan(result["revenue"]), "revenue should be nan (not in row_by_account)"
     assert np.isnan(result["net_income"]), "net_income should be nan (not in row_by_account)"
+
+
+# Task 2: 52주 최저가 rolling 캐시 테스트
+from pathlib import Path
+
+from data_pipeline import update_price_history, get_52w_low, PRICE_HISTORY_WINDOW_DAYS
+
+
+def _universe(prices: dict) -> pd.DataFrame:
+    df = pd.DataFrame({"TDD_LWPRC": list(prices.values())}, index=list(prices.keys()))
+    df.index.name = "stock_code"
+    return df
+
+
+def test_update_price_history_appends_across_days(tmp_path):
+    path = tmp_path / "price_history.parquet"
+    day1 = _universe({"005930": 70000, "000660": 120000})
+    day2 = _universe({"005930": 69000, "000660": 121000})
+
+    update_price_history(day1, "20260101", path=path)
+    combined = update_price_history(day2, "20260102", path=path)
+
+    assert len(combined) == 4
+    assert set(combined["date"]) == {"20260101", "20260102"}
+
+
+def test_update_price_history_dedupes_same_day_rerun(tmp_path):
+    path = tmp_path / "price_history.parquet"
+    update_price_history(_universe({"005930": 70000}), "20260101", path=path)
+    combined = update_price_history(_universe({"005930": 68000}), "20260101", path=path)
+
+    assert len(combined) == 1
+    assert combined.iloc[0]["low"] == 68000
+
+
+def test_update_price_history_drops_rows_older_than_window(tmp_path):
+    path = tmp_path / "price_history.parquet"
+    old_date = (pd.Timestamp("20260101") - pd.Timedelta(days=PRICE_HISTORY_WINDOW_DAYS + 1)).strftime("%Y%m%d")
+    pd.DataFrame({"date": [old_date], "stock_code": ["005930"], "low": [50000]}).to_parquet(path, index=False)
+
+    combined = update_price_history(_universe({"005930": 70000}), "20260101", path=path)
+
+    assert old_date not in set(combined["date"])
+    assert len(combined) == 1
+
+
+def test_get_52w_low_returns_min_per_stock():
+    history = pd.DataFrame({
+        "date": ["20260101", "20260102", "20260101"],
+        "stock_code": ["005930", "005930", "000660"],
+        "low": [70000, 68000, 120000],
+    })
+
+    result = get_52w_low(history)
+
+    assert result["005930"] == 68000
+    assert result["000660"] == 120000
