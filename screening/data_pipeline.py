@@ -244,8 +244,10 @@ def _extract_year(row_by_account: dict, col: str) -> dict:
     """thstrm_amount / frmtrm_amount / bfefrmtrm_amount 중 하나의 연도 컬럼을 뽑아 dict로."""
     out = {}
     for kor, eng in ACCOUNT_MAP.items():
-        # Only set the value if we haven't seen this eng key yet, or if we have a non-nan value
-        # This handles the case where multiple kor keys map to the same eng value
+        # First occurrence: set the value (even if nan).
+        # On subsequent occurrences of the same eng key: only overwrite if we find a non-nan value.
+        # This preserves real values from the first matching account variant and prevents
+        # nan from absent variants from overwriting previously extracted data.
         if eng not in out:
             v = row_by_account.get(kor, {}).get(col)
             out[eng] = _to_float(v)
