@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 data_pipeline.py — KOSPI 재무데이터 캐싱 레이어
 ================================================================
@@ -89,6 +90,7 @@ ACCOUNT_MAP = {
     "영업이익(손실)": "op_income",
     "당기순이익": "net_income",
     "당기순이익(손실)": "net_income",
+    "현금및현금성자산": "cash_equivalents",
 }
 
 # 분기보고서 코드 (DART reprt_code)
@@ -242,8 +244,17 @@ def _extract_year(row_by_account: dict, col: str) -> dict:
     """thstrm_amount / frmtrm_amount / bfefrmtrm_amount 중 하나의 연도 컬럼을 뽑아 dict로."""
     out = {}
     for kor, eng in ACCOUNT_MAP.items():
-        v = row_by_account.get(kor, {}).get(col)
-        out[eng] = _to_float(v)
+        # Only set the value if we haven't seen this eng key yet, or if we have a non-nan value
+        # This handles the case where multiple kor keys map to the same eng value
+        if eng not in out:
+            v = row_by_account.get(kor, {}).get(col)
+            out[eng] = _to_float(v)
+        elif kor in row_by_account:
+            # If we already have this eng key but current kor has a value, prefer the value over nan
+            v = row_by_account.get(kor, {}).get(col)
+            converted_v = _to_float(v)
+            if not np.isnan(converted_v) and np.isnan(out[eng]):
+                out[eng] = converted_v
     return out
 
 
@@ -322,6 +333,19 @@ def fetch_dividend_one(dart, corp_code: str, annual_year: int) -> dict:
         print(f"  [WARN] {corp_code} 배당 공시 조회 실패: {e}")
         return {"cash_dividend_total": np.nan, "payout_ratio_reported": np.nan}
     return parse_dividend_report(fs_div)
+
+
+def fetch_op_income_5y_ago(dart, corp_code: str, year: int) -> float:
+    """5년 전 사업연도(annual_year - 5) 사업보고서(FY)에서 영업이익만 추출한다.
+    Cheap Stock Picking 스크리닝의 '5년 전보다 이익이 늘었는가' 조건에 쓰인다."""
+    try:
+        fs = dart.finstate(corp_code, year, reprt_code=QUARTER_CODES["FY"])
+    except Exception:
+        return np.nan
+    if not isinstance(fs, pd.DataFrame) or len(fs) == 0:
+        return np.nan
+    y0, _, _ = _extract_financials_3col(fs)
+    return y0["op_income"]
 
 
 def fetch_finance_one(dart, stock_code: str, corp_code: str, annual_year: int,
@@ -448,6 +472,9 @@ def fetch_finance_one(dart, stock_code: str, corp_code: str, annual_year: int,
         "net_income_ttm": net_income_ttm,
         "revenue_ttm": revenue_ttm,
         "total_equity": total_equity_latest,
+        "total_liabilities": total_liab_latest,
+        "cash_equivalents": y0["cash_equivalents"],
+        "op_income_5y_ago": fetch_op_income_5y_ago(dart, corp_code, annual_year - 5),
         "cash_dividend_total": div["cash_dividend_total"],
         "payout_ratio": payout_ratio,
     }
