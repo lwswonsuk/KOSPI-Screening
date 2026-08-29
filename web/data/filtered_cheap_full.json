@@ -25,18 +25,6 @@
   },
   "results": [
     {
-      "stock_code": "046940",
-      "name": "우원개발",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 552.1714,
-      "close": 3055.0,
-      "low_52w": 2985.0,
-      "dist_from_52w_low_pct": 2.3451,
-      "op_ttm_eok": 622.6011,
-      "op_income_5y_ago_eok": 115.7416,
-      "ev_ebit": 2.0842
-    },
-    {
       "stock_code": "013520",
       "name": "화승코퍼레이션",
       "sector_raw": "코스피",
@@ -47,42 +35,6 @@
       "op_ttm_eok": 1022.0327,
       "op_income_5y_ago_eok": -141.8563,
       "ev_ebit": 3.6818
-    },
-    {
-      "stock_code": "225590",
-      "name": "패션플랫폼",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 166.9569,
-      "close": 3260.0,
-      "low_52w": 3205.0,
-      "dist_from_52w_low_pct": 1.7161,
-      "op_ttm_eok": 105.8514,
-      "op_income_5y_ago_eok": 17.5011,
-      "ev_ebit": 3.8624
-    },
-    {
-      "stock_code": "215000",
-      "name": "골프존",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 2303.0773,
-      "close": 36700.0,
-      "low_52w": 35350.0,
-      "dist_from_52w_low_pct": 3.819,
-      "op_ttm_eok": 788.6263,
-      "op_income_5y_ago_eok": 515.8298,
-      "ev_ebit": 4.1052
-    },
-    {
-      "stock_code": "014470",
-      "name": "부방",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 572.8986,
-      "close": 954.0,
-      "low_52w": 928.0,
-      "dist_from_52w_low_pct": 2.8017,
-      "op_ttm_eok": 186.2135,
-      "op_income_5y_ago_eok": 19.2404,
-      "ev_ebit": 4.1869
     },
     {
       "stock_code": "025530",
@@ -97,90 +49,6 @@
       "ev_ebit": 4.9953
     },
     {
-      "stock_code": "099410",
-      "name": "동방선기",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 473.9,
-      "close": 3385.0,
-      "low_52w": 3290.0,
-      "dist_from_52w_low_pct": 2.8875,
-      "op_ttm_eok": 125.0103,
-      "op_income_5y_ago_eok": -13.591,
-      "ev_ebit": 5.1266
-    },
-    {
-      "stock_code": "101240",
-      "name": "씨큐브",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 400.9039,
-      "close": 3530.0,
-      "low_52w": 3470.0,
-      "dist_from_52w_low_pct": 1.7291,
-      "op_ttm_eok": 121.1587,
-      "op_income_5y_ago_eok": 41.398,
-      "ev_ebit": 5.1882
-    },
-    {
-      "stock_code": "058630",
-      "name": "엠게임",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 773.43,
-      "close": 4120.0,
-      "low_52w": 4050.0,
-      "dist_from_52w_low_pct": 1.7284,
-      "op_ttm_eok": 191.8479,
-      "op_income_5y_ago_eok": 102.7696,
-      "ev_ebit": 5.2493
-    },
-    {
-      "stock_code": "265560",
-      "name": "영화테크",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 762.2098,
-      "close": 7130.0,
-      "low_52w": 7050.0,
-      "dist_from_52w_low_pct": 1.1348,
-      "op_ttm_eok": 209.6887,
-      "op_income_5y_ago_eok": 7.2238,
-      "ev_ebit": 5.3031
-    },
-    {
-      "stock_code": "264660",
-      "name": "씨앤지하이테크",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1332.7727,
-      "close": 13710.0,
-      "low_52w": 13500.0,
-      "dist_from_52w_low_pct": 1.5556,
-      "op_ttm_eok": 307.3207,
-      "op_income_5y_ago_eok": 119.3057,
-      "ev_ebit": 5.4332
-    },
-    {
-      "stock_code": "045660",
-      "name": "에이텍",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 792.96,
-      "close": 9600.0,
-      "low_52w": 9550.0,
-      "dist_from_52w_low_pct": 0.5236,
-      "op_ttm_eok": 209.8209,
-      "op_income_5y_ago_eok": 63.2598,
-      "ev_ebit": 5.6557
-    },
-    {
-      "stock_code": "096610",
-      "name": "알에프세미",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 17.5603,
-      "close": 101.0,
-      "low_52w": 100.0,
-      "dist_from_52w_low_pct": 1.0,
-      "op_ttm_eok": 10.5613,
-      "op_income_5y_ago_eok": -202.0319,
-      "ev_ebit": 5.6943
-    },
-    {
       "stock_code": "069730",
       "name": "DSR제강",
       "sector_raw": "코스피",
@@ -191,30 +59,6 @@
       "op_ttm_eok": 278.4439,
       "op_income_5y_ago_eok": 35.3404,
       "ev_ebit": 5.7057
-    },
-    {
-      "stock_code": "043150",
-      "name": "바텍",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 2843.1046,
-      "close": 19140.0,
-      "low_52w": 18540.0,
-      "dist_from_52w_low_pct": 3.2362,
-      "op_ttm_eok": 673.4096,
-      "op_income_5y_ago_eok": 214.9073,
-      "ev_ebit": 5.7387
-    },
-    {
-      "stock_code": "128660",
-      "name": "피제이메탈",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 750.3019,
-      "close": 3025.0,
-      "low_52w": 2965.0,
-      "dist_from_52w_low_pct": 2.0236,
-      "op_ttm_eok": 219.9105,
-      "op_income_5y_ago_eok": 64.4352,
-      "ev_ebit": 5.7966
     },
     {
       "stock_code": "284740",
@@ -229,18 +73,6 @@
       "ev_ebit": 5.8436
     },
     {
-      "stock_code": "115480",
-      "name": "씨유메디칼",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 283.7229,
-      "close": 2340.0,
-      "low_52w": 2250.0,
-      "dist_from_52w_low_pct": 4.0,
-      "op_ttm_eok": 135.4546,
-      "op_income_5y_ago_eok": -34.1866,
-      "ev_ebit": 5.8703
-    },
-    {
       "stock_code": "005950",
       "name": "이수화학",
       "sector_raw": "코스피",
@@ -253,30 +85,6 @@
       "ev_ebit": 5.9504
     },
     {
-      "stock_code": "307280",
-      "name": "원바이오젠",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 449.0899,
-      "close": 6330.0,
-      "low_52w": 6100.0,
-      "dist_from_52w_low_pct": 3.7705,
-      "op_ttm_eok": 86.628,
-      "op_income_5y_ago_eok": -1.7782,
-      "ev_ebit": 6.1148
-    },
-    {
-      "stock_code": "038460",
-      "name": "바이오스마트",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 692.5225,
-      "close": 2740.0,
-      "low_52w": 2690.0,
-      "dist_from_52w_low_pct": 1.8587,
-      "op_ttm_eok": 150.0401,
-      "op_income_5y_ago_eok": 55.3448,
-      "ev_ebit": 6.187
-    },
-    {
       "stock_code": "035510",
       "name": "신세계 I&C",
       "sector_raw": "코스피",
@@ -287,30 +95,6 @@
       "op_ttm_eok": 514.0933,
       "op_income_5y_ago_eok": 300.113,
       "ev_ebit": 6.2447
-    },
-    {
-      "stock_code": "010280",
-      "name": "아이티센엔텍",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 729.3864,
-      "close": 5600.0,
-      "low_52w": 5500.0,
-      "dist_from_52w_low_pct": 1.8182,
-      "op_ttm_eok": 308.7434,
-      "op_income_5y_ago_eok": -135.3443,
-      "ev_ebit": 6.2797
-    },
-    {
-      "stock_code": "052420",
-      "name": "오성첨단소재",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 966.4073,
-      "close": 9920.0,
-      "low_52w": 9760.0,
-      "dist_from_52w_low_pct": 1.6393,
-      "op_ttm_eok": 262.3586,
-      "op_income_5y_ago_eok": 72.3624,
-      "ev_ebit": 6.2856
     },
     {
       "stock_code": "338100",
@@ -349,42 +133,6 @@
       "ev_ebit": 6.4599
     },
     {
-      "stock_code": "263720",
-      "name": "디앤씨미디어",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 902.3954,
-      "close": 7270.0,
-      "low_52w": 7080.0,
-      "dist_from_52w_low_pct": 2.6836,
-      "op_ttm_eok": 153.1924,
-      "op_income_5y_ago_eok": 126.8733,
-      "ev_ebit": 6.6984
-    },
-    {
-      "stock_code": "051370",
-      "name": "인터플렉스",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1439.305,
-      "close": 6170.0,
-      "low_52w": 6050.0,
-      "dist_from_52w_low_pct": 1.9835,
-      "op_ttm_eok": 254.0675,
-      "op_income_5y_ago_eok": -336.5639,
-      "ev_ebit": 6.6999
-    },
-    {
-      "stock_code": "010240",
-      "name": "흥국",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 634.4652,
-      "close": 5420.0,
-      "low_52w": 5320.0,
-      "dist_from_52w_low_pct": 1.8797,
-      "op_ttm_eok": 116.4199,
-      "op_income_5y_ago_eok": 86.5648,
-      "ev_ebit": 6.7109
-    },
-    {
       "stock_code": "015230",
       "name": "대창단조",
       "sector_raw": "코스피",
@@ -395,18 +143,6 @@
       "op_ttm_eok": 297.4819,
       "op_income_5y_ago_eok": 106.0483,
       "ev_ebit": 6.7421
-    },
-    {
-      "stock_code": "023910",
-      "name": "대한약품",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1620.0,
-      "close": 27000.0,
-      "low_52w": 26350.0,
-      "dist_from_52w_low_pct": 2.4668,
-      "op_ttm_eok": 315.1764,
-      "op_income_5y_ago_eok": 299.6304,
-      "ev_ebit": 6.7642
     },
     {
       "stock_code": "007860",
@@ -421,18 +157,6 @@
       "ev_ebit": 6.7718
     },
     {
-      "stock_code": "052330",
-      "name": "코텍",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 2097.6437,
-      "close": 11810.0,
-      "low_52w": 11640.0,
-      "dist_from_52w_low_pct": 1.4605,
-      "op_ttm_eok": 448.0859,
-      "op_income_5y_ago_eok": 53.7628,
-      "ev_ebit": 6.8603
-    },
-    {
       "stock_code": "033270",
       "name": "유나이티드제약",
       "sector_raw": "코스피",
@@ -445,102 +169,6 @@
       "ev_ebit": 6.8647
     },
     {
-      "stock_code": "009780",
-      "name": "엠에스씨",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1284.8,
-      "close": 7300.0,
-      "low_52w": 7190.0,
-      "dist_from_52w_low_pct": 1.5299,
-      "op_ttm_eok": 324.4461,
-      "op_income_5y_ago_eok": 132.7601,
-      "ev_ebit": 6.8736
-    },
-    {
-      "stock_code": "036190",
-      "name": "금화피에스시",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 2091.0,
-      "close": 34850.0,
-      "low_52w": 34400.0,
-      "dist_from_52w_low_pct": 1.3081,
-      "op_ttm_eok": 375.5807,
-      "op_income_5y_ago_eok": 242.0992,
-      "ev_ebit": 6.8864
-    },
-    {
-      "stock_code": "005710",
-      "name": "대원산업",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 2144.0232,
-      "close": 10700.0,
-      "low_52w": 10520.0,
-      "dist_from_52w_low_pct": 1.711,
-      "op_ttm_eok": 555.6592,
-      "op_income_5y_ago_eok": 168.5216,
-      "ev_ebit": 6.9456
-    },
-    {
-      "stock_code": "115570",
-      "name": "스타플렉스",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 207.5972,
-      "close": 2600.0,
-      "low_52w": 2495.0,
-      "dist_from_52w_low_pct": 4.2084,
-      "op_ttm_eok": 57.3312,
-      "op_income_5y_ago_eok": -39.5501,
-      "ev_ebit": 6.9762
-    },
-    {
-      "stock_code": "206650",
-      "name": "유바이오로직스",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 3495.1444,
-      "close": 9510.0,
-      "low_52w": 8800.0,
-      "dist_from_52w_low_pct": 8.0682,
-      "op_ttm_eok": 579.9962,
-      "op_income_5y_ago_eok": -59.6232,
-      "ev_ebit": 7.0189
-    },
-    {
-      "stock_code": "264450",
-      "name": "유비쿼스",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1566.2747,
-      "close": 10680.0,
-      "low_52w": 10330.0,
-      "dist_from_52w_low_pct": 3.3882,
-      "op_ttm_eok": 266.2107,
-      "op_income_5y_ago_eok": 189.6107,
-      "ev_ebit": 7.1526
-    },
-    {
-      "stock_code": "215200",
-      "name": "메가스터디교육",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 3736.6604,
-      "close": 36050.0,
-      "low_52w": 34950.0,
-      "dist_from_52w_low_pct": 3.1474,
-      "op_ttm_eok": 1012.6781,
-      "op_income_5y_ago_eok": 312.7723,
-      "ev_ebit": 7.1598
-    },
-    {
-      "stock_code": "051360",
-      "name": "토비스",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1061.5476,
-      "close": 11010.0,
-      "low_52w": 11010.0,
-      "dist_from_52w_low_pct": 0.0,
-      "op_ttm_eok": 468.1567,
-      "op_income_5y_ago_eok": 13.9001,
-      "ev_ebit": 7.1601
-    },
-    {
       "stock_code": "014440",
       "name": "영보화학",
       "sector_raw": "코스피",
@@ -551,126 +179,6 @@
       "op_ttm_eok": 152.6444,
       "op_income_5y_ago_eok": 54.5199,
       "ev_ebit": 7.2339
-    },
-    {
-      "stock_code": "128540",
-      "name": "에코캡",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 327.7588,
-      "close": 1228.0,
-      "low_52w": 1228.0,
-      "dist_from_52w_low_pct": 0.0,
-      "op_ttm_eok": 109.1989,
-      "op_income_5y_ago_eok": -27.2232,
-      "ev_ebit": 7.2469
-    },
-    {
-      "stock_code": "036640",
-      "name": "HRS",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 812.8336,
-      "close": 4970.0,
-      "low_52w": 4895.0,
-      "dist_from_52w_low_pct": 1.5322,
-      "op_ttm_eok": 135.3627,
-      "op_income_5y_ago_eok": 107.2453,
-      "ev_ebit": 7.3493
-    },
-    {
-      "stock_code": "200670",
-      "name": "휴메딕스",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 2947.8566,
-      "close": 26250.0,
-      "low_52w": 25500.0,
-      "dist_from_52w_low_pct": 2.9412,
-      "op_ttm_eok": 432.1513,
-      "op_income_5y_ago_eok": 121.8729,
-      "ev_ebit": 7.4344
-    },
-    {
-      "stock_code": "131090",
-      "name": "시큐브",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 322.4111,
-      "close": 4210.0,
-      "low_52w": 4160.0,
-      "dist_from_52w_low_pct": 1.2019,
-      "op_ttm_eok": 46.0906,
-      "op_income_5y_ago_eok": 42.3124,
-      "ev_ebit": 7.5446
-    },
-    {
-      "stock_code": "067160",
-      "name": "SOOP",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 4540.433,
-      "close": 39500.0,
-      "low_52w": 37800.0,
-      "dist_from_52w_low_pct": 4.4974,
-      "op_ttm_eok": 970.8653,
-      "op_income_5y_ago_eok": 570.7774,
-      "ev_ebit": 7.5541
-    },
-    {
-      "stock_code": "214180",
-      "name": "헥토이노베이션",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1951.6037,
-      "close": 15020.0,
-      "low_52w": 14380.0,
-      "dist_from_52w_low_pct": 4.4506,
-      "op_ttm_eok": 296.4404,
-      "op_income_5y_ago_eok": 188.9631,
-      "ev_ebit": 7.586
-    },
-    {
-      "stock_code": "036120",
-      "name": "서울평가정보",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 557.3997,
-      "close": 1586.0,
-      "low_52w": 1566.0,
-      "dist_from_52w_low_pct": 1.2771,
-      "op_ttm_eok": 82.8549,
-      "op_income_5y_ago_eok": 78.1885,
-      "ev_ebit": 7.628
-    },
-    {
-      "stock_code": "194700",
-      "name": "노바렉스",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 2143.1192,
-      "close": 11740.0,
-      "low_52w": 11300.0,
-      "dist_from_52w_low_pct": 3.8938,
-      "op_ttm_eok": 418.6438,
-      "op_income_5y_ago_eok": 274.9088,
-      "ev_ebit": 7.6898
-    },
-    {
-      "stock_code": "053290",
-      "name": "NE능률",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 283.2609,
-      "close": 1714.0,
-      "low_52w": 1711.0,
-      "dist_from_52w_low_pct": 0.1753,
-      "op_ttm_eok": 61.8445,
-      "op_income_5y_ago_eok": 25.372,
-      "ev_ebit": 7.6975
-    },
-    {
-      "stock_code": "059100",
-      "name": "아이컴포넌트",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 429.2012,
-      "close": 6070.0,
-      "low_52w": 5960.0,
-      "dist_from_52w_low_pct": 1.8456,
-      "op_ttm_eok": 75.9878,
-      "op_income_5y_ago_eok": 17.3719,
-      "ev_ebit": 7.7145
     },
     {
       "stock_code": "105630",
@@ -733,18 +241,6 @@
       "ev_ebit": 7.8602
     },
     {
-      "stock_code": "204020",
-      "name": "그리티",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 356.9228,
-      "close": 1835.0,
-      "low_52w": 1830.0,
-      "dist_from_52w_low_pct": 0.2732,
-      "op_ttm_eok": 80.4875,
-      "op_income_5y_ago_eok": 25.9179,
-      "ev_ebit": 7.8605
-    },
-    {
       "stock_code": "013700",
       "name": "까뮤이앤씨",
       "sector_raw": "코스피",
@@ -755,30 +251,6 @@
       "op_ttm_eok": 292.2878,
       "op_income_5y_ago_eok": 28.1812,
       "ev_ebit": 7.8808
-    },
-    {
-      "stock_code": "015750",
-      "name": "성우하이텍",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 4848.0,
-      "close": 6060.0,
-      "low_52w": 5900.0,
-      "dist_from_52w_low_pct": 2.7119,
-      "op_ttm_eok": 1906.4468,
-      "op_income_5y_ago_eok": 224.8981,
-      "ev_ebit": 7.9058
-    },
-    {
-      "stock_code": "142210",
-      "name": "유니트론텍",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1245.0842,
-      "close": 6000.0,
-      "low_52w": 5850.0,
-      "dist_from_52w_low_pct": 2.5641,
-      "op_ttm_eok": 616.5285,
-      "op_income_5y_ago_eok": 67.2864,
-      "ev_ebit": 7.91
     },
     {
       "stock_code": "227840",
@@ -793,42 +265,6 @@
       "ev_ebit": 8.0372
     },
     {
-      "stock_code": "255440",
-      "name": "야스",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 948.0108,
-      "close": 7260.0,
-      "low_52w": 7230.0,
-      "dist_from_52w_low_pct": 0.4149,
-      "op_ttm_eok": 241.3517,
-      "op_income_5y_ago_eok": 32.6829,
-      "ev_ebit": 8.0478
-    },
-    {
-      "stock_code": "013030",
-      "name": "하이록코리아",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 3965.8645,
-      "close": 33700.0,
-      "low_52w": 33350.0,
-      "dist_from_52w_low_pct": 1.0495,
-      "op_ttm_eok": 535.8693,
-      "op_income_5y_ago_eok": 127.7588,
-      "ev_ebit": 8.064
-    },
-    {
-      "stock_code": "025880",
-      "name": "케이씨피드",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 396.1658,
-      "close": 2370.0,
-      "low_52w": 2335.0,
-      "dist_from_52w_low_pct": 1.4989,
-      "op_ttm_eok": 91.7342,
-      "op_income_5y_ago_eok": 13.0844,
-      "ev_ebit": 8.0905
-    },
-    {
       "stock_code": "001060",
       "name": "JW중외제약",
       "sector_raw": "코스피",
@@ -839,18 +275,6 @@
       "op_ttm_eok": 1049.5243,
       "op_income_5y_ago_eok": 21.017,
       "ev_ebit": 8.137
-    },
-    {
-      "stock_code": "340570",
-      "name": "티앤엘",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 4965.6671,
-      "close": 30900.0,
-      "low_52w": 30000.0,
-      "dist_from_52w_low_pct": 3.0,
-      "op_ttm_eok": 646.2754,
-      "op_income_5y_ago_eok": 93.8776,
-      "ev_ebit": 8.1425
     },
     {
       "stock_code": "081660",
@@ -865,54 +289,6 @@
       "ev_ebit": 8.1588
     },
     {
-      "stock_code": "003800",
-      "name": "에이스침대",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 3665.245,
-      "close": 33050.0,
-      "low_52w": 32450.0,
-      "dist_from_52w_low_pct": 1.849,
-      "op_ttm_eok": 535.3619,
-      "op_income_5y_ago_eok": 503.5482,
-      "ev_ebit": 8.1766
-    },
-    {
-      "stock_code": "039420",
-      "name": "케이엘넷",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 640.2211,
-      "close": 2790.0,
-      "low_52w": 2755.0,
-      "dist_from_52w_low_pct": 1.2704,
-      "op_ttm_eok": 86.057,
-      "op_income_5y_ago_eok": 47.6377,
-      "ev_ebit": 8.237
-    },
-    {
-      "stock_code": "066360",
-      "name": "체리부로",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 341.1786,
-      "close": 1423.0,
-      "low_52w": 1380.0,
-      "dist_from_52w_low_pct": 3.1159,
-      "op_ttm_eok": 201.8838,
-      "op_income_5y_ago_eok": -174.2839,
-      "ev_ebit": 8.2633
-    },
-    {
-      "stock_code": "106190",
-      "name": "하이텍팜",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1180.2822,
-      "close": 11100.0,
-      "low_52w": 10950.0,
-      "dist_from_52w_low_pct": 1.3699,
-      "op_ttm_eok": 159.3105,
-      "op_income_5y_ago_eok": -33.2386,
-      "ev_ebit": 8.2768
-    },
-    {
       "stock_code": "004490",
       "name": "세방전지",
       "sector_raw": "코스피",
@@ -925,78 +301,6 @@
       "ev_ebit": 8.3597
     },
     {
-      "stock_code": "095660",
-      "name": "네오위즈",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 3996.254,
-      "close": 18470.0,
-      "low_52w": 17910.0,
-      "dist_from_52w_low_pct": 3.1267,
-      "op_ttm_eok": 566.116,
-      "op_income_5y_ago_eok": 411.1453,
-      "ev_ebit": 8.3644
-    },
-    {
-      "stock_code": "033500",
-      "name": "동성화인텍",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 5506.0711,
-      "close": 18360.0,
-      "low_52w": 17650.0,
-      "dist_from_52w_low_pct": 4.0227,
-      "op_ttm_eok": 917.0683,
-      "op_income_5y_ago_eok": 459.0358,
-      "ev_ebit": 8.3684
-    },
-    {
-      "stock_code": "066130",
-      "name": "하츠",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 443.52,
-      "close": 3465.0,
-      "low_52w": 3375.0,
-      "dist_from_52w_low_pct": 2.6667,
-      "op_ttm_eok": 103.5581,
-      "op_income_5y_ago_eok": 79.3857,
-      "ev_ebit": 8.3717
-    },
-    {
-      "stock_code": "052900",
-      "name": "KX하이텍",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 745.2138,
-      "close": 972.0,
-      "low_52w": 971.0,
-      "dist_from_52w_low_pct": 0.103,
-      "op_ttm_eok": 138.4663,
-      "op_income_5y_ago_eok": 72.5022,
-      "ev_ebit": 8.3822
-    },
-    {
-      "stock_code": "179290",
-      "name": "엠아이텍",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1699.1981,
-      "close": 5250.0,
-      "low_52w": 5100.0,
-      "dist_from_52w_low_pct": 2.9412,
-      "op_ttm_eok": 225.2544,
-      "op_income_5y_ago_eok": 66.042,
-      "ev_ebit": 8.3823
-    },
-    {
-      "stock_code": "036620",
-      "name": "감성코퍼레이션",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 3405.8056,
-      "close": 3790.0,
-      "low_52w": 3695.0,
-      "dist_from_52w_low_pct": 2.571,
-      "op_ttm_eok": 449.8817,
-      "op_income_5y_ago_eok": 4.9083,
-      "ev_ebit": 8.3858
-    },
-    {
       "stock_code": "000220",
       "name": "유유제약",
       "sector_raw": "코스피",
@@ -1007,114 +311,6 @@
       "op_ttm_eok": 123.4997,
       "op_income_5y_ago_eok": 40.4655,
       "ev_ebit": 8.4069
-    },
-    {
-      "stock_code": "198080",
-      "name": "캐프",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 459.7762,
-      "close": 2135.0,
-      "low_52w": 2100.0,
-      "dist_from_52w_low_pct": 1.6667,
-      "op_ttm_eok": 148.8451,
-      "op_income_5y_ago_eok": 83.9513,
-      "ev_ebit": 8.4323
-    },
-    {
-      "stock_code": "067920",
-      "name": "이글루",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 603.6869,
-      "close": 5490.0,
-      "low_52w": 5340.0,
-      "dist_from_52w_low_pct": 2.809,
-      "op_ttm_eok": 105.9966,
-      "op_income_5y_ago_eok": 48.805,
-      "ev_ebit": 8.4675
-    },
-    {
-      "stock_code": "290270",
-      "name": "휴네시온",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 277.1813,
-      "close": 2885.0,
-      "low_52w": 2865.0,
-      "dist_from_52w_low_pct": 0.6981,
-      "op_ttm_eok": 38.8711,
-      "op_income_5y_ago_eok": 29.9052,
-      "ev_ebit": 8.4702
-    },
-    {
-      "stock_code": "267790",
-      "name": "배럴",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 267.9724,
-      "close": 3485.0,
-      "low_52w": 3440.0,
-      "dist_from_52w_low_pct": 1.3081,
-      "op_ttm_eok": 70.1637,
-      "op_income_5y_ago_eok": -62.8709,
-      "ev_ebit": 8.4933
-    },
-    {
-      "stock_code": "332370",
-      "name": "아이디피",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 718.1086,
-      "close": 5410.0,
-      "low_52w": 5250.0,
-      "dist_from_52w_low_pct": 3.0476,
-      "op_ttm_eok": 90.5322,
-      "op_income_5y_ago_eok": 20.4816,
-      "ev_ebit": 8.5331
-    },
-    {
-      "stock_code": "003310",
-      "name": "대주산업",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 599.9003,
-      "close": 1695.0,
-      "low_52w": 1638.0,
-      "dist_from_52w_low_pct": 3.4799,
-      "op_ttm_eok": 107.7862,
-      "op_income_5y_ago_eok": 48.6874,
-      "ev_ebit": 8.6109
-    },
-    {
-      "stock_code": "339950",
-      "name": "아이비김영",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1175.355,
-      "close": 2615.0,
-      "low_52w": 2495.0,
-      "dist_from_52w_low_pct": 4.8096,
-      "op_ttm_eok": 195.3886,
-      "op_income_5y_ago_eok": 67.6383,
-      "ev_ebit": 8.6219
-    },
-    {
-      "stock_code": "071280",
-      "name": "로체시스템즈",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1020.2834,
-      "close": 6670.0,
-      "low_52w": 6580.0,
-      "dist_from_52w_low_pct": 1.3678,
-      "op_ttm_eok": 151.1227,
-      "op_income_5y_ago_eok": 82.6208,
-      "ev_ebit": 8.6243
-    },
-    {
-      "stock_code": "170030",
-      "name": "현대공업",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 747.825,
-      "close": 4875.0,
-      "low_52w": 4830.0,
-      "dist_from_52w_low_pct": 0.9317,
-      "op_ttm_eok": 167.6705,
-      "op_income_5y_ago_eok": 129.0638,
-      "ev_ebit": 8.6393
     },
     {
       "stock_code": "163560",
@@ -1141,18 +337,6 @@
       "ev_ebit": 8.6916
     },
     {
-      "stock_code": "159580",
-      "name": "제로투세븐",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 448.731,
-      "close": 2240.0,
-      "low_52w": 2175.0,
-      "dist_from_52w_low_pct": 2.9885,
-      "op_ttm_eok": 62.2215,
-      "op_income_5y_ago_eok": 10.6237,
-      "ev_ebit": 8.7247
-    },
-    {
       "stock_code": "019180",
       "name": "티에이치엔",
       "sector_raw": "코스피",
@@ -1163,54 +347,6 @@
       "op_ttm_eok": 501.5426,
       "op_income_5y_ago_eok": -94.0927,
       "ev_ebit": 8.7374
-    },
-    {
-      "stock_code": "063440",
-      "name": "SM Life Design",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 482.198,
-      "close": 1064.0,
-      "low_52w": 1042.0,
-      "dist_from_52w_low_pct": 2.1113,
-      "op_ttm_eok": 60.7623,
-      "op_income_5y_ago_eok": 3.2698,
-      "ev_ebit": 8.8206
-    },
-    {
-      "stock_code": "101160",
-      "name": "월덱스",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 4936.7869,
-      "close": 29900.0,
-      "low_52w": 29200.0,
-      "dist_from_52w_low_pct": 2.3973,
-      "op_ttm_eok": 618.7529,
-      "op_income_5y_ago_eok": 301.4729,
-      "ev_ebit": 8.8359
-    },
-    {
-      "stock_code": "337930",
-      "name": "젝시믹스",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 859.134,
-      "close": 2895.0,
-      "low_52w": 2860.0,
-      "dist_from_52w_low_pct": 1.2238,
-      "op_ttm_eok": 145.0404,
-      "op_income_5y_ago_eok": 66.8166,
-      "ev_ebit": 8.8389
-    },
-    {
-      "stock_code": "045340",
-      "name": "토탈소프트",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 590.5048,
-      "close": 6900.0,
-      "low_52w": 6830.0,
-      "dist_from_52w_low_pct": 1.0249,
-      "op_ttm_eok": 84.3358,
-      "op_income_5y_ago_eok": 25.5236,
-      "ev_ebit": 8.8543
     },
     {
       "stock_code": "064960",
@@ -1225,18 +361,6 @@
       "ev_ebit": 8.857
     },
     {
-      "stock_code": "108380",
-      "name": "대양전기공업",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1767.0864,
-      "close": 18470.0,
-      "low_52w": 18130.0,
-      "dist_from_52w_low_pct": 1.8753,
-      "op_ttm_eok": 266.8625,
-      "op_income_5y_ago_eok": 145.7292,
-      "ev_ebit": 8.8721
-    },
-    {
       "stock_code": "007980",
       "name": "TP",
       "sector_raw": "코스피",
@@ -1247,30 +371,6 @@
       "op_ttm_eok": 613.2059,
       "op_income_5y_ago_eok": -38.8038,
       "ev_ebit": 8.8802
-    },
-    {
-      "stock_code": "104830",
-      "name": "원익머트리얼즈",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 4160.64,
-      "close": 33000.0,
-      "low_52w": 32600.0,
-      "dist_from_52w_low_pct": 1.227,
-      "op_ttm_eok": 570.3912,
-      "op_income_5y_ago_eok": 478.3648,
-      "ev_ebit": 8.911
-    },
-    {
-      "stock_code": "065150",
-      "name": "대산F&B",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 239.0736,
-      "close": 1500.0,
-      "low_52w": 1458.0,
-      "dist_from_52w_low_pct": 2.8807,
-      "op_ttm_eok": 38.1582,
-      "op_income_5y_ago_eok": -73.8969,
-      "ev_ebit": 8.9154
     },
     {
       "stock_code": "000210",
@@ -1309,54 +409,6 @@
       "ev_ebit": 9.0276
     },
     {
-      "stock_code": "017510",
-      "name": "세명전기",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1134.3024,
-      "close": 7440.0,
-      "low_52w": 7350.0,
-      "dist_from_52w_low_pct": 1.2245,
-      "op_ttm_eok": 142.0156,
-      "op_income_5y_ago_eok": 2.0113,
-      "ev_ebit": 9.048
-    },
-    {
-      "stock_code": "037030",
-      "name": "파워넷",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 853.4096,
-      "close": 3345.0,
-      "low_52w": 3260.0,
-      "dist_from_52w_low_pct": 2.6074,
-      "op_ttm_eok": 142.2784,
-      "op_income_5y_ago_eok": 61.0352,
-      "ev_ebit": 9.0649
-    },
-    {
-      "stock_code": "272290",
-      "name": "이녹스첨단소재",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 4196.8456,
-      "close": 21050.0,
-      "low_52w": 20650.0,
-      "dist_from_52w_low_pct": 1.937,
-      "op_ttm_eok": 813.6971,
-      "op_income_5y_ago_eok": 480.7954,
-      "ev_ebit": 9.1119
-    },
-    {
-      "stock_code": "003100",
-      "name": "선광",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1392.6,
-      "close": 21100.0,
-      "low_52w": 20500.0,
-      "dist_from_52w_low_pct": 2.9268,
-      "op_ttm_eok": 292.9012,
-      "op_income_5y_ago_eok": 200.2226,
-      "ev_ebit": 9.1679
-    },
-    {
       "stock_code": "014580",
       "name": "태경비케이",
       "sector_raw": "코스피",
@@ -1369,18 +421,6 @@
       "ev_ebit": 9.1843
     },
     {
-      "stock_code": "041460",
-      "name": "한국전자인증",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 681.15,
-      "close": 3585.0,
-      "low_52w": 3475.0,
-      "dist_from_52w_low_pct": 3.1655,
-      "op_ttm_eok": 97.1323,
-      "op_income_5y_ago_eok": 61.4397,
-      "ev_ebit": 9.2628
-    },
-    {
       "stock_code": "013580",
       "name": "계룡건설",
       "sector_raw": "코스피",
@@ -1391,42 +431,6 @@
       "op_ttm_eok": 1810.8274,
       "op_income_5y_ago_eok": 1519.9019,
       "ev_ebit": 9.2856
-    },
-    {
-      "stock_code": "036030",
-      "name": "케이티알파",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 2303.8996,
-      "close": 4700.0,
-      "low_52w": 4675.0,
-      "dist_from_52w_low_pct": 0.5348,
-      "op_ttm_eok": 429.68,
-      "op_income_5y_ago_eok": 118.1104,
-      "ev_ebit": 9.3186
-    },
-    {
-      "stock_code": "088390",
-      "name": "이녹스",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 734.9116,
-      "close": 7830.0,
-      "low_52w": 7470.0,
-      "dist_from_52w_low_pct": 4.8193,
-      "op_ttm_eok": 172.3582,
-      "op_income_5y_ago_eok": 61.869,
-      "ev_ebit": 9.3414
-    },
-    {
-      "stock_code": "102120",
-      "name": "어보브반도체",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1278.4361,
-      "close": 7190.0,
-      "low_52w": 7140.0,
-      "dist_from_52w_low_pct": 0.7003,
-      "op_ttm_eok": 203.8306,
-      "op_income_5y_ago_eok": 170.5023,
-      "ev_ebit": 9.3833
     },
     {
       "stock_code": "155660",
@@ -1453,30 +457,6 @@
       "ev_ebit": 9.4084
     },
     {
-      "stock_code": "060540",
-      "name": "에스에이티",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 341.0348,
-      "close": 1305.0,
-      "low_52w": 1245.0,
-      "dist_from_52w_low_pct": 4.8193,
-      "op_ttm_eok": 55.9177,
-      "op_income_5y_ago_eok": 37.5807,
-      "ev_ebit": 9.4987
-    },
-    {
-      "stock_code": "059210",
-      "name": "메타바이오메드",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1070.5549,
-      "close": 3940.0,
-      "low_52w": 3830.0,
-      "dist_from_52w_low_pct": 2.8721,
-      "op_ttm_eok": 174.8355,
-      "op_income_5y_ago_eok": 30.8095,
-      "ev_ebit": 9.6356
-    },
-    {
       "stock_code": "268280",
       "name": "미원에스씨",
       "sector_raw": "코스피",
@@ -1501,90 +481,6 @@
       "ev_ebit": 9.6753
     },
     {
-      "stock_code": "189690",
-      "name": "포시에스",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 416.66,
-      "close": 1525.0,
-      "low_52w": 1461.0,
-      "dist_from_52w_low_pct": 4.3806,
-      "op_ttm_eok": 46.5978,
-      "op_income_5y_ago_eok": 46.3343,
-      "ev_ebit": 9.7287
-    },
-    {
-      "stock_code": "123410",
-      "name": "코리아에프티",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1611.9976,
-      "close": 5790.0,
-      "low_52w": 5570.0,
-      "dist_from_52w_low_pct": 3.9497,
-      "op_ttm_eok": 335.6979,
-      "op_income_5y_ago_eok": 9.1994,
-      "ev_ebit": 9.7559
-    },
-    {
-      "stock_code": "013990",
-      "name": "아가방컴퍼니",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1433.8966,
-      "close": 4360.0,
-      "low_52w": 4195.0,
-      "dist_from_52w_low_pct": 3.9333,
-      "op_ttm_eok": 196.0593,
-      "op_income_5y_ago_eok": -21.2989,
-      "ev_ebit": 9.8093
-    },
-    {
-      "stock_code": "093190",
-      "name": "빅솔론",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1625.6875,
-      "close": 8450.0,
-      "low_52w": 8300.0,
-      "dist_from_52w_low_pct": 1.8072,
-      "op_ttm_eok": 188.2605,
-      "op_income_5y_ago_eok": 49.0291,
-      "ev_ebit": 9.9076
-    },
-    {
-      "stock_code": "063760",
-      "name": "이엘피",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 240.5884,
-      "close": 2580.0,
-      "low_52w": 2545.0,
-      "dist_from_52w_low_pct": 1.3752,
-      "op_ttm_eok": 39.0984,
-      "op_income_5y_ago_eok": 24.3265,
-      "ev_ebit": 9.92
-    },
-    {
-      "stock_code": "088910",
-      "name": "동우팜투테이블",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 537.5849,
-      "close": 2090.0,
-      "low_52w": 2065.0,
-      "dist_from_52w_low_pct": 1.2107,
-      "op_ttm_eok": 90.7013,
-      "op_income_5y_ago_eok": -37.3118,
-      "ev_ebit": 9.946
-    },
-    {
-      "stock_code": "052260",
-      "name": "현대바이오랜드",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1240.5,
-      "close": 4135.0,
-      "low_52w": 4040.0,
-      "dist_from_52w_low_pct": 2.3515,
-      "op_ttm_eok": 145.4253,
-      "op_income_5y_ago_eok": -65.3918,
-      "ev_ebit": 9.9556
-    },
-    {
       "stock_code": "004150",
       "name": "한솔홀딩스",
       "sector_raw": "코스피",
@@ -1595,30 +491,6 @@
       "op_ttm_eok": 151.3565,
       "op_income_5y_ago_eok": 109.6255,
       "ev_ebit": 9.9779
-    },
-    {
-      "stock_code": "009300",
-      "name": "삼아제약",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 884.156,
-      "close": 13880.0,
-      "low_52w": 13700.0,
-      "dist_from_52w_low_pct": 1.3139,
-      "op_ttm_eok": 108.6688,
-      "op_income_5y_ago_eok": 39.4893,
-      "ev_ebit": 9.9793
-    },
-    {
-      "stock_code": "053610",
-      "name": "프로텍",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 5463.0,
-      "close": 60700.0,
-      "low_52w": 60000.0,
-      "dist_from_52w_low_pct": 1.1667,
-      "op_ttm_eok": 588.6245,
-      "op_income_5y_ago_eok": 141.6212,
-      "ev_ebit": 9.9843
     }
   ]
 }
