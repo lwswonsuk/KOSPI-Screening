@@ -1,0 +1,27 @@
+{
+  "as_of_date": "20260828",
+  "financial_year": 2025,
+  "columns": [
+    "name",
+    "sector_raw",
+    "mktcap_eok",
+    "close",
+    "low_52w",
+    "dist_from_52w_low_pct",
+    "op_ttm_eok",
+    "op_income_5y_ago_eok",
+    "ev_ebit"
+  ],
+  "column_labels_ko": {
+    "name": "종목명",
+    "sector_raw": "시장",
+    "mktcap_eok": "시가총액(억)",
+    "close": "종가",
+    "low_52w": "52주최저가",
+    "dist_from_52w_low_pct": "52주저가대비(%)",
+    "op_ttm_eok": "영업이익(TTM,억원)",
+    "op_income_5y_ago_eok": "영업이익(5년전,억원)",
+    "ev_ebit": "EV/EBIT"
+  },
+  "results": []
+}
