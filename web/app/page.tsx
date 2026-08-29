@@ -1,29 +1,42 @@
 import fs from "fs";
 import path from "path";
-import ScreeningTable from "./ScreeningTable";
+import ScreeningSection from "./ScreeningSection";
 import AlgorithmInfo from "./AlgorithmInfo";
+import CheapAlgorithmInfo from "./CheapAlgorithmInfo";
 import AdminGate from "./AdminGate";
-import FilteredDownloadButton from "./FilteredDownloadButton";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { formatKoreanDate } from "@/lib/format";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { ResultsPayload } from "@/lib/types";
 
 export const dynamic = "force-static"; // 빌드 시점 JSON을 그대로 굽는다 (커밋될 때마다 재배포되며 갱신됨)
 
-function loadResults(): ResultsPayload {
-  const filePath = path.join(process.cwd(), "data", "results.json");
+const EMPTY_PAYLOAD: ResultsPayload = {
+  as_of_date: null,
+  financial_year: null,
+  generated_at: null,
+  quote_text: null,
+  quote_author: null,
+  universe_total: 0,
+  universe_passed: 0,
+  columns: [],
+  column_labels_ko: {},
+  results: [],
+};
+
+function loadJsonPayload(filename: string): ResultsPayload {
+  const filePath = path.join(process.cwd(), "data", filename);
+  if (!fs.existsSync(filePath)) return EMPTY_PAYLOAD; // 최초 배포 등 파일이 아직 없는 경우
   const raw = fs.readFileSync(filePath, "utf-8");
   return JSON.parse(raw);
 }
 
 export default function Home() {
-  const data = loadResults();
+  const data = loadJsonPayload("results.json");
+  const cheapData = loadJsonPayload("results_cheap.json");
 
   return (
     <main className="mx-auto max-w-6xl px-5 py-10">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight">한국 가치투자 스크리닝</h1>
+        <h1 className="text-2xl font-bold tracking-tight">한국 주식 스크리닝</h1>
         <p className="mt-1 text-sm text-muted-foreground">
           {data.quote_text
             ? `"${data.quote_text}" — ${data.quote_author}`
@@ -31,38 +44,28 @@ export default function Home() {
         </p>
       </div>
 
-      {data.results.length === 0 ? (
-        <Card>
-          <CardContent className="text-sm text-muted-foreground">
-            아직 결과가 없습니다. GitHub Actions가 처음 실행되면 자동으로 채워집니다.
-          </CardContent>
-        </Card>
-      ) : (
-        <>
-          <div className="mb-5 flex flex-wrap items-center gap-2">
-            <Badge variant="secondary">가격 기준일 {formatKoreanDate(data.as_of_date)}</Badge>
-            <Badge variant="secondary">재무 기준연도 {data.financial_year}</Badge>
-            <FilteredDownloadButton passed={data.universe_passed} total={data.universe_total} />
-            <Badge variant="outline">
-              갱신{" "}
-              {data.generated_at
-                ? new Date(data.generated_at).toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })
-                : "-"}
-            </Badge>
-          </div>
-
-          <AlgorithmInfo />
-
-          <ScreeningTable
-            columns={data.columns}
-            labels={data.column_labels_ko}
-            rows={data.results}
+      <Tabs defaultValue="value">
+        <TabsList className="mb-5">
+          <TabsTrigger value="value">가치투자</TabsTrigger>
+          <TabsTrigger value="cheap">Cheap Stock Picking</TabsTrigger>
+        </TabsList>
+        <TabsContent value="value">
+          <ScreeningSection
+            data={data}
+            algorithmInfo={<AlgorithmInfo />}
+            downloadHref="/api/filtered"
           />
-        </>
-      )}
+        </TabsContent>
+        <TabsContent value="cheap">
+          <ScreeningSection
+            data={cheapData}
+            algorithmInfo={<CheapAlgorithmInfo />}
+            downloadHref="/api/filtered-cheap"
+          />
+        </TabsContent>
+      </Tabs>
 
       <AdminGate />
     </main>
   );
 }
-
