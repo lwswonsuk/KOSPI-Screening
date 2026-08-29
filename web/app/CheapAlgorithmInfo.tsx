@@ -33,6 +33,7 @@ export default function CheapAlgorithmInfo() {
               <h4 className="mb-2 font-semibold text-foreground">데이터 기준</h4>
               <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
                 <li>가격/52주 최저가: KRX 공식 API 일별 시세 누적 캐시 기준</li>
+                <li>52주 최저가는 매일 누적되는 가격 데이터로 계산되어, 서비스 시작 초기에는 실제 52주보다 짧은 기간 중 최저가일 수 있습니다</li>
                 <li>재무데이터: DART 공시자료, 최근 4분기(TTM) 누적 및 5년 전 사업보고서 기준</li>
                 <li>대상: 코스피 전종목</li>
               </ul>

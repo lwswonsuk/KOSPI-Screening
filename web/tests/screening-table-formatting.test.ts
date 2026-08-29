@@ -9,9 +9,9 @@ describe("ScreeningTable 숫자 포맷", () => {
       "utf8"
     );
 
-    expect(source).toMatch(/TWO_DECIMAL_RIGHT_ALIGN = new Set\(\[[^\]]*"dist_from_52w_low_pct"/s);
-    expect(source).toMatch(/TWO_DECIMAL_RIGHT_ALIGN = new Set\(\[[^\]]*"ev_ebit"/s);
-    expect(source).toMatch(/RIGHT_ALIGN_ONLY = new Set\(\[[^\]]*"low_52w"/s);
-    expect(source).toMatch(/RIGHT_ALIGN_ONLY = new Set\(\[[^\]]*"op_ttm_eok"/s);
+    expect(source).toMatch(/TWO_DECIMAL_RIGHT_ALIGN = new Set\(\[[^\]]*"dist_from_52w_low_pct"/);
+    expect(source).toMatch(/TWO_DECIMAL_RIGHT_ALIGN = new Set\(\[[^\]]*"ev_ebit"/);
+    expect(source).toMatch(/RIGHT_ALIGN_ONLY = new Set\(\[[^\]]*"low_52w"/);
+    expect(source).toMatch(/RIGHT_ALIGN_ONLY = new Set\(\[[^\]]*"op_ttm_eok"/);
   });
 });

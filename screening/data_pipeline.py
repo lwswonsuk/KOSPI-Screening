@@ -539,7 +539,7 @@ def build_finance_cache(annual_year: int, ttm_year: int, ttm_quarter: str, date:
     dart = get_dart_client()
     rows = []
     todo = merged[~merged["stock_code"].isin(done_codes)]
-    print(f"[fetch] 신규로 받아올 종목: {len(todo)}개 (종목당 2콜, 예상 소요 약 {len(todo) * sleep_sec * 2 / 60:.1f}분)")
+    print(f"[fetch] 신규로 받아올 종목: {len(todo)}개 (종목당 4콜, 예상 소요 약 {len(todo) * sleep_sec * 4 / 60:.1f}분)")
 
     for i, (_, r) in enumerate(todo.iterrows(), 1):
         res = fetch_finance_one(dart, r["stock_code"], r["corp_code"], annual_year, ttm_year, ttm_quarter)
