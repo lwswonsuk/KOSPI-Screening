@@ -33,13 +33,14 @@ const HIDDEN_COLUMNS = new Set([
 // 소수점 2자리 + 우측 정렬로 보여줄 컬럼
 const TWO_DECIMAL_RIGHT_ALIGN = new Set([
   "per", "pbr", "roe_3y_avg", "debt_ratio", "div_yield", "payout_ratio_pct",
+  "dist_from_52w_low_pct", "ev_ebit",
 ]);
 
 // 소수점 4자리 + 우측 정렬 (종합점수 전용)
 const FOUR_DECIMAL_RIGHT_ALIGN = new Set(["score"]);
 
 // 우측 정렬만 적용할 컬럼 (숫자 포맷은 기본값 유지)
-const RIGHT_ALIGN_ONLY = new Set(["close"]);
+const RIGHT_ALIGN_ONLY = new Set(["close", "low_52w", "op_ttm_eok", "op_income_5y_ago_eok"]);
 
 export default function ScreeningTable({
   columns,
