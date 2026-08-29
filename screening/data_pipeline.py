@@ -78,6 +78,25 @@ def auto_ttm_params(today=None) -> tuple[int, int, str]:
     else:
         # 3분기까지 나온 시기 (11/15~12월말)
         return y - 1, y, "Q3"
+
+
+TTM_QUARTER_LABELS = {"Q1": "1분기", "H1": "2분기", "Q3": "3분기", "FY": "연간"}
+
+
+def format_financial_period_label(bsns_year: int) -> str:
+    """TTM 계산에 실제로 쓰인 분기를 사람이 읽기 쉬운 라벨로 변환한다
+    (예: "2026년 2분기"). "재무 기준연도 2025" 표기가 TTM에 최근 분기
+    실적까지 반영된다는 사실을 가리는 문제를 해결하기 위함 — annual_year는
+    직전 확정 사업보고서 연도일 뿐, 실제 TTM은 그보다 최신 분기까지 누적된
+    값이다. auto_ttm_params()가 반환하는 annual_year가 bsns_year와 다르면
+    (수동으로 다른 연도를 지정한 경우) TTM 분기를 알 수 없으므로 연도만
+    표시한다."""
+    annual_year, ttm_year, ttm_quarter = auto_ttm_params()
+    if annual_year != bsns_year:
+        return f"{bsns_year}년"
+    return f"{ttm_year}년 {TTM_QUARTER_LABELS.get(ttm_quarter, ttm_quarter)}"
+
+
 CORP_CODE_CACHE = CACHE_DIR / "corp_codes.parquet"
 FINANCE_CACHE = CACHE_DIR / "finance.parquet"
 

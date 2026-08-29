@@ -28,6 +28,7 @@ from typing import Optional
 import numpy as np
 import pandas as pd
 
+from data_pipeline import format_financial_period_label
 from quotes import pick_quote_for_week
 from stock_profile import generate_all_profiles
 
@@ -605,6 +606,7 @@ def run_real(date: str, bsns_year: int, top_n: int, export: str | None,
             return {
                 "as_of_date": date,
                 "financial_year": bsns_year,
+                "financial_period_label": format_financial_period_label(bsns_year),
                 "generated_at": pd.Timestamp.now("UTC").isoformat(),
                 "quote_text": pick_quote_for_week()["text"],
                 "quote_author": pick_quote_for_week()["author"],

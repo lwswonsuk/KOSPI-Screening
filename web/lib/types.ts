@@ -16,6 +16,7 @@ export type ResultRow = Record<string, unknown> & {
 export interface ResultsPayload {
   as_of_date: string | null;
   financial_year: number | null;
+  financial_period_label: string | null;
   generated_at: string | null;
   quote_text: string | null;
   quote_author: string | null;

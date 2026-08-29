@@ -29,7 +29,9 @@ export default function ScreeningSection({
     <>
       <div className="mb-5 flex flex-wrap items-center gap-2">
         <Badge variant="secondary">가격 기준일 {formatKoreanDate(data.as_of_date)}</Badge>
-        <Badge variant="secondary">재무 기준연도 {data.financial_year}</Badge>
+        <Badge variant="secondary">
+          재무 기준 {data.financial_period_label ?? `${data.financial_year}년`}
+        </Badge>
         <FilteredDownloadButton
           href={downloadHref}
           passed={data.universe_passed}

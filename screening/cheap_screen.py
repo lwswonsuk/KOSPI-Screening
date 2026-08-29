@@ -1,11 +1,13 @@
 """
 cheap_screen.py — "Cheap Stock Picking" 스크리닝
 ================================================================
-가치투자 스크리닝(ws_alpha.py)과 별개로, 3가지 조건만으로 종목을 거른다:
+가치투자 스크리닝(ws_alpha.py)과 별개로, 코스피 종목만 대상으로 3가지 조건만으로
+종목을 거른다:
   1) 현재가가 52주 최저가의 10% 이내
   2) 영업이익(TTM)이 5년 전 영업이익보다 큼
   3) EBIT(영업이익 TTM 근사) > 0 이고 EV/EBIT < 10배
-     (EV = 시가총액 + 총부채 - 현금성자산, 근사치)
+     (EV = 시가총액 + 총부채, 근사치 — DART finstate API가 현금성자산을
+     제공하지 않아 차감하지 않음)
 
 가치투자 탭과 달리 시총/거래대금 유동성 하한선은 적용하지 않는다. 정렬은 EV/EBIT 오름차순.
 """
@@ -14,6 +16,7 @@ from __future__ import annotations
 
 import argparse
 
+from data_pipeline import format_financial_period_label
 from quotes import pick_quote_for_week
 from stock_profile import generate_all_profiles
 
@@ -70,6 +73,7 @@ def load_cheap(date: str, bsns_year: int) -> tuple[pd.DataFrame, str]:
         )
 
     df, resolved_date = get_full_universe(date)
+    df = df[df["sector_raw"] == "코스피"]  # 코스피 종목만 대상으로 함 (코스닥 제외)
     df["mktcap_eok"] = df["mktcap"] / 1e8
 
     history = update_price_history(df, resolved_date)
@@ -159,6 +163,7 @@ def run_cheap(date: str, bsns_year: int, top_n: int,
             return {
                 "as_of_date": date,
                 "financial_year": bsns_year,
+                "financial_period_label": format_financial_period_label(bsns_year),
                 "generated_at": pd.Timestamp.now("UTC").isoformat(),
                 "quote_text": pick_quote_for_week()["text"],
                 "quote_author": pick_quote_for_week()["author"],

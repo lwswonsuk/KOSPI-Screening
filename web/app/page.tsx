@@ -12,6 +12,7 @@ export const dynamic = "force-static"; // 빌드 시점 JSON을 그대로 굽는
 const EMPTY_PAYLOAD: ResultsPayload = {
   as_of_date: null,
   financial_year: null,
+  financial_period_label: null,
   generated_at: null,
   quote_text: null,
   quote_author: null,
@@ -46,8 +47,8 @@ export default function Home() {
 
       <Tabs defaultValue="value">
         <TabsList className="mb-5">
-          <TabsTrigger value="value">가치투자</TabsTrigger>
-          <TabsTrigger value="cheap">Cheap Stock Picking</TabsTrigger>
+          <TabsTrigger value="value">Korean Value Stocks</TabsTrigger>
+          <TabsTrigger value="cheap">Cheap KOSPI Stocks</TabsTrigger>
         </TabsList>
         <TabsContent value="value">
           <ScreeningSection
