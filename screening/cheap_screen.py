@@ -32,10 +32,16 @@ KOR_NAMES = {
 
 
 def add_cheap_metrics(df: pd.DataFrame) -> pd.DataFrame:
-    """52주 저가 대비 괴리율, EV, EBIT, EV/EBIT 파생 컬럼을 계산해 추가한다."""
+    """52주 저가 대비 괴리율, EV, EBIT, EV/EBIT 파생 컬럼을 계산해 추가한다.
+
+    EV = 시가총액 + 총부채 (현금성자산 제외). DART의 finstate("재무제표
+    주요계정") 응답에는 현금및현금성자산이 포함되지 않아(전종목 100% 결측
+    확인됨) 뺄 수 없다 — finstate_all("전체 재무제표") 호출을 추가하지
+    않는 한 정확한 순차입금 계산은 불가능하므로, 현재는 총부채 전액을
+    부채로 보는 보수적 근사치를 쓴다."""
     d = df.copy()
     d["dist_from_52w_low_pct"] = (d["close"] / d["low_52w"] - 1) * 100
-    d["ev"] = d["mktcap"] + d["total_liabilities"] - d["cash_equivalents"]
+    d["ev"] = d["mktcap"] + d["total_liabilities"]
     d["ebit"] = d["op_ttm"]
     d["ev_ebit"] = d["ev"] / d["ebit"].where(d["ebit"] > 0)
     return d
@@ -109,7 +115,6 @@ def print_diagnostics(df: pd.DataFrame) -> None:
     n_5y_missing = int(df["op_income_5y_ago"].isna().sum())
     n_earning_more = int((df["op_ttm"] > df["op_income_5y_ago"]).sum())
 
-    n_cash_missing = int(df["cash_equivalents"].isna().sum())
     n_liab_missing = int(df["total_liabilities"].isna().sum())
     n_ebit_missing = int(df["ebit"].isna().sum())
     n_ev_ebit_missing = int(df["ev_ebit"].isna().sum())
@@ -119,8 +124,8 @@ def print_diagnostics(df: pd.DataFrame) -> None:
     print("[진단] 조건별 결측치/충족 현황")
     print(f"  1) 52주최저가 10% 이내      : low_52w 결측 {n_low_missing}/{total}, 충족 {n_near_low}/{total}")
     print(f"  2) 5년전 대비 이익 증가     : op_income_5y_ago 결측 {n_5y_missing}/{total}, 충족 {n_earning_more}/{total}")
-    print(f"  3) EV/EBIT < 10배           : cash_equivalents 결측 {n_cash_missing}/{total}, "
-          f"total_liabilities 결측 {n_liab_missing}/{total}, ebit(<=0 포함) 결측 {n_ebit_missing}/{total}, "
+    print(f"  3) EV/EBIT < 10배           : total_liabilities 결측 {n_liab_missing}/{total}, "
+          f"ebit(<=0 포함) 결측 {n_ebit_missing}/{total}, "
           f"ev_ebit 결측 {n_ev_ebit_missing}/{total}, 충족 {n_cheap_ev}/{total}")
     print("-" * 78)
 

@@ -22,7 +22,7 @@ export default function CheapAlgorithmInfo() {
               <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
                 <li>현재가가 52주 최저가의 10% 이내</li>
                 <li>영업이익(TTM)이 5년 전 영업이익보다 큼 — 실적이 여전히 성장 중</li>
-                <li>EV/EBIT 10배 미만 — EV(기업가치) = 시가총액 + 총부채 − 현금성자산(근사치)</li>
+                <li>EV/EBIT 10배 미만 — EV(기업가치) = 시가총액 + 총부채(근사치, 현금성자산은 차감하지 않음)</li>
               </ul>
             </section>
             <section>
