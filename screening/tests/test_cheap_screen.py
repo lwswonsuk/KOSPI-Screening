@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from cheap_screen import add_cheap_metrics, apply_cheap_filters
+from cheap_screen import add_cheap_metrics, apply_cheap_filters, print_diagnostics
 
 
 def _row(**overrides):
@@ -68,3 +68,18 @@ def test_apply_cheap_filters_rejects_missing_52w_low():
     out = apply_cheap_filters(df)
 
     assert bool(out.loc[0, "passed"]) is False
+
+
+def test_print_diagnostics_reports_missing_field_counts(capsys):
+    df = add_cheap_metrics(pd.DataFrame([
+        _row(),  # 모든 조건 충족
+        _row(cash_equivalents=np.nan),  # ev_ebit 결측 유발
+        _row(op_income_5y_ago=np.nan),  # 5년전 이익 결측
+    ]))
+
+    print_diagnostics(df)
+
+    out = capsys.readouterr().out
+    assert "cash_equivalents 결측 1/3" in out
+    assert "op_income_5y_ago 결측 1/3" in out
+    assert "ev_ebit 결측 1/3" in out

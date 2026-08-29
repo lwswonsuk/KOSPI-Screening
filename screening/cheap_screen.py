@@ -97,6 +97,34 @@ def _to_json_records(rows: pd.DataFrame, cols: list[str]) -> list[dict]:
     return records
 
 
+def print_diagnostics(df: pd.DataFrame) -> None:
+    """조건별 결측치/충족 현황을 출력한다. `add_cheap_metrics`가 이미 적용된
+    데이터프레임(dist_from_52w_low_pct/ebit/ev_ebit 컬럼 포함)을 받는다.
+    통과율이 비정상적으로 낮을 때 '조건이 엄격해서'인지 'DART 계정명 매칭
+    실패로 결측치가 나서'인지 구분하기 위한 운영 진단용 출력이다."""
+    total = len(df)
+    n_low_missing = int(df["low_52w"].isna().sum())
+    n_near_low = int((df["dist_from_52w_low_pct"] <= 10.0).sum())
+
+    n_5y_missing = int(df["op_income_5y_ago"].isna().sum())
+    n_earning_more = int((df["op_ttm"] > df["op_income_5y_ago"]).sum())
+
+    n_cash_missing = int(df["cash_equivalents"].isna().sum())
+    n_liab_missing = int(df["total_liabilities"].isna().sum())
+    n_ebit_missing = int(df["ebit"].isna().sum())
+    n_ev_ebit_missing = int(df["ev_ebit"].isna().sum())
+    n_cheap_ev = int(((df["ebit"] > 0) & (df["ev_ebit"] < 10.0)).sum())
+
+    print("-" * 78)
+    print("[진단] 조건별 결측치/충족 현황")
+    print(f"  1) 52주최저가 10% 이내      : low_52w 결측 {n_low_missing}/{total}, 충족 {n_near_low}/{total}")
+    print(f"  2) 5년전 대비 이익 증가     : op_income_5y_ago 결측 {n_5y_missing}/{total}, 충족 {n_earning_more}/{total}")
+    print(f"  3) EV/EBIT < 10배           : cash_equivalents 결측 {n_cash_missing}/{total}, "
+          f"total_liabilities 결측 {n_liab_missing}/{total}, ebit(<=0 포함) 결측 {n_ebit_missing}/{total}, "
+          f"ev_ebit 결측 {n_ev_ebit_missing}/{total}, 충족 {n_cheap_ev}/{total}")
+    print("-" * 78)
+
+
 def run_cheap(date: str, bsns_year: int, top_n: int,
               export_json: str | None = None, filtered_json: str | None = None) -> pd.DataFrame:
     d, resolved_date = load_cheap(date, bsns_year)
@@ -105,6 +133,7 @@ def run_cheap(date: str, bsns_year: int, top_n: int,
     date = resolved_date
 
     filt = apply_cheap_filters(d)
+    print_diagnostics(filt)
     ranked = filt.sort_values("ev_ebit", ascending=True)
 
     print("=" * 78)
