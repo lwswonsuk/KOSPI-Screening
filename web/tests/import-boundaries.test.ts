@@ -18,10 +18,12 @@ describe("client bundle import boundaries", () => {
     }
   });
 
-  it("AlgorithmInfo는 client directive나 Radix Collapsible을 사용하지 않는다", () => {
-    const source = fs.readFileSync(path.join(ROOT, "app/AlgorithmInfo.tsx"), "utf8");
-    expect(source).not.toContain('"use client"');
-    expect(source).not.toContain("Collapsible");
+  it("AlgorithmInfo와 CheapAlgorithmInfo는 client directive나 Radix Collapsible을 사용하지 않는다", () => {
+    for (const file of ["app/AlgorithmInfo.tsx", "app/CheapAlgorithmInfo.tsx"]) {
+      const source = fs.readFileSync(path.join(ROOT, file), "utf8");
+      expect(source, file).not.toContain('"use client"');
+      expect(source, file).not.toContain("Collapsible");
+    }
   });
 
   it("저사용 Dialog와 관리자 컨트롤은 dynamic import한다", () => {
