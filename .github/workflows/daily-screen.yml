@@ -84,11 +84,25 @@ jobs:
             --export-json "../web/data/results.json" \
             --filtered-json "../web/data/filtered_full.json"
 
+      - name: Cheap Stock Picking 스크리닝 실행 + JSON 저장
+        working-directory: screening
+        env:
+          KRX_API_KEY: ${{ secrets.KRX_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          TODAY=$(TZ=Asia/Seoul date -d '1 day ago' +%Y%m%d)
+          YEAR=$(cat .cache/annual_year.txt 2>/dev/null || echo 2025)
+          python cheap_screen.py --run --date $TODAY --year $YEAR --top 50 \
+            --export-json "../web/data/results_cheap.json" \
+            --filtered-json "../web/data/filtered_cheap_full.json"
+
       - name: 결과를 저장소에 커밋 (→ Vercel 자동 재배포 트리거)
         run: |
           git config user.name "screening-bot"
           git config user.email "screening-bot@users.noreply.github.com"
-          git add web/data/results.json web/data/filtered_full.json
+          git add web/data/results.json web/data/filtered_full.json \
+                  web/data/results_cheap.json web/data/filtered_cheap_full.json \
+                  screening/data/price_history.parquet
           git diff --cached --quiet || git commit -m "chore: 스크리닝 결과 자동 갱신 $(date +%Y-%m-%d)"
           git push
 
