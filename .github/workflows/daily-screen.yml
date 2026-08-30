@@ -3,6 +3,14 @@ name: 일일 스크리닝
 permissions:
   contents: write   # 워크플로우가 결과 파일을 저장소에 다시 커밋할 수 있도록 쓰기 권한 부여
 
+# 정기 크론과 수동 실행이 겹치면 둘 다 결과를 push하려다 경쟁해서 뒤에 끝난 쪽이
+# "fetch first" 오류로 실패하는 문제가 있었다. 동시 실행을 막아 항상 한 번에
+# 하나만 돌게 한다(취소 대신 대기 — 이미 시작한 DART/KRX 호출을 중간에 버리지
+# 않도록 cancel-in-progress: false).
+concurrency:
+  group: daily-screen
+  cancel-in-progress: false
+
 on:
   schedule:
     # 매일 한국시간 오전 8시 (UTC 23:00, 전날) — 가격만 갱신, 재무는 캐시
@@ -104,6 +112,23 @@ jobs:
           git add web/data/results.json web/data/filtered_full.json \
                   web/data/results_cheap.json web/data/filtered_cheap_full.json \
                   screening/data/price_history.parquet
-          git diff --cached --quiet || git commit -m "chore: 스크리닝 결과 자동 갱신 $(date +%Y-%m-%d)"
-          git push
+          if git diff --cached --quiet; then
+            echo "변경사항 없음, 커밋 생략"
+            exit 0
+          fi
+          git commit -m "chore: 스크리닝 결과 자동 갱신 $(date +%Y-%m-%d)"
+
+          # concurrency 그룹으로 대부분 막히지만, 그래도 push 시점에 origin이
+          # 앞서 있으면(다른 워크플로우가 먼저 push) fetch 후 병합해 재시도한다.
+          # 충돌 시 이번 실행이 방금 새로 만든 결과 파일을 우선한다(-X ours).
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "push 실패(동시 실행 충돌로 추정), origin 최신화 후 재시도 ($i/5)"
+            git fetch origin
+            git merge -X ours origin/main --no-edit -m "merge: 동시 실행 충돌 자동 해결"
+          done
+          echo "::error::5회 재시도 후에도 push 실패"
+          exit 1
 
