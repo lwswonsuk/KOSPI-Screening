@@ -149,14 +149,40 @@ def print_diagnostics(df: pd.DataFrame) -> None:
     print("-" * 78)
 
 
+def print_debug_names(df: pd.DataFrame, names: list[str]) -> None:
+    """지정한 종목명이 통과/탈락한 이유를 조건별 수치와 함께 출력한다.
+    `apply_cheap_filters`가 이미 적용된 데이터프레임(passed 컬럼 포함)을 받는다.
+    사용자가 '이 종목은 왜 안 나오지?'라고 물었을 때 바로 답할 수 있도록 하는
+    운영 디버그용 출력이다."""
+    debug_cols = ["name", "sector_raw", "close", "low_52w", "dist_from_52w_low_pct",
+                  "eps_now", "eps_years_ago", "eps_years_ago_year",
+                  "net_income_ttm", "per", "ebit", "ev", "ev_ebit", "passed"]
+    debug_cols = [c for c in debug_cols if c in df.columns]
+
+    matched = df[df["name"].isin(names)]
+    found_names = set(matched["name"])
+    missing_names = [n for n in names if n not in found_names]
+
+    print("=" * 78)
+    print("[디버그] 지정 종목 상세")
+    if len(matched) > 0:
+        print(matched[debug_cols].to_string())
+    if missing_names:
+        print(f"유니버스에 없음 (코스피가 아니거나, 재무캐시에 조인되지 않음): {missing_names}")
+    print("=" * 78)
+
+
 def run_cheap(date: str, bsns_year: int, top_n: int,
-              export_json: str | None = None, filtered_json: str | None = None) -> pd.DataFrame:
+              export_json: str | None = None, filtered_json: str | None = None,
+              debug_names: list[str] | None = None) -> pd.DataFrame:
     d, resolved_date = load_cheap(date, bsns_year)
     if resolved_date != date:
         print(f"[알림] 요청한 기준일 {date}은 휴장일로 보여, 최근 개장일 {resolved_date}로 대체합니다")
     date = resolved_date
 
     filt = apply_cheap_filters(d)
+    if debug_names:
+        print_debug_names(filt, debug_names)
     print_diagnostics(filt)
     ranked = filt.sort_values("ev_ebit", ascending=True)
 
@@ -233,11 +259,14 @@ if __name__ == "__main__":
     ap.add_argument("--top", type=int, default=50, help="화면·JSON에 보여줄 상위 종목 수")
     ap.add_argument("--export-json", default="", help="웹사이트용 JSON 저장 경로")
     ap.add_argument("--filtered-json", default="", help="필터통과 전체 종목 JSON 저장 경로")
+    ap.add_argument("--debug-names", default="",
+                     help="쉼표로 구분한 종목명 목록 — 통과 여부와 무관하게 조건별 수치를 출력 (예: 'CJ대한통운,효성ITX')")
     a = ap.parse_args()
     if a.run:
         run_cheap(a.date, a.year, a.top,
                    a.export_json if a.export_json else None,
-                   a.filtered_json if a.filtered_json else None)
+                   a.filtered_json if a.filtered_json else None,
+                   [n.strip() for n in a.debug_names.split(",") if n.strip()] if a.debug_names else None)
     else:
         print("사용법: python cheap_screen.py --run --date YYYYMMDD --year YYYY "
               "--export-json ... --filtered-json ...")

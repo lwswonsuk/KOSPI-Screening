@@ -31,6 +31,10 @@ on:
         type: choice
         options: [auto, Q1, H1, Q3, FY]
         default: auto
+      debug_names:
+        description: "Cheap KOSPI Stocks 디버그: 쉼표로 구분한 종목명 (예: CJ대한통운,효성ITX) — 통과 여부와 무관하게 조건별 수치를 로그에 출력"
+        type: string
+        default: ""
 
 jobs:
   screen:
@@ -101,9 +105,15 @@ jobs:
         run: |
           TODAY=$(TZ=Asia/Seoul date -d '1 day ago' +%Y%m%d)
           YEAR=$(cat .cache/annual_year.txt 2>/dev/null || echo 2025)
+          DEBUG_NAMES="${{ github.event.inputs.debug_names }}"
+          EXTRA_ARGS=()
+          if [ -n "$DEBUG_NAMES" ]; then
+            EXTRA_ARGS+=(--debug-names "$DEBUG_NAMES")
+          fi
           python cheap_screen.py --run --date $TODAY --year $YEAR --top 50 \
             --export-json "../web/data/results_cheap.json" \
-            --filtered-json "../web/data/filtered_cheap_full.json"
+            --filtered-json "../web/data/filtered_cheap_full.json" \
+            "${EXTRA_ARGS[@]}"
 
       - name: 결과를 저장소에 커밋 (→ Vercel 자동 재배포 트리거)
         run: |

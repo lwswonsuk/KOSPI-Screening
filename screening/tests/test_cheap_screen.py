@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from cheap_screen import add_cheap_metrics, apply_cheap_filters, print_diagnostics
+from cheap_screen import add_cheap_metrics, apply_cheap_filters, print_diagnostics, print_debug_names
 
 
 def _row(**overrides):
@@ -94,6 +94,20 @@ def test_apply_cheap_filters_rejects_missing_eps_years_ago():
     out = apply_cheap_filters(df)
 
     assert bool(out.loc[0, "passed"]) is False
+
+
+def test_print_debug_names_shows_matched_and_missing_names(capsys):
+    df = add_cheap_metrics(pd.DataFrame(
+        [_row(name="종목A"), _row(name="종목B", eps_now=5.0, eps_years_ago=8.0)]
+    ))
+    df = apply_cheap_filters(df)
+
+    print_debug_names(df, ["종목A", "종목B", "없는종목"])
+
+    out = capsys.readouterr().out
+    assert "종목A" in out
+    assert "종목B" in out
+    assert "없는종목" in out
 
 
 def test_print_diagnostics_reports_missing_field_counts(capsys):
