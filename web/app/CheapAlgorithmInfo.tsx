@@ -14,14 +14,19 @@ export default function CheapAlgorithmInfo() {
         <Card className="mt-3 py-5">
           <CardContent className="space-y-4 text-sm leading-relaxed text-foreground/90">
             <p className="text-muted-foreground">
-              핵심 아이디어: <b className="text-foreground">싸게 사서 기다린다.</b> 아래 3가지
-              조건을 모두 만족하는 종목만 통과시키며, 시가총액·거래대금 하한선은 두지 않습니다.
+              핵심 아이디어: <b className="text-foreground">싸게 사서 기다린다.</b> 가치투자
+              탭과는 완전히 다른 알고리즘으로, 아래 4가지 조건을 모두 만족하는 코스피 종목만
+              통과시키며 시가총액·거래대금 하한선은 두지 않습니다.
             </p>
             <section>
-              <h4 className="mb-2 font-semibold text-foreground">통과 조건 (3가지 모두 충족)</h4>
+              <h4 className="mb-2 font-semibold text-foreground">통과 조건 (4가지 모두 충족)</h4>
               <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
                 <li>현재가가 52주 최저가의 10% 이내</li>
-                <li>영업이익(TTM)이 5년 전 영업이익보다 큼 — 실적이 여전히 성장 중</li>
+                <li>
+                  EPS(TTM)가 3~5년 전 EPS보다 큼 — 실적이 여전히 성장 중 (5년 전 데이터를
+                  우선 쓰고, 없으면 4년 전 → 3년 전 순으로 대체)
+                </li>
+                <li>PER 10배 미만</li>
                 <li>EV/EBIT 10배 미만 — EV(기업가치) = 시가총액 + 총부채(근사치, 현금성자산은 차감하지 않음)</li>
               </ul>
             </section>
@@ -34,8 +39,8 @@ export default function CheapAlgorithmInfo() {
               <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
                 <li>가격/52주 최저가: KRX 공식 API 일별 시세 누적 캐시 기준</li>
                 <li>52주 최저가는 매일 누적되는 가격 데이터로 계산되어, 서비스 시작 초기에는 실제 52주보다 짧은 기간 중 최저가일 수 있습니다</li>
-                <li>재무데이터: DART 공시자료, 최근 4분기(TTM) 누적 및 5년 전 사업보고서 기준</li>
-                <li>대상: 코스피 전종목</li>
+                <li>재무데이터: DART 공시자료, 최근 4분기(TTM) 누적 및 3~5년 전 사업보고서 기준</li>
+                <li>대상: 코스피 종목만 (코스닥 제외)</li>
               </ul>
             </section>
           </CardContent>

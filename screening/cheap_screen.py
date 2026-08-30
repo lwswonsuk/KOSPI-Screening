@@ -1,11 +1,13 @@
 """
-cheap_screen.py — "Cheap Stock Picking" 스크리닝
+cheap_screen.py — "Cheap KOSPI Stocks" 스크리닝
 ================================================================
-가치투자 스크리닝(ws_alpha.py)과 별개로, 코스피 종목만 대상으로 3가지 조건만으로
-종목을 거른다:
+가치투자 스크리닝(ws_alpha.py)과 완전히 다른 알고리즘. 코스피 종목만 대상으로
+4가지 조건을 모두 만족해야 통과한다:
   1) 현재가가 52주 최저가의 10% 이내
-  2) 영업이익(TTM)이 5년 전 영업이익보다 큼
-  3) EBIT(영업이익 TTM 근사) > 0 이고 EV/EBIT < 10배
+  2) EPS(TTM)가 3~5년 전 EPS보다 큼 (5년전 데이터 우선, 없으면 4년전 → 3년전
+     순으로 대체)
+  3) PER < 10배
+  4) EBIT(영업이익 TTM 근사) > 0 이고 EV/EBIT < 10배
      (EV = 시가총액 + 총부채, 근사치 — DART finstate API가 현금성자산을
      제공하지 않아 차감하지 않음)
 
@@ -24,18 +26,20 @@ import numpy as np
 import pandas as pd
 
 COLS = ["name", "sector_raw", "mktcap_eok", "close", "low_52w",
-        "dist_from_52w_low_pct", "op_ttm_eok", "op_income_5y_ago_eok", "ev_ebit"]
+        "dist_from_52w_low_pct", "per", "eps_now", "eps_years_ago", "ev_ebit"]
 
 KOR_NAMES = {
     "name": "종목명", "sector_raw": "시장", "mktcap_eok": "시가총액(억)",
     "close": "종가", "low_52w": "52주최저가", "dist_from_52w_low_pct": "52주저가대비(%)",
-    "op_ttm_eok": "영업이익(TTM,억원)", "op_income_5y_ago_eok": "영업이익(5년전,억원)",
+    "per": "PER", "eps_now": "EPS(TTM)", "eps_years_ago": "EPS(3~5년전)",
     "ev_ebit": "EV/EBIT",
 }
 
 
 def add_cheap_metrics(df: pd.DataFrame) -> pd.DataFrame:
-    """52주 저가 대비 괴리율, EV, EBIT, EV/EBIT 파생 컬럼을 계산해 추가한다.
+    """52주 저가 대비 괴리율, PER, EV, EBIT, EV/EBIT 파생 컬럼을 계산해 추가한다.
+    eps_now/eps_years_ago는 재무 캐시(data_pipeline.fetch_finance_one)에서
+    이미 계산되어 들어온 값을 그대로 쓴다.
 
     EV = 시가총액 + 총부채 (현금성자산 제외). DART의 finstate("재무제표
     주요계정") 응답에는 현금및현금성자산이 포함되지 않아(전종목 100% 결측
@@ -44,6 +48,7 @@ def add_cheap_metrics(df: pd.DataFrame) -> pd.DataFrame:
     부채로 보는 보수적 근사치를 쓴다."""
     d = df.copy()
     d["dist_from_52w_low_pct"] = (d["close"] / d["low_52w"] - 1) * 100
+    d["per"] = d["mktcap"] / d["net_income_ttm"].where(d["net_income_ttm"] > 0)
     d["ev"] = d["mktcap"] + d["total_liabilities"]
     d["ebit"] = d["op_ttm"]
     d["ev_ebit"] = d["ev"] / d["ebit"].where(d["ebit"] > 0)
@@ -51,19 +56,25 @@ def add_cheap_metrics(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def apply_cheap_filters(df: pd.DataFrame, max_dist_from_low_pct: float = 10.0,
-                         max_ev_ebit: float = 10.0) -> pd.DataFrame:
-    """3가지 통과 조건을 순수하게 적용한다 (유동성 하한선 없음). 결측치가 있는
+                         max_per: float = 10.0, max_ev_ebit: float = 10.0) -> pd.DataFrame:
+    """4가지 통과 조건을 순수하게 적용한다 (유동성 하한선 없음). 결측치가 있는
     조건은 통과 실패로 처리한다."""
     d = df.copy()
     near_low = d["dist_from_52w_low_pct"] <= max_dist_from_low_pct
-    earning_more = d["op_ttm"] > d["op_income_5y_ago"]
+    eps_growing = d["eps_now"] > d["eps_years_ago"]
+    cheap_per = (d["net_income_ttm"] > 0) & (d["per"] < max_per)
     cheap_ev = (d["ebit"] > 0) & (d["ev_ebit"] < max_ev_ebit)
-    d["passed"] = near_low.fillna(False) & earning_more.fillna(False) & cheap_ev.fillna(False)
+    d["passed"] = (
+        near_low.fillna(False)
+        & eps_growing.fillna(False)
+        & cheap_per.fillna(False)
+        & cheap_ev.fillna(False)
+    )
     return d
 
 
 def load_cheap(date: str, bsns_year: int) -> tuple[pd.DataFrame, str]:
-    """가격·52주최저가·재무 캐시에서 Cheap Stock Picking에 필요한 컬럼을 조립한다."""
+    """가격·52주최저가·재무 캐시에서 Cheap KOSPI Stocks에 필요한 컬럼을 조립한다."""
     from data_pipeline import FINANCE_CACHE, get_full_universe, update_price_history, get_52w_low
 
     if not FINANCE_CACHE.exists():
@@ -85,8 +96,6 @@ def load_cheap(date: str, bsns_year: int) -> tuple[pd.DataFrame, str]:
     df = df.join(fin, how="inner")
 
     df = add_cheap_metrics(df)
-    df["op_ttm_eok"] = df["op_ttm"] / 1e8
-    df["op_income_5y_ago_eok"] = df["op_income_5y_ago"] / 1e8
 
     return df, resolved_date
 
@@ -109,15 +118,19 @@ def _to_json_records(rows: pd.DataFrame, cols: list[str]) -> list[dict]:
 
 def print_diagnostics(df: pd.DataFrame) -> None:
     """조건별 결측치/충족 현황을 출력한다. `add_cheap_metrics`가 이미 적용된
-    데이터프레임(dist_from_52w_low_pct/ebit/ev_ebit 컬럼 포함)을 받는다.
-    통과율이 비정상적으로 낮을 때 '조건이 엄격해서'인지 'DART 계정명 매칭
-    실패로 결측치가 나서'인지 구분하기 위한 운영 진단용 출력이다."""
+    데이터프레임(dist_from_52w_low_pct/per/ebit/ev_ebit 컬럼 포함)을 받는다.
+    통과율이 비정상적으로 낮을 때 '조건이 엄격해서'인지 'DART 데이터를
+    못 받아서 결측치가 나서'인지 구분하기 위한 운영 진단용 출력이다."""
     total = len(df)
     n_low_missing = int(df["low_52w"].isna().sum())
     n_near_low = int((df["dist_from_52w_low_pct"] <= 10.0).sum())
 
-    n_5y_missing = int(df["op_income_5y_ago"].isna().sum())
-    n_earning_more = int((df["op_ttm"] > df["op_income_5y_ago"]).sum())
+    n_eps_now_missing = int(df["eps_now"].isna().sum())
+    n_eps_ago_missing = int(df["eps_years_ago"].isna().sum())
+    n_eps_growing = int((df["eps_now"] > df["eps_years_ago"]).sum())
+
+    n_per_missing = int(df["per"].isna().sum())
+    n_cheap_per = int(((df["net_income_ttm"] > 0) & (df["per"] < 10.0)).sum())
 
     n_liab_missing = int(df["total_liabilities"].isna().sum())
     n_ebit_missing = int(df["ebit"].isna().sum())
@@ -127,8 +140,10 @@ def print_diagnostics(df: pd.DataFrame) -> None:
     print("-" * 78)
     print("[진단] 조건별 결측치/충족 현황")
     print(f"  1) 52주최저가 10% 이내      : low_52w 결측 {n_low_missing}/{total}, 충족 {n_near_low}/{total}")
-    print(f"  2) 5년전 대비 이익 증가     : op_income_5y_ago 결측 {n_5y_missing}/{total}, 충족 {n_earning_more}/{total}")
-    print(f"  3) EV/EBIT < 10배           : total_liabilities 결측 {n_liab_missing}/{total}, "
+    print(f"  2) 3~5년전 대비 EPS 증가   : eps_now 결측 {n_eps_now_missing}/{total}, "
+          f"eps_years_ago 결측 {n_eps_ago_missing}/{total}, 충족 {n_eps_growing}/{total}")
+    print(f"  3) PER < 10배               : per 결측 {n_per_missing}/{total}, 충족 {n_cheap_per}/{total}")
+    print(f"  4) EV/EBIT < 10배           : total_liabilities 결측 {n_liab_missing}/{total}, "
           f"ebit(<=0 포함) 결측 {n_ebit_missing}/{total}, "
           f"ev_ebit 결측 {n_ev_ebit_missing}/{total}, 충족 {n_cheap_ev}/{total}")
     print("-" * 78)
@@ -146,7 +161,7 @@ def run_cheap(date: str, bsns_year: int, top_n: int,
     ranked = filt.sort_values("ev_ebit", ascending=True)
 
     print("=" * 78)
-    print(f"Cheap Stock Picking — 유니버스 {len(d)} → 통과 {int(filt['passed'].sum())} "
+    print(f"Cheap KOSPI Stocks — 유니버스 {len(d)} → 통과 {int(filt['passed'].sum())} "
           f"(가격기준일 {date} / 재무기준연도 {bsns_year})")
     print("=" * 78)
     cols = [c for c in COLS if c in ranked.columns]

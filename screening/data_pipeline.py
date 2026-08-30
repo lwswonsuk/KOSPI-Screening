@@ -387,17 +387,46 @@ def fetch_dividend_one(dart, corp_code: str, annual_year: int) -> dict:
     return parse_dividend_report(fs_div)
 
 
-def fetch_op_income_5y_ago(dart, corp_code: str, year: int) -> float:
-    """5년 전 사업연도(annual_year - 5) 사업보고서(FY)에서 영업이익만 추출한다.
-    Cheap Stock Picking 스크리닝의 '5년 전보다 이익이 늘었는가' 조건에 쓰인다."""
+def fetch_shares_outstanding(dart, corp_code: str, year: int) -> float:
+    """지정 사업연도 사업보고서(FY)의 '주식의 총수 현황'(DART report key_word=
+    '주식총수', 실제 API: stockTotqySttus)에서 합계(보통주+우선주) 행의
+    유통주식수(distb_stock_co = 발행주식총수 - 자기주식수)를 추출한다.
+    이 API 응답 스키마는 실제 운영 데이터로 검증되지 않았으므로, 파싱 실패
+    시 예외를 삼키고 NaN을 반환해 파이프라인 전체가 멈추지 않게 한다."""
     try:
-        fs = dart.finstate(corp_code, year, reprt_code=QUARTER_CODES["FY"])
+        df = dart.report(corp_code, "주식총수", year, QUARTER_CODES["FY"])
     except Exception:
         return np.nan
-    if not isinstance(fs, pd.DataFrame) or len(fs) == 0:
+    if not isinstance(df, pd.DataFrame) or len(df) == 0 or "se" not in df.columns:
         return np.nan
-    y0, _, _ = _extract_financials_3col(fs)
-    return y0["op_income"]
+    total_row = df[df["se"].astype(str).str.contains("합계", na=False)]
+    if len(total_row) == 0 or "distb_stock_co" not in df.columns:
+        return np.nan
+    return _to_float(total_row.iloc[0]["distb_stock_co"])
+
+
+def fetch_eps_years_ago(dart, corp_code: str, annual_year: int) -> tuple[float, Optional[int]]:
+    """5년 전 → 4년 전 → 3년 전 순으로, 당기순이익과 유통주식수를 모두 구할 수
+    있는 첫 연도를 찾아 EPS를 계산한다. Cheap KOSPI Stocks 스크리닝의
+    '3~5년 전보다 EPS가 늘었는가' 조건에 쓰인다. 반환: (eps, 사용된 연도) —
+    세 연도 모두 실패하면 (nan, None)."""
+    for years_back in (5, 4, 3):
+        year = annual_year - years_back
+        try:
+            fs = dart.finstate(corp_code, year, reprt_code=QUARTER_CODES["FY"])
+        except Exception:
+            continue
+        if not isinstance(fs, pd.DataFrame) or len(fs) == 0:
+            continue
+        y0, _, _ = _extract_financials_3col(fs)
+        net_income = y0["net_income"]
+        if np.isnan(net_income):
+            continue
+        shares = fetch_shares_outstanding(dart, corp_code, year)
+        if np.isnan(shares) or shares == 0:
+            continue
+        return net_income / shares, year
+    return np.nan, None
 
 
 def fetch_finance_one(dart, stock_code: str, corp_code: str, annual_year: int,
@@ -507,6 +536,9 @@ def fetch_finance_one(dart, stock_code: str, corp_code: str, annual_year: int,
     elif not np.isnan(div["cash_dividend_total"]) and not np.isnan(net_income_ttm) and net_income_ttm > 0:
         payout_ratio = div["cash_dividend_total"] / net_income_ttm * 100
 
+    shares_now = fetch_shares_outstanding(dart, corp_code, annual_year)
+    eps_years_ago, eps_years_ago_year = fetch_eps_years_ago(dart, corp_code, annual_year)
+
     return {
         "stock_code": stock_code,
         "corp_code": corp_code,
@@ -526,7 +558,9 @@ def fetch_finance_one(dart, stock_code: str, corp_code: str, annual_year: int,
         "total_equity": total_equity_latest,
         "total_liabilities": total_liab_latest,
         "cash_equivalents": y0["cash_equivalents"],
-        "op_income_5y_ago": fetch_op_income_5y_ago(dart, corp_code, annual_year - 5),
+        "eps_now": safe_div(net_income_ttm, shares_now),
+        "eps_years_ago": eps_years_ago,
+        "eps_years_ago_year": eps_years_ago_year,
         "cash_dividend_total": div["cash_dividend_total"],
         "payout_ratio": payout_ratio,
     }

@@ -43,23 +43,96 @@ class FakeDart:
             ])
         if year == 2020 and reprt_code == "11011":  # annual_year - 5 FY
             return pd.DataFrame([
-                {"account_nm": _op_income_acc, "thstrm_amount": "3000",
-                 "frmtrm_amount": "2500", "bfefrmtrm_amount": "2000"},
+                {"account_nm": _net_income_acc, "thstrm_amount": "4000",
+                 "frmtrm_amount": "3500", "bfefrmtrm_amount": "3000"},
             ])
         return pd.DataFrame()
 
     def report(self, corp_code, keyword, year, reprt_code):
+        if keyword == "주식총수" and reprt_code == "11011":
+            if year == 2025:
+                return pd.DataFrame([{"se": "합계", "distb_stock_co": "1000"}])
+            if year == 2020:
+                return pd.DataFrame([{"se": "합계", "distb_stock_co": "800"}])
         return pd.DataFrame()
 
 
-def test_fetch_finance_one_exposes_total_liabilities_cash_and_5y_ago_op_income():
+def test_fetch_finance_one_exposes_total_liabilities_cash_and_eps_history():
     result = fetch_finance_one(
         FakeDart(), "005930", "00126380", annual_year=2025, ttm_year=2026, ttm_quarter="H1",
     )
 
     assert result["total_liabilities"] == 21000.0
     assert result["cash_equivalents"] == 5000.0
-    assert result["op_income_5y_ago"] == 3000.0
+    # net_income_ttm = 5000(당기누적) + (8000(작년연간) - 3500(작년동기누적)) = 9500
+    # eps_now = 9500 / 1000주 = 9.5
+    assert result["eps_now"] == 9.5
+    # eps_years_ago: 5년전(2020) 순이익 4000 / 유통주식수 800주 = 5.0
+    assert result["eps_years_ago"] == 5.0
+    assert result["eps_years_ago_year"] == 2020
+
+
+from data_pipeline import fetch_shares_outstanding, fetch_eps_years_ago
+
+
+def test_fetch_shares_outstanding_reads_total_row_distb_stock_co():
+    class FakeDartShares:
+        def report(self, corp_code, keyword, year, reprt_code):
+            return pd.DataFrame([
+                {"se": "보통주", "distb_stock_co": "900"},
+                {"se": "우선주", "distb_stock_co": "50"},
+                {"se": "합계", "distb_stock_co": "950"},
+            ])
+
+    assert fetch_shares_outstanding(FakeDartShares(), "00126380", 2020) == 950.0
+
+
+def test_fetch_shares_outstanding_returns_nan_when_total_row_missing():
+    class FakeDartNoTotal:
+        def report(self, corp_code, keyword, year, reprt_code):
+            return pd.DataFrame([{"se": "보통주", "distb_stock_co": "900"}])
+
+    import numpy as np
+    assert np.isnan(fetch_shares_outstanding(FakeDartNoTotal(), "00126380", 2020))
+
+
+def test_fetch_eps_years_ago_falls_back_from_5y_to_4y_when_5y_data_missing():
+    """5년 전(2020) 데이터가 없으면 4년 전(2021)으로 대체해야 한다."""
+    class FakeDartFallback:
+        def finstate(self, corp_code, year, reprt_code):
+            if year == 2020:
+                return pd.DataFrame()  # 5년 전 데이터 없음
+            if year == 2021:
+                return pd.DataFrame([
+                    {"account_nm": _net_income_acc, "thstrm_amount": "6000",
+                     "frmtrm_amount": "5000", "bfefrmtrm_amount": "4000"},
+                ])
+            return pd.DataFrame()
+
+        def report(self, corp_code, keyword, year, reprt_code):
+            if year == 2021:
+                return pd.DataFrame([{"se": "합계", "distb_stock_co": "600"}])
+            return pd.DataFrame()
+
+    eps, used_year = fetch_eps_years_ago(FakeDartFallback(), "00126380", 2025)
+
+    assert used_year == 2021
+    assert eps == 6000 / 600
+
+
+def test_fetch_eps_years_ago_returns_nan_when_all_three_years_missing():
+    class FakeDartAllMissing:
+        def finstate(self, corp_code, year, reprt_code):
+            return pd.DataFrame()
+
+        def report(self, corp_code, keyword, year, reprt_code):
+            return pd.DataFrame()
+
+    import numpy as np
+    eps, used_year = fetch_eps_years_ago(FakeDartAllMissing(), "00126380", 2025)
+
+    assert np.isnan(eps)
+    assert used_year is None
 
 
 def test_extract_year_preserves_value_from_first_matching_account_variant():
