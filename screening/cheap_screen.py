@@ -13,7 +13,7 @@ cheap_screen.py — "Cheap Korean Stocks" 스크리닝
      제공하지 않아 차감하지 않음. EBITDA도 감가상각비 데이터가 없어
      영업이익으로 근사)
 
-가치투자 탭과 달리 시총/거래대금 유동성 하한선은 적용하지 않는다. 정렬은 EV/EBITDA 오름차순.
+가치투자 탭과 달리 시총/거래대금 유동성 하한선은 적용하지 않는다. 정렬은 시가총액 내림차순.
 """
 
 from __future__ import annotations
@@ -218,7 +218,7 @@ def run_cheap(date: str, bsns_year: int, top_n: int,
     if debug_names:
         print_debug_names(filt, debug_names)
     print_diagnostics(filt)
-    ranked = filt.sort_values("ev_ebitda", ascending=True)
+    ranked = filt.sort_values("mktcap_eok", ascending=False)
 
     print("=" * 78)
     print(f"Cheap Korean Stocks — 유니버스 {len(d)} → 통과 {int(filt['passed'].sum())} "

@@ -37,7 +37,7 @@ export default function CheapAlgorithmInfo() {
             </section>
             <section>
               <h4 className="mb-2 font-semibold text-foreground">정렬 기준</h4>
-              <p className="text-muted-foreground">EV/EBITDA가 낮은(가장 저평가된) 순으로 정렬합니다.</p>
+              <p className="text-muted-foreground">시가총액이 큰 순으로 정렬합니다.</p>
             </section>
             <section>
               <h4 className="mb-2 font-semibold text-foreground">데이터 기준</h4>
