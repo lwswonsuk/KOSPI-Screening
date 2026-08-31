@@ -58,11 +58,34 @@ def test_apply_cheap_filters_rejects_far_from_52w_low():
     assert bool(out.loc[0, "passed"]) is False
 
 
-def test_apply_cheap_filters_passes_when_eps_now_beats_only_one_of_three_years():
-    """3/4/5년전 중 단 한 해보다만 높아도 OR 조건으로 통과해야 한다."""
+def test_add_cheap_metrics_computes_eps_3to5y_median():
+    df = add_cheap_metrics(pd.DataFrame([_row(eps_3y_ago=6.0, eps_4y_ago=7.0, eps_5y_ago=8.0)]))
+
+    assert df.loc[0, "eps_3to5y_median"] == 7.0
+
+
+def test_add_cheap_metrics_median_ignores_missing_years():
+    """세 해 중 결측이 있으면 남은 값들로만 중앙값을 구해야 한다 (skipna)."""
     df = add_cheap_metrics(pd.DataFrame([
-        _row(eps_now=6.5, eps_3y_ago=6.0, eps_4y_ago=7.0, eps_5y_ago=8.0,
-             net_income_3y_ago=600, net_income_4y_ago=700, net_income_5y_ago=800),
+        _row(eps_3y_ago=6.0, eps_4y_ago=np.nan, eps_5y_ago=np.nan),
+    ]))
+
+    assert df.loc[0, "eps_3to5y_median"] == 6.0  # 값이 하나뿐이면 그 값 자체가 중앙값
+
+
+def test_add_cheap_metrics_median_is_nan_when_all_three_years_missing():
+    df = add_cheap_metrics(pd.DataFrame([
+        _row(eps_3y_ago=np.nan, eps_4y_ago=np.nan, eps_5y_ago=np.nan),
+    ]))
+
+    assert np.isnan(df.loc[0, "eps_3to5y_median"])
+
+
+def test_apply_cheap_filters_passes_when_eps_now_beats_median_but_not_every_year():
+    """중앙값(7.0)보다는 높지만 가장 높은 해(8.0)보다는 낮아도 통과해야 한다
+    — 모든 해를 다 이겨야 하는 AND보다는 관대하다."""
+    df = add_cheap_metrics(pd.DataFrame([
+        _row(eps_now=7.5, eps_3y_ago=6.0, eps_4y_ago=7.0, eps_5y_ago=8.0),
     ]))
 
     out = apply_cheap_filters(df)
@@ -70,7 +93,7 @@ def test_apply_cheap_filters_passes_when_eps_now_beats_only_one_of_three_years()
     assert bool(out.loc[0, "passed"]) is True
 
 
-def test_apply_cheap_filters_rejects_when_eps_now_beats_none_of_three_years():
+def test_apply_cheap_filters_rejects_when_eps_now_below_median():
     df = add_cheap_metrics(pd.DataFrame([
         _row(eps_now=5.0, eps_3y_ago=6.0, eps_4y_ago=7.0, eps_5y_ago=8.0),
     ]))
@@ -80,8 +103,24 @@ def test_apply_cheap_filters_rejects_when_eps_now_beats_none_of_three_years():
     assert bool(out.loc[0, "passed"]) is False
 
 
+def test_apply_cheap_filters_median_avoids_single_outlier_year_distortion():
+    """평균 대신 중앙값을 쓰는 이유를 검증한다: 5년전(10)이 이상치로 낮으면
+    평균은 70으로 끌려 내려가 지금(80)이 평균보다 높다고 착각하지만, 실제로는
+    3년전(100)·4년전(100)보다 여전히 낮다 — 중앙값(100)을 쓰면 이 오탐을
+    피해 정확히 탈락시킨다."""
+    df = add_cheap_metrics(pd.DataFrame([
+        _row(eps_now=80.0, eps_3y_ago=100.0, eps_4y_ago=100.0, eps_5y_ago=10.0),
+    ]))
+
+    assert df.loc[0, "eps_3to5y_median"] == 100.0  # 평균(70)이었다면 80이 이겼을 것
+
+    out = apply_cheap_filters(df)
+
+    assert bool(out.loc[0, "passed"]) is False
+
+
 def test_apply_cheap_filters_rejects_when_any_of_3to5y_had_confirmed_deficit():
-    """EPS 증가 OR 조건은 만족해도, 3~5년 중 확인된 적자가 있었으면 제외해야 한다."""
+    """EPS 증가 조건은 만족해도, 3~5년 중 확인된 적자가 있었으면 제외해야 한다."""
     df = add_cheap_metrics(pd.DataFrame([
         _row(eps_now=10.0, eps_3y_ago=6.0, eps_4y_ago=7.0, eps_5y_ago=-2.0,
              net_income_3y_ago=600, net_income_4y_ago=700, net_income_5y_ago=-200),

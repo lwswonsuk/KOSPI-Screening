@@ -4,7 +4,9 @@ cheap_screen.py — "Cheap Korean Stocks" 스크리닝
 가치투자 스크리닝(ws_alpha.py)과 완전히 다른 알고리즘. 코스피+코스닥 전종목을
 대상으로 4가지 조건을 모두 만족해야 통과한다:
   1) 현재가가 52주 최저가의 10% 이내
-  2) EPS(TTM)가 3년 전 OR 4년 전 OR 5년 전 EPS보다 큼 (셋 중 하나만 만족해도 됨)
+  2) EPS(TTM)가 3~5년 전 EPS의 중앙값보다 큼 (평균 대신 중앙값 — 5년전이
+     annual_year 기준 2020년(코로나 실적 저점)과 겹치는 경우가 흔해, 평균을
+     쓰면 그 이상치 한 해에 끌려 내려가 과도하게 쉽게 통과할 위험이 있음)
      단, 3~5년 중 확인된 적자(당기순손실)가 있는 해가 하나라도 있으면 제외
      (데이터가 없어서 확인이 안 되는 해는 적자로 간주하지 않음)
   3) PER < 10배
@@ -55,6 +57,12 @@ def add_cheap_metrics(df: pd.DataFrame) -> pd.DataFrame:
     d["ev"] = d["mktcap"] + d["total_liabilities"]
     d["ebitda"] = d["op_ttm"]
     d["ev_ebitda"] = d["ev"] / d["ebitda"].where(d["ebitda"] > 0)
+    # 3~5년전 EPS의 중앙값. 평균 대신 중앙값을 쓰는 이유: 5년전이 annual_year
+    # 기준 2020년(코로나 실적 저점)과 겹치는 경우가 흔한데, 평균은 이 이상치
+    # 한 해에 끌려 내려가 "지금이 평균보다 높다"는 조건을 과도하게 쉽게
+    # 통과시킬 수 있다. 중앙값은 이상치 1개의 영향을 덜 받는다. 결측치는
+    # skipna로 제외하고 남은 값들로 중앙값을 계산한다 (셋 다 결측이면 NaN).
+    d["eps_3to5y_median"] = d[["eps_3y_ago", "eps_4y_ago", "eps_5y_ago"]].median(axis=1, skipna=True)
     return d
 
 
@@ -67,11 +75,7 @@ def apply_cheap_filters(df: pd.DataFrame, max_dist_from_low_pct: float = 10.0,
     d = df.copy()
     near_low = d["dist_from_52w_low_pct"] <= max_dist_from_low_pct
 
-    eps_growing = (
-        (d["eps_now"] > d["eps_3y_ago"])
-        | (d["eps_now"] > d["eps_4y_ago"])
-        | (d["eps_now"] > d["eps_5y_ago"])
-    )
+    eps_growing = d["eps_now"] > d["eps_3to5y_median"]
     had_deficit_3to5y = (
         (d["net_income_3y_ago"] < 0)
         | (d["net_income_4y_ago"] < 0)
@@ -147,11 +151,7 @@ def print_diagnostics(df: pd.DataFrame) -> None:
     n_eps_all_missing = int(
         (df["eps_3y_ago"].isna() & df["eps_4y_ago"].isna() & df["eps_5y_ago"].isna()).sum()
     )
-    eps_growing = (
-        (df["eps_now"] > df["eps_3y_ago"])
-        | (df["eps_now"] > df["eps_4y_ago"])
-        | (df["eps_now"] > df["eps_5y_ago"])
-    )
+    eps_growing = df["eps_now"] > df["eps_3to5y_median"]
     n_eps_growing = int(eps_growing.sum())
 
     had_deficit_3to5y = (
@@ -172,7 +172,7 @@ def print_diagnostics(df: pd.DataFrame) -> None:
     print("-" * 78)
     print("[진단] 조건별 결측치/충족 현황")
     print(f"  1) 52주최저가 10% 이내       : low_52w 결측 {n_low_missing}/{total}, 충족 {n_near_low}/{total}")
-    print(f"  2) 3/4/5년전 대비 EPS 증가  : eps_now 결측 {n_eps_now_missing}/{total}, "
+    print(f"  2) 3~5년전 EPS 중앙값 대비 증가 : eps_now 결측 {n_eps_now_missing}/{total}, "
           f"3~5년전 EPS 전부 결측 {n_eps_all_missing}/{total}, "
           f"EPS증가 충족 {n_eps_growing}/{total}, 3~5년내 확인된 적자 {n_had_deficit}/{total}")
     print(f"  3) PER < 10배                : per 결측 {n_per_missing}/{total}, 충족 {n_cheap_per}/{total}")
@@ -188,7 +188,7 @@ def print_debug_names(df: pd.DataFrame, names: list[str]) -> None:
     사용자가 '이 종목은 왜 안 나오지?'라고 물었을 때 바로 답할 수 있도록 하는
     운영 디버그용 출력이다."""
     debug_cols = ["name", "sector_raw", "close", "low_52w", "dist_from_52w_low_pct",
-                  "eps_now", "eps_3y_ago", "eps_4y_ago", "eps_5y_ago",
+                  "eps_now", "eps_3y_ago", "eps_4y_ago", "eps_5y_ago", "eps_3to5y_median",
                   "net_income_3y_ago", "net_income_4y_ago", "net_income_5y_ago",
                   "net_income_ttm", "per", "ebitda", "ev", "ev_ebitda", "passed"]
     debug_cols = [c for c in debug_cols if c in df.columns]

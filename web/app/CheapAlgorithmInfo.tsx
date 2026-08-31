@@ -23,9 +23,10 @@ export default function CheapAlgorithmInfo() {
               <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
                 <li>현재가가 52주 최저가의 10% 이내</li>
                 <li>
-                  EPS(TTM)가 3년 전 <b className="text-foreground">또는</b> 4년 전{" "}
-                  <b className="text-foreground">또는</b> 5년 전 EPS보다 큼 — 셋 중
-                  한 해만 이겨도 통과
+                  EPS(TTM)가 3~5년 전 EPS의 중앙값보다 큼 — 평균이 아닌 중앙값을 쓰는
+                  이유는, 5년 전이 코로나 실적 저점(2020년)과 겹치는 경우가 많아
+                  평균을 쓰면 그 이상치 한 해에 끌려 내려가 과도하게 쉽게 통과할 수
+                  있기 때문
                 </li>
                 <li>단, 3~5년 전 중 확인된 적자(당기순손실)가 있었던 종목은 제외</li>
                 <li>PER 10배 미만</li>
