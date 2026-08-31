@@ -110,7 +110,7 @@ jobs:
           if [ -n "$DEBUG_NAMES" ]; then
             EXTRA_ARGS+=(--debug-names "$DEBUG_NAMES")
           fi
-          python cheap_screen.py --run --date $TODAY --year $YEAR --top 100 \
+          python cheap_screen.py --run --date $TODAY --year $YEAR --top 200 \
             --export-json "../web/data/results_cheap.json" \
             --filtered-json "../web/data/filtered_cheap_full.json" \
             "${EXTRA_ARGS[@]}"
