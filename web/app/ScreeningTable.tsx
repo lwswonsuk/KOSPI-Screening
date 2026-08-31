@@ -113,7 +113,7 @@ export default function ScreeningTable({
         ? String(av).localeCompare(String(bv), "ko")
         : String(bv).localeCompare(String(av), "ko");
     });
-    return copy.slice(0, 50);
+    return copy.slice(0, 100);
   }, [liveRows, sortKey, sortDir]);
 
   function onSort(col: string) {

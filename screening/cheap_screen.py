@@ -15,9 +15,8 @@ cheap_screen.py — "Cheap Korean Stocks" 스크리닝
      제공하지 않아 차감하지 않음. EBITDA도 감가상각비 데이터가 없어
      영업이익으로 근사)
 
-가치투자 탭과 달리 시총/거래대금 유동성 하한선은 적용하지 않는다. 정렬은 그린블랫
-(마법공식) 스타일 — EV/EBITDA 순위 + PER 순위의 합산 순위가 낮은(두 저평가
-지표 모두 우수한) 종목 순.
+가치투자 탭과 달리 시총/거래대금 유동성 하한선은 적용하지 않는다. 정렬은 EPS(TTM)
+내림차순(높은 순).
 """
 
 from __future__ import annotations
@@ -95,19 +94,6 @@ def apply_cheap_filters(df: pd.DataFrame, max_dist_from_low_pct: float = 10.0,
         & cheap_ev.fillna(False)
     )
     return d
-
-
-def rank_greenblatt(df: pd.DataFrame) -> pd.DataFrame:
-    """그린블랫(마법공식) 스타일로 순위를 매긴다: EV/EBITDA 오름차순 순위와
-    PER 오름차순 순위를 더해, 합산 순위가 낮은(두 저평가 지표 모두 우수한)
-    종목이 위로 오도록 정렬한다. `apply_cheap_filters`를 통과한 종목들에
-    대해서만 호출한다고 가정한다(전체 유니버스가 아니라 통과 종목 안에서만
-    순위를 매김)."""
-    d = df.copy()
-    ev_ebitda_rank = d["ev_ebitda"].rank(ascending=True)
-    per_rank = d["per"].rank(ascending=True)
-    d["greenblatt_rank"] = ev_ebitda_rank + per_rank
-    return d.sort_values("greenblatt_rank", ascending=True)
 
 
 def load_cheap(date: str, bsns_year: int) -> tuple[pd.DataFrame, str]:
@@ -233,7 +219,7 @@ def run_cheap(date: str, bsns_year: int, top_n: int,
     if debug_names:
         print_debug_names(filt, debug_names)
     print_diagnostics(filt)
-    ranked = rank_greenblatt(filt[filt["passed"]])
+    ranked = filt[filt["passed"]].sort_values("eps_now", ascending=False)
 
     print("=" * 78)
     print(f"Cheap Korean Stocks — 유니버스 {len(d)} → 통과 {int(filt['passed'].sum())} "

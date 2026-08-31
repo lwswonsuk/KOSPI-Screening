@@ -34,7 +34,7 @@ export default function Home() {
   return (
     <main className="mx-auto max-w-6xl px-5 py-10">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight">Cheap Korean Stocks</h1>
+        <h1 className="text-2xl font-bold tracking-tight">한국주식 스크리닝</h1>
         <p className="mt-1 text-sm text-muted-foreground">
           {cheapData.quote_text
             ? `"${cheapData.quote_text}" — ${cheapData.quote_author}`

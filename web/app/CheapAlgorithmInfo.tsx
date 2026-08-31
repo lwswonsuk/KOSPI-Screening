@@ -41,10 +41,7 @@ export default function CheapAlgorithmInfo() {
             </section>
             <section>
               <h4 className="mb-2 font-semibold text-foreground">정렬 기준</h4>
-              <p className="text-muted-foreground">
-                그린블랫(마법공식) 스타일 — EV/EBITDA 순위와 PER 순위를 더해, 합산 순위가
-                낮은(두 저평가 지표 모두 우수한) 종목이 위로 오도록 정렬합니다.
-              </p>
+              <p className="text-muted-foreground">EPS(TTM)이 높은 순으로 정렬합니다.</p>
             </section>
             <section>
               <h4 className="mb-2 font-semibold text-foreground">데이터 기준</h4>
