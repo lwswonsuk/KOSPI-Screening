@@ -51,7 +51,10 @@ export default function ScreeningTable({
   labels: Record<string, string>;
   rows: ResultRow[];
 }) {
-  const [sortKey, setSortKey] = useState<string>("score");
+  // 데이터셋마다 있는 컬럼이 달라(예: Cheap Korean Stocks에는 "score"가 없음),
+  // "score"가 있을 때만 기본 정렬 기준으로 삼는다. 없으면 백엔드가 이미
+  // 정해둔 순서(JSON에 저장된 순서)를 그대로 유지한다.
+  const [sortKey, setSortKey] = useState<string>(() => (columns.includes("score") ? "score" : ""));
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
   const [liveRows, setLiveRows] = useState<ResultRow[]>(rows);
   const [priceAsOf, setPriceAsOf] = useState<string | null>(null);
@@ -95,10 +98,14 @@ export default function ScreeningTable({
   const sorted = useMemo(() => {
     const copy = [...liveRows];
     copy.sort((a, b) => {
+      if (!sortKey) return 0; // 활성화된 정렬 기준 없음 → 백엔드가 정한 순서 유지 (안정 정렬)
       const av = a[sortKey];
       const bv = b[sortKey];
-      if (av === null || av === undefined) return 1;
-      if (bv === null || bv === undefined) return -1;
+      const aMissing = av === null || av === undefined;
+      const bMissing = bv === null || bv === undefined;
+      if (aMissing && bMissing) return 0;
+      if (aMissing) return 1;
+      if (bMissing) return -1;
       if (typeof av === "number" && typeof bv === "number") {
         return sortDir === "asc" ? av - bv : bv - av;
       }
