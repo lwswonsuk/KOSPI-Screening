@@ -15,7 +15,9 @@ cheap_screen.py — "Cheap Korean Stocks" 스크리닝
      제공하지 않아 차감하지 않음. EBITDA도 감가상각비 데이터가 없어
      영업이익으로 근사)
 
-가치투자 탭과 달리 시총/거래대금 유동성 하한선은 적용하지 않는다. 정렬은 시가총액 내림차순.
+가치투자 탭과 달리 시총/거래대금 유동성 하한선은 적용하지 않는다. 정렬은 그린블랫
+(마법공식) 스타일 — EV/EBITDA 순위 + PER 순위의 합산 순위가 낮은(두 저평가
+지표 모두 우수한) 종목 순.
 """
 
 from __future__ import annotations
@@ -29,23 +31,22 @@ from stock_profile import generate_all_profiles
 import numpy as np
 import pandas as pd
 
-COLS = ["name", "sector_raw", "mktcap_eok", "close", "low_52w",
-        "dist_from_52w_low_pct", "per", "eps_now", "eps_3y_ago", "eps_4y_ago",
-        "eps_5y_ago", "ev_ebitda"]
+COLS = ["name", "sector_raw", "mktcap_eok", "close", "dist_from_52w_low_pct",
+        "per", "pbr", "eps_now", "eps_3to5y_median", "ev_ebitda"]
 
 KOR_NAMES = {
     "name": "종목명", "sector_raw": "시장", "mktcap_eok": "시가총액(억)",
-    "close": "종가", "low_52w": "52주최저가", "dist_from_52w_low_pct": "52주저가대비(%)",
-    "per": "PER", "eps_now": "EPS(TTM)", "eps_3y_ago": "EPS(3년전)",
-    "eps_4y_ago": "EPS(4년전)", "eps_5y_ago": "EPS(5년전)", "ev_ebitda": "EV/EBITDA",
+    "close": "종가", "dist_from_52w_low_pct": "52주저가대비(%)",
+    "per": "PER", "pbr": "PBR", "eps_now": "EPS(TTM)",
+    "eps_3to5y_median": "EPS(중위,3~5년전)", "ev_ebitda": "EV/EBITDA",
 }
 
 
 def add_cheap_metrics(df: pd.DataFrame) -> pd.DataFrame:
-    """52주 저가 대비 괴리율, PER, EV, EBITDA, EV/EBITDA 파생 컬럼을 계산해
-    추가한다. eps_now/eps_3y_ago/eps_4y_ago/eps_5y_ago/net_income_Xy_ago는
-    재무 캐시(data_pipeline.fetch_finance_one)에서 이미 계산되어 들어온 값을
-    그대로 쓴다.
+    """52주 저가 대비 괴리율, PER, PBR, EV, EBITDA, EV/EBITDA 파생 컬럼을
+    계산해 추가한다. eps_now/eps_3y_ago/eps_4y_ago/eps_5y_ago/
+    net_income_Xy_ago는 재무 캐시(data_pipeline.fetch_finance_one)에서 이미
+    계산되어 들어온 값을 그대로 쓴다.
 
     EV = 시가총액 + 총부채 (현금성자산 제외). DART의 finstate("재무제표
     주요계정") 응답에는 현금및현금성자산이 포함되지 않아(전종목 100% 결측
@@ -54,6 +55,7 @@ def add_cheap_metrics(df: pd.DataFrame) -> pd.DataFrame:
     d = df.copy()
     d["dist_from_52w_low_pct"] = (d["close"] / d["low_52w"] - 1) * 100
     d["per"] = d["mktcap"] / d["net_income_ttm"].where(d["net_income_ttm"] > 0)
+    d["pbr"] = d["mktcap"] / d["total_equity"].where(d["total_equity"] > 0)
     d["ev"] = d["mktcap"] + d["total_liabilities"]
     d["ebitda"] = d["op_ttm"]
     d["ev_ebitda"] = d["ev"] / d["ebitda"].where(d["ebitda"] > 0)
@@ -93,6 +95,19 @@ def apply_cheap_filters(df: pd.DataFrame, max_dist_from_low_pct: float = 10.0,
         & cheap_ev.fillna(False)
     )
     return d
+
+
+def rank_greenblatt(df: pd.DataFrame) -> pd.DataFrame:
+    """그린블랫(마법공식) 스타일로 순위를 매긴다: EV/EBITDA 오름차순 순위와
+    PER 오름차순 순위를 더해, 합산 순위가 낮은(두 저평가 지표 모두 우수한)
+    종목이 위로 오도록 정렬한다. `apply_cheap_filters`를 통과한 종목들에
+    대해서만 호출한다고 가정한다(전체 유니버스가 아니라 통과 종목 안에서만
+    순위를 매김)."""
+    d = df.copy()
+    ev_ebitda_rank = d["ev_ebitda"].rank(ascending=True)
+    per_rank = d["per"].rank(ascending=True)
+    d["greenblatt_rank"] = ev_ebitda_rank + per_rank
+    return d.sort_values("greenblatt_rank", ascending=True)
 
 
 def load_cheap(date: str, bsns_year: int) -> tuple[pd.DataFrame, str]:
@@ -190,7 +205,7 @@ def print_debug_names(df: pd.DataFrame, names: list[str]) -> None:
     debug_cols = ["name", "sector_raw", "close", "low_52w", "dist_from_52w_low_pct",
                   "eps_now", "eps_3y_ago", "eps_4y_ago", "eps_5y_ago", "eps_3to5y_median",
                   "net_income_3y_ago", "net_income_4y_ago", "net_income_5y_ago",
-                  "net_income_ttm", "per", "ebitda", "ev", "ev_ebitda", "passed"]
+                  "net_income_ttm", "per", "pbr", "ebitda", "ev", "ev_ebitda", "passed"]
     debug_cols = [c for c in debug_cols if c in df.columns]
 
     matched = df[df["name"].isin(names)]
@@ -218,14 +233,14 @@ def run_cheap(date: str, bsns_year: int, top_n: int,
     if debug_names:
         print_debug_names(filt, debug_names)
     print_diagnostics(filt)
-    ranked = filt.sort_values("mktcap_eok", ascending=False)
+    ranked = rank_greenblatt(filt[filt["passed"]])
 
     print("=" * 78)
     print(f"Cheap Korean Stocks — 유니버스 {len(d)} → 통과 {int(filt['passed'].sum())} "
           f"(가격기준일 {date} / 재무기준연도 {bsns_year})")
     print("=" * 78)
     cols = [c for c in COLS if c in ranked.columns]
-    top = ranked[ranked["passed"]].head(top_n)[cols]
+    top = ranked.head(top_n)[cols]
     print(top.round(3).to_string())
 
     if export_json:
@@ -267,8 +282,7 @@ def run_cheap(date: str, bsns_year: int, top_n: int,
         import json
         from pathlib import Path as _Path
 
-        passed_all = ranked[ranked["passed"]][cols]
-        records = _to_json_records(passed_all, cols)
+        records = _to_json_records(ranked[cols], cols)
 
         payload = {
             "as_of_date": date,

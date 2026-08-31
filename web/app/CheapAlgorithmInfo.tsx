@@ -14,9 +14,9 @@ export default function CheapAlgorithmInfo() {
         <Card className="mt-3 py-5">
           <CardContent className="space-y-4 text-sm leading-relaxed text-foreground/90">
             <p className="text-muted-foreground">
-              핵심 아이디어: <b className="text-foreground">싸게 사서 기다린다.</b> 가치투자
-              탭과는 완전히 다른 알고리즘으로, 아래 조건을 모두 만족하는 코스피·코스닥
-              종목만 통과시키며 시가총액·거래대금 하한선은 두지 않습니다.
+              핵심 아이디어: <b className="text-foreground">싸게 사서 기다린다.</b> 아래
+              조건을 모두 만족하는 코스피·코스닥 종목만 통과시키며 시가총액·거래대금
+              하한선은 두지 않습니다.
             </p>
             <section>
               <h4 className="mb-2 font-semibold text-foreground">통과 조건 (모두 충족)</h4>
@@ -35,10 +35,16 @@ export default function CheapAlgorithmInfo() {
                   차감하지 않음), EBITDA는 감가상각비 데이터가 없어 영업이익(TTM)으로 근사
                 </li>
               </ul>
+              <p className="mt-2 text-muted-foreground">
+                PBR(주가순자산비율)은 별도 통과 조건은 아니고, 참고용으로 표에 함께 표시합니다.
+              </p>
             </section>
             <section>
               <h4 className="mb-2 font-semibold text-foreground">정렬 기준</h4>
-              <p className="text-muted-foreground">시가총액이 큰 순으로 정렬합니다.</p>
+              <p className="text-muted-foreground">
+                그린블랫(마법공식) 스타일 — EV/EBITDA 순위와 PER 순위를 더해, 합산 순위가
+                낮은(두 저평가 지표 모두 우수한) 종목이 위로 오도록 정렬합니다.
+              </p>
             </section>
             <section>
               <h4 className="mb-2 font-semibold text-foreground">데이터 기준</h4>

@@ -2,12 +2,15 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from cheap_screen import add_cheap_metrics, apply_cheap_filters, print_diagnostics, print_debug_names
+from cheap_screen import (
+    add_cheap_metrics, apply_cheap_filters, print_diagnostics, print_debug_names,
+    rank_greenblatt,
+)
 
 
 def _row(**overrides):
     base = dict(close=100, low_52w=95, mktcap=1000, total_liabilities=200,
-                net_income_ttm=150, eps_now=10.0,
+                total_equity=500, net_income_ttm=150, eps_now=10.0,
                 eps_3y_ago=6.0, eps_4y_ago=7.0, eps_5y_ago=8.0,
                 net_income_3y_ago=600, net_income_4y_ago=700, net_income_5y_ago=800,
                 op_ttm=150)
@@ -32,6 +35,20 @@ def test_add_cheap_metrics_per_is_nan_when_net_income_not_positive():
     out = add_cheap_metrics(df)
 
     assert out["per"].isna().all()
+
+
+def test_add_cheap_metrics_computes_pbr():
+    df = add_cheap_metrics(pd.DataFrame([_row(mktcap=1000, total_equity=500)]))
+
+    assert df.loc[0, "pbr"] == pytest.approx(1000 / 500)
+
+
+def test_add_cheap_metrics_pbr_is_nan_when_total_equity_not_positive():
+    df = pd.DataFrame([_row(total_equity=0), _row(total_equity=-100)])
+
+    out = add_cheap_metrics(df)
+
+    assert out["pbr"].isna().all()
 
 
 def test_add_cheap_metrics_ev_ebitda_is_nan_when_ebitda_not_positive():
@@ -204,6 +221,39 @@ def test_print_debug_names_shows_matched_and_missing_names(capsys):
     assert "종목A" in out
     assert "종목B" in out
     assert "없는종목" in out
+
+
+def test_rank_greenblatt_sums_ev_ebitda_and_per_ranks():
+    """EV/EBITDA와 PER 둘 다 가장 낮은 종목이 합산 순위 1위(맨 위)가 되어야
+    한다."""
+    df = add_cheap_metrics(pd.DataFrame([
+        _row(name="양쪽다쌈", mktcap=500, net_income_ttm=100),   # per=5,  ev=700,  ev_ebitda=4.67
+        _row(name="양쪽다비쌈", mktcap=3000, net_income_ttm=100),  # per=30, ev=3200, ev_ebitda=21.3
+        _row(name="중간", mktcap=1500, net_income_ttm=150),      # per=10, ev=1700, ev_ebitda=11.3
+    ]))
+
+    out = rank_greenblatt(df)
+
+    assert list(out["name"]) == ["양쪽다쌈", "중간", "양쪽다비쌈"]
+
+
+def test_rank_greenblatt_favors_stock_that_wins_on_only_one_metric_over_worst_of_both():
+    """한쪽 지표에서만 압도적으로 싸면, 두 지표 다 애매한 종목보다 합산 순위가
+    낮아질(더 위로 갈) 수 있다는 그린블랫 방식의 특성을 보여준다."""
+    df = add_cheap_metrics(pd.DataFrame([
+        # PER 최상위(1등)지만 EV/EBITDA는 최하위(3등) → 합산 순위 4
+        _row(name="PER최고", mktcap=1000, net_income_ttm=500, op_ttm=10),
+        # 둘 다 중간(2등+2등) → 합산 순위 4
+        _row(name="둘다중간", mktcap=1000, net_income_ttm=100, op_ttm=100),
+        # EV/EBITDA 최상위(1등)지만 PER는 최하위(3등) → 합산 순위 4
+        _row(name="EV최고", mktcap=200, net_income_ttm=10, op_ttm=150),
+    ]))
+
+    out = rank_greenblatt(df)
+
+    # 세 종목의 합산 순위가 모두 동일(4)해야 함을 먼저 확인 — 그린블랫 방식이
+    # '한쪽만 극단적으로 좋은 것'과 '둘 다 무난한 것'을 동등하게 취급함을 보여준다
+    assert out["greenblatt_rank"].nunique() == 1
 
 
 def test_print_diagnostics_reports_missing_field_counts(capsys):

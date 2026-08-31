@@ -12,9 +12,7 @@ describe("ScreeningTable 숫자 포맷", () => {
     expect(source).toMatch(/TWO_DECIMAL_RIGHT_ALIGN = new Set\(\[[^\]]*"dist_from_52w_low_pct"/);
     expect(source).toMatch(/TWO_DECIMAL_RIGHT_ALIGN = new Set\(\[[^\]]*"ev_ebitda"/);
     expect(source).toMatch(/TWO_DECIMAL_RIGHT_ALIGN = new Set\(\[[^\]]*"eps_now"/);
-    expect(source).toMatch(/TWO_DECIMAL_RIGHT_ALIGN = new Set\(\[[^\]]*"eps_3y_ago"/);
-    expect(source).toMatch(/TWO_DECIMAL_RIGHT_ALIGN = new Set\(\[[^\]]*"eps_4y_ago"/);
-    expect(source).toMatch(/TWO_DECIMAL_RIGHT_ALIGN = new Set\(\[[^\]]*"eps_5y_ago"/);
-    expect(source).toMatch(/RIGHT_ALIGN_ONLY = new Set\(\[[^\]]*"low_52w"/);
+    expect(source).toMatch(/TWO_DECIMAL_RIGHT_ALIGN = new Set\(\[[^\]]*"eps_3to5y_median"/);
+    expect(source).toMatch(/TWO_DECIMAL_RIGHT_ALIGN = new Set\(\[[^\]]*"pbr"/);
   });
 });
