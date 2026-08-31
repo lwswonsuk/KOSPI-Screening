@@ -2,7 +2,7 @@
   "as_of_date": "20260828",
   "financial_year": 2025,
   "financial_period_label": "2026년 2분기",
-  "generated_at": "2026-08-31T00:01:35.625347+00:00",
+  "generated_at": "2026-08-31T00:06:05.867115+00:00",
   "quote_text": "숫자로 증명되는 회사를 사고, 스토리로 사지 마라.",
   "quote_author": "김민국",
   "universe_total": 829,
@@ -817,11 +817,13 @@
       "eps_years_ago": -16879.51,
       "ev_ebit": 9.4084,
       "profile": {
-        "business": "죄송하지만 'INVENI'라는 한국 상장 종목을 확실하게 파악하기 어렵습니다. 정확한 회사명이나 티커 코드를 확인해주시면 더 정확한 정보를 제공할 수 있습니다.",
-        "sector": "확인 필요",
-        "products": "확인 필요",
+        "business": "인베니는 반도체 검사 장비 및 소재를 공급하는 기업입니다. 반도체 제조 공정에서 필요한 검사 및 측정 솔루션을 제공합니다.",
+        "sector": "반도체장비",
+        "products": "반도체 검사장비, 반도체 소재",
         "competitors": [
-          "확인 필요"
+          "KLA-Tencor",
+          "Applied Materials",
+          "ASML"
         ]
       }
     },
