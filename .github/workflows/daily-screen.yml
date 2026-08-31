@@ -32,7 +32,7 @@ on:
         options: [auto, Q1, H1, Q3, FY]
         default: auto
       debug_names:
-        description: "Cheap KOSPI Stocks 디버그: 쉼표로 구분한 종목명 (예: CJ대한통운,효성ITX) — 통과 여부와 무관하게 조건별 수치를 로그에 출력"
+        description: "Cheap Korean Stocks 디버그: 쉼표로 구분한 종목명 (예: CJ대한통운,효성ITX) — 통과 여부와 무관하게 조건별 수치를 로그에 출력"
         type: string
         default: ""
 
@@ -63,9 +63,9 @@ jobs:
         id: finance-cache
         with:
           path: screening/.cache
-          key: finance-cache-v5-${{ steps.quarter.outputs.value }}
+          key: finance-cache-v6-${{ steps.quarter.outputs.value }}
           restore-keys: |
-            finance-cache-v5-
+            finance-cache-v6-
 
       - name: 재무데이터 없거나 강제갱신 요청/분기 공시일정 시 새로 받기
         if: >-
@@ -96,7 +96,7 @@ jobs:
             --export-json "../web/data/results.json" \
             --filtered-json "../web/data/filtered_full.json"
 
-      - name: Cheap Stock Picking 스크리닝 실행 + JSON 저장
+      - name: Cheap Korean Stocks 스크리닝 실행 + JSON 저장
         working-directory: screening
         continue-on-error: true
         env:

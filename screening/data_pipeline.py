@@ -405,28 +405,42 @@ def fetch_shares_outstanding(dart, corp_code: str, year: int) -> float:
     return _to_float(total_row.iloc[0]["distb_stock_co"])
 
 
-def fetch_eps_years_ago(dart, corp_code: str, annual_year: int) -> tuple[float, Optional[int]]:
-    """5년 전 → 4년 전 → 3년 전 순으로, 당기순이익과 유통주식수를 모두 구할 수
-    있는 첫 연도를 찾아 EPS를 계산한다. Cheap KOSPI Stocks 스크리닝의
-    '3~5년 전보다 EPS가 늘었는가' 조건에 쓰인다. 반환: (eps, 사용된 연도) —
-    세 연도 모두 실패하면 (nan, None)."""
-    for years_back in (5, 4, 3):
-        year = annual_year - years_back
-        try:
-            fs = dart.finstate(corp_code, year, reprt_code=QUARTER_CODES["FY"])
-        except Exception:
-            continue
-        if not isinstance(fs, pd.DataFrame) or len(fs) == 0:
-            continue
-        y0, _, _ = _extract_financials_3col(fs)
-        net_income = y0["net_income"]
+def fetch_eps_3to5y_ago(dart, corp_code: str, annual_year: int) -> dict:
+    """3년 전·4년 전·5년 전 각각의 당기순이익과 EPS를 계산한다. Cheap Korean
+    Stocks 스크리닝의 'OR 조건(3~5년 전 중 아무 해보다 EPS가 늘었으면 통과)'과
+    '3~5년 중 확인된 적자가 있으면 제외' 규칙에 쓰인다.
+
+    finstate는 한 번 호출하면 당기/전기/전전기 3개년이 함께 오므로, 사업연도를
+    annual_year-3으로 조회하면 -3/-4/-5년 순이익을 단 1회 호출로 모두 얻는다
+    (연도별로 3번 호출하지 않음). 유통주식수는 연도별 스냅샷이라 이 API로는
+    묶어서 받을 수 없어, 순이익이 확인된 연도에 한해서만 개별 조회한다."""
+    try:
+        fs = dart.finstate(corp_code, annual_year - 3, reprt_code=QUARTER_CODES["FY"])
+    except Exception:
+        fs = None
+
+    if not isinstance(fs, pd.DataFrame) or len(fs) == 0:
+        ni_3y = ni_4y = ni_5y = np.nan
+    else:
+        y0, y1, y2 = _extract_financials_3col(fs)  # y0=-3y, y1=-4y, y2=-5y
+        ni_3y, ni_4y, ni_5y = y0["net_income"], y1["net_income"], y2["net_income"]
+
+    def _eps(net_income: float, year: int) -> float:
         if np.isnan(net_income):
-            continue
+            return np.nan
         shares = fetch_shares_outstanding(dart, corp_code, year)
         if np.isnan(shares) or shares == 0:
-            continue
-        return net_income / shares, year
-    return np.nan, None
+            return np.nan
+        return net_income / shares
+
+    return {
+        "eps_3y_ago": _eps(ni_3y, annual_year - 3),
+        "eps_4y_ago": _eps(ni_4y, annual_year - 4),
+        "eps_5y_ago": _eps(ni_5y, annual_year - 5),
+        "net_income_3y_ago": ni_3y,
+        "net_income_4y_ago": ni_4y,
+        "net_income_5y_ago": ni_5y,
+    }
 
 
 def fetch_finance_one(dart, stock_code: str, corp_code: str, annual_year: int,
@@ -537,7 +551,7 @@ def fetch_finance_one(dart, stock_code: str, corp_code: str, annual_year: int,
         payout_ratio = div["cash_dividend_total"] / net_income_ttm * 100
 
     shares_now = fetch_shares_outstanding(dart, corp_code, annual_year)
-    eps_years_ago, eps_years_ago_year = fetch_eps_years_ago(dart, corp_code, annual_year)
+    eps_history = fetch_eps_3to5y_ago(dart, corp_code, annual_year)
 
     return {
         "stock_code": stock_code,
@@ -559,8 +573,12 @@ def fetch_finance_one(dart, stock_code: str, corp_code: str, annual_year: int,
         "total_liabilities": total_liab_latest,
         "cash_equivalents": y0["cash_equivalents"],
         "eps_now": safe_div(net_income_ttm, shares_now),
-        "eps_years_ago": eps_years_ago,
-        "eps_years_ago_year": eps_years_ago_year,
+        "eps_3y_ago": eps_history["eps_3y_ago"],
+        "eps_4y_ago": eps_history["eps_4y_ago"],
+        "eps_5y_ago": eps_history["eps_5y_ago"],
+        "net_income_3y_ago": eps_history["net_income_3y_ago"],
+        "net_income_4y_ago": eps_history["net_income_4y_ago"],
+        "net_income_5y_ago": eps_history["net_income_5y_ago"],
         "cash_dividend_total": div["cash_dividend_total"],
         "payout_ratio": payout_ratio,
     }

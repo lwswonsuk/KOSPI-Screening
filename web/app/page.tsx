@@ -48,7 +48,7 @@ export default function Home() {
       <Tabs defaultValue="value">
         <TabsList className="mb-5">
           <TabsTrigger value="value">Korean Value Stocks</TabsTrigger>
-          <TabsTrigger value="cheap">Cheap KOSPI Stocks</TabsTrigger>
+          <TabsTrigger value="cheap">Cheap Korean Stocks</TabsTrigger>
         </TabsList>
         <TabsContent value="value">
           <ScreeningSection

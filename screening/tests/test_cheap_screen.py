@@ -7,12 +7,15 @@ from cheap_screen import add_cheap_metrics, apply_cheap_filters, print_diagnosti
 
 def _row(**overrides):
     base = dict(close=100, low_52w=95, mktcap=1000, total_liabilities=200,
-                net_income_ttm=150, eps_now=10.0, eps_years_ago=8.0, op_ttm=150)
+                net_income_ttm=150, eps_now=10.0,
+                eps_3y_ago=6.0, eps_4y_ago=7.0, eps_5y_ago=8.0,
+                net_income_3y_ago=600, net_income_4y_ago=700, net_income_5y_ago=800,
+                op_ttm=150)
     base.update(overrides)
     return base
 
 
-def test_add_cheap_metrics_computes_dist_per_ev_and_ev_ebit():
+def test_add_cheap_metrics_computes_dist_per_ev_and_ev_ebitda():
     df = pd.DataFrame([_row()])
 
     out = add_cheap_metrics(df)
@@ -20,7 +23,7 @@ def test_add_cheap_metrics_computes_dist_per_ev_and_ev_ebit():
     assert out.loc[0, "dist_from_52w_low_pct"] == pytest.approx((100 / 95 - 1) * 100)
     assert out.loc[0, "per"] == pytest.approx(1000 / 150)
     assert out.loc[0, "ev"] == 1000 + 200
-    assert out.loc[0, "ev_ebit"] == pytest.approx((1000 + 200) / 150)
+    assert out.loc[0, "ev_ebitda"] == pytest.approx((1000 + 200) / 150)
 
 
 def test_add_cheap_metrics_per_is_nan_when_net_income_not_positive():
@@ -31,15 +34,15 @@ def test_add_cheap_metrics_per_is_nan_when_net_income_not_positive():
     assert out["per"].isna().all()
 
 
-def test_add_cheap_metrics_ev_ebit_is_nan_when_ebit_not_positive():
+def test_add_cheap_metrics_ev_ebitda_is_nan_when_ebitda_not_positive():
     df = pd.DataFrame([_row(op_ttm=0), _row(op_ttm=-10)])
 
     out = add_cheap_metrics(df)
 
-    assert out["ev_ebit"].isna().all()
+    assert out["ev_ebitda"].isna().all()
 
 
-def test_apply_cheap_filters_passes_when_all_four_conditions_met():
+def test_apply_cheap_filters_passes_when_all_conditions_met():
     df = add_cheap_metrics(pd.DataFrame([_row()]))
 
     out = apply_cheap_filters(df)
@@ -55,12 +58,51 @@ def test_apply_cheap_filters_rejects_far_from_52w_low():
     assert bool(out.loc[0, "passed"]) is False
 
 
-def test_apply_cheap_filters_rejects_eps_not_growing():
-    df = add_cheap_metrics(pd.DataFrame([_row(eps_now=7.0, eps_years_ago=8.0)]))
+def test_apply_cheap_filters_passes_when_eps_now_beats_only_one_of_three_years():
+    """3/4/5년전 중 단 한 해보다만 높아도 OR 조건으로 통과해야 한다."""
+    df = add_cheap_metrics(pd.DataFrame([
+        _row(eps_now=6.5, eps_3y_ago=6.0, eps_4y_ago=7.0, eps_5y_ago=8.0,
+             net_income_3y_ago=600, net_income_4y_ago=700, net_income_5y_ago=800),
+    ]))
+
+    out = apply_cheap_filters(df)
+
+    assert bool(out.loc[0, "passed"]) is True
+
+
+def test_apply_cheap_filters_rejects_when_eps_now_beats_none_of_three_years():
+    df = add_cheap_metrics(pd.DataFrame([
+        _row(eps_now=5.0, eps_3y_ago=6.0, eps_4y_ago=7.0, eps_5y_ago=8.0),
+    ]))
 
     out = apply_cheap_filters(df)
 
     assert bool(out.loc[0, "passed"]) is False
+
+
+def test_apply_cheap_filters_rejects_when_any_of_3to5y_had_confirmed_deficit():
+    """EPS 증가 OR 조건은 만족해도, 3~5년 중 확인된 적자가 있었으면 제외해야 한다."""
+    df = add_cheap_metrics(pd.DataFrame([
+        _row(eps_now=10.0, eps_3y_ago=6.0, eps_4y_ago=7.0, eps_5y_ago=-2.0,
+             net_income_3y_ago=600, net_income_4y_ago=700, net_income_5y_ago=-200),
+    ]))
+
+    out = apply_cheap_filters(df)
+
+    assert bool(out.loc[0, "passed"]) is False
+
+
+def test_apply_cheap_filters_does_not_exclude_missing_deficit_year_data():
+    """3~5년 중 데이터가 없어(NaN) 적자 여부를 확인할 수 없는 해는 적자로
+    간주하지 않아야 한다 — 확인된 적자만 제외 대상."""
+    df = add_cheap_metrics(pd.DataFrame([
+        _row(net_income_4y_ago=np.nan, net_income_5y_ago=np.nan,
+             eps_4y_ago=np.nan, eps_5y_ago=np.nan),
+    ]))
+
+    out = apply_cheap_filters(df)
+
+    assert bool(out.loc[0, "passed"]) is True
 
 
 def test_apply_cheap_filters_rejects_high_per():
@@ -71,9 +113,22 @@ def test_apply_cheap_filters_rejects_high_per():
     assert bool(out.loc[0, "passed"]) is False
 
 
-def test_apply_cheap_filters_rejects_high_ev_ebit():
+def test_apply_cheap_filters_passes_ev_ebitda_up_to_20x():
+    # per은 낮게 유지(net_income_ttm을 키움)하고 ev_ebitda만 10배를 넘겨서
+    # 20배 임계값 자체가 실제로 통과를 허용하는지 검증한다.
+    df = add_cheap_metrics(pd.DataFrame([_row(mktcap=2600, net_income_ttm=300)]))
+    # per = 2600/300 ≈ 8.67 (<10, 통과), ev = 2600+200 = 2800, ebitda=150,
+    # ev_ebitda ≈ 18.67 (10~20 사이 — 옛 10배 기준이면 탈락, 새 20배 기준이면 통과)
+
+    out = apply_cheap_filters(df)
+
+    assert bool(out.loc[0, "passed"]) is True
+
+
+def test_apply_cheap_filters_rejects_ev_ebitda_over_20x():
     df = add_cheap_metrics(pd.DataFrame([_row(mktcap=5000, net_income_ttm=600)]))
-    # per = 5000/600 ≈ 8.3 (<10, 통과) 이지만 ev_ebit = (5000+200)/150 ≈ 34.7 (>10, 탈락)
+    # per = 5000/600 ≈ 8.33 (<10, 통과), ev = 5000+200 = 5200, ebitda=150,
+    # ev_ebitda ≈ 34.7 (>20, 탈락)
 
     out = apply_cheap_filters(df)
 
@@ -88,8 +143,10 @@ def test_apply_cheap_filters_rejects_missing_52w_low():
     assert bool(out.loc[0, "passed"]) is False
 
 
-def test_apply_cheap_filters_rejects_missing_eps_years_ago():
-    df = add_cheap_metrics(pd.DataFrame([_row(eps_years_ago=np.nan)]))
+def test_apply_cheap_filters_rejects_when_all_three_eps_years_missing():
+    df = add_cheap_metrics(pd.DataFrame([
+        _row(eps_3y_ago=np.nan, eps_4y_ago=np.nan, eps_5y_ago=np.nan),
+    ]))
 
     out = apply_cheap_filters(df)
 
@@ -98,7 +155,7 @@ def test_apply_cheap_filters_rejects_missing_eps_years_ago():
 
 def test_print_debug_names_shows_matched_and_missing_names(capsys):
     df = add_cheap_metrics(pd.DataFrame(
-        [_row(name="종목A"), _row(name="종목B", eps_now=5.0, eps_years_ago=8.0)]
+        [_row(name="종목A"), _row(name="종목B", eps_now=5.0)]
     ))
     df = apply_cheap_filters(df)
 
@@ -113,13 +170,13 @@ def test_print_debug_names_shows_matched_and_missing_names(capsys):
 def test_print_diagnostics_reports_missing_field_counts(capsys):
     df = add_cheap_metrics(pd.DataFrame([
         _row(),  # 모든 조건 충족
-        _row(total_liabilities=np.nan),  # ev_ebit 결측 유발
-        _row(eps_years_ago=np.nan),  # 3~5년전 EPS 결측
+        _row(total_liabilities=np.nan),  # ev_ebitda 결측 유발
+        _row(eps_3y_ago=np.nan, eps_4y_ago=np.nan, eps_5y_ago=np.nan),  # 3~5년전 EPS 전부 결측
     ]))
 
     print_diagnostics(df)
 
     out = capsys.readouterr().out
     assert "total_liabilities 결측 1/3" in out
-    assert "eps_years_ago 결측 1/3" in out
-    assert "ev_ebit 결측 1/3" in out
+    assert "3~5년전 EPS 전부 결측 1/3" in out
+    assert "ev_ebitda 결측 1/3" in out
