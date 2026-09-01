@@ -407,7 +407,7 @@ def fetch_shares_outstanding(dart, corp_code: str, year: int) -> float:
 
 def fetch_eps_3to5y_ago(dart, corp_code: str, annual_year: int) -> dict:
     """3년 전·4년 전·5년 전 각각의 당기순이익과 EPS를 계산한다. Cheap Korean
-    Stocks 스크리닝의 'OR 조건(3~5년 전 중 아무 해보다 EPS가 늘었으면 통과)'과
+    Stocks 스크리닝의 '3~5년 전 EPS 중앙값 대비 증가' 조건과
     '3~5년 중 확인된 적자가 있으면 제외' 규칙에 쓰인다.
 
     finstate는 한 번 호출하면 당기/전기/전전기 3개년이 함께 오므로, 사업연도를
@@ -539,12 +539,7 @@ def fetch_finance_one(dart, stock_code: str, corp_code: str, annual_year: int,
     op_margin = safe_div(op_income_ttm, revenue_ttm) * 100
 
     div = fetch_dividend_one(dart, corp_code, annual_year)
-    div_yield = np.nan
     payout_ratio = np.nan
-    if not np.isnan(div["cash_dividend_total"]):
-        # 시가총액은 fetch 시점에 알 수 없으므로 여기서는 총배당금(원)만 저장하고,
-        # 시가배당수익률은 load_real()에서 당일 시가총액과 결합해 계산한다.
-        pass
     if not np.isnan(div["payout_ratio_reported"]):
         payout_ratio = div["payout_ratio_reported"]
     elif not np.isnan(div["cash_dividend_total"]) and not np.isnan(net_income_ttm) and net_income_ttm > 0:
