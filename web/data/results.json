@@ -1,12 +1,12 @@
 {
-  "as_of_date": "20260923",
+  "as_of_date": "20260928",
   "financial_year": 2025,
   "financial_period_label": "2026년 2분기",
-  "generated_at": "2026-09-28T01:17:53.780721+00:00",
+  "generated_at": "2026-09-29T02:23:44.671225+00:00",
   "quote_text": "훌륭한 회사를 적정한 가격에 사는 것이, 적당한 회사를 훌륭한 가격에 사는 것보다 낫다.",
   "quote_author": "Charlie Munger",
   "universe_total": 2614,
-  "universe_passed": 431,
+  "universe_passed": 437,
   "columns": [
     "name",
     "sector_raw",
@@ -38,15 +38,15 @@
       "stock_code": "036830",
       "name": "솔브레인홀딩스",
       "sector_raw": "코스닥",
-      "mktcap_eok": 8509.1521,
-      "close": 41500.0,
-      "per": 1.5523,
-      "pbr": 0.5425,
+      "mktcap_eok": 8263.1043,
+      "close": 40300.0,
+      "per": 1.5074,
+      "pbr": 0.5269,
       "roe_3y_avg": 11.6984,
       "debt_ratio": 7.6574,
-      "div_yield": 1.18,
+      "div_yield": 1.2152,
       "payout_ratio_pct": 2.06,
-      "score": 0.7105,
+      "score": 0.7121,
       "profile": {
         "business": "솔브레인홀딩스는 반도체 및 디스플레이 소재·부품 제조 기업입니다. 고순도 화학물질, 가스, 세정액 등 반도체 생산에 필수적인 소재를 공급하며, 디스플레이 산업용 재료도 취급합니다.",
         "sector": "화학/반도체 소재",
@@ -59,18 +59,42 @@
       }
     },
     {
+      "stock_code": "003650",
+      "name": "미창석유",
+      "sector_raw": "코스피",
+      "mktcap_eok": 2176.3297,
+      "close": 125100.0,
+      "per": 1.9912,
+      "pbr": 0.378,
+      "roe_3y_avg": 13.3937,
+      "debt_ratio": 14.5514,
+      "div_yield": 2.433,
+      "payout_ratio_pct": 7.69,
+      "score": 0.702,
+      "profile": {
+        "business": "미창석유는 석유 제품의 정제 및 판매를 주력으로 하는 에너지 기업입니다. 국내 석유 수급 안정과 에너지 공급을 담당하고 있습니다.",
+        "sector": "에너지/석유",
+        "products": "휘발유, 경유, 중유 등 석유 제품",
+        "competitors": [
+          "SK에너지",
+          "GS칼텍스",
+          "S-Oil"
+        ]
+      }
+    },
+    {
       "stock_code": "015750",
       "name": "성우하이텍",
       "sector_raw": "코스닥",
-      "mktcap_eok": 4608.0,
-      "close": 5760.0,
-      "per": 1.8327,
-      "pbr": 0.2852,
+      "mktcap_eok": 4672.0,
+      "close": 5840.0,
+      "per": 1.8581,
+      "pbr": 0.2891,
       "roe_3y_avg": 10.3736,
       "debt_ratio": 63.2747,
-      "div_yield": 3.4718,
+      "div_yield": 3.4242,
       "payout_ratio_pct": 9.48,
-      "score": 0.6924,
+      "score": 0.6919,
       "profile": {
         "business": "반도체 및 전자부품 제조 전문 기업으로, 주로 반도체 패키징 소재, 전자 부품 및 화학소재를 생산합니다. 산업용 전자기기 및 반도체 산업에 필요한 다양한 소재와 부품을 공급합니다.",
         "sector": "화학/소재",
@@ -83,18 +107,42 @@
       }
     },
     {
+      "stock_code": "025000",
+      "name": "KPX케미칼",
+      "sector_raw": "코스피",
+      "mktcap_eok": 2392.6661,
+      "close": 57700.0,
+      "per": 2.5001,
+      "pbr": 0.342,
+      "roe_3y_avg": 10.018,
+      "debt_ratio": 38.0887,
+      "div_yield": 6.6441,
+      "payout_ratio_pct": 31.4,
+      "score": 0.6886,
+      "profile": {
+        "business": "KPX케미칼은 석유화학 제품 제조 및 판매를 주력으로 하는 기업입니다. 석유화학 기초 원료와 중간 제품 생산을 통해 화학 산업의 상·중류를 담당하고 있습니다.",
+        "sector": "화학/석유화학",
+        "products": "석유화학 기초 원료, 중간 화학제품",
+        "competitors": [
+          "한화큐셀",
+          "LG화학",
+          "SK이노베이션"
+        ]
+      }
+    },
+    {
       "stock_code": "043150",
       "name": "바텍",
       "sector_raw": "코스닥",
-      "mktcap_eok": 2593.5531,
-      "close": 17460.0,
-      "per": 4.0895,
-      "pbr": 0.5061,
+      "mktcap_eok": 2623.2616,
+      "close": 17660.0,
+      "per": 4.1364,
+      "pbr": 0.5119,
       "roe_3y_avg": 11.9015,
       "debt_ratio": 19.9311,
-      "div_yield": 1.1147,
+      "div_yield": 1.1021,
       "payout_ratio_pct": 7.2,
-      "score": 0.6799,
+      "score": 0.6795,
       "profile": {
         "business": "바텍은 반도체 및 디스플레이 제조 장비를 공급하는 기업입니다. 주로 진공 장비, 코팅 장비 등 반도체 생산 공정에 필요한 핵심 장비를 개발하고 판매합니다.",
         "sector": "반도체 장비",
@@ -107,18 +155,42 @@
       }
     },
     {
+      "stock_code": "101330",
+      "name": "모베이스",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 828.6636,
+      "close": 3580.0,
+      "per": 6.7171,
+      "pbr": 0.361,
+      "roe_3y_avg": 7.0097,
+      "debt_ratio": 0.2916,
+      "div_yield": 3.6203,
+      "payout_ratio_pct": 25.7,
+      "score": 0.6733,
+      "profile": {
+        "business": "모베이스는 모바일 기반의 디지털 마케팅 및 광고 플랫폼을 운영하는 회사입니다. 모바일 앱과 웹 서비스를 통해 광고주와 퍼블리셔를 연결하는 중개 역할을 수행합니다.",
+        "sector": "정보기술/디지털마케팅",
+        "products": "모바일 광고 네트워크, 디지털 광고 플랫폼",
+        "competitors": [
+          "쿠팡",
+          "카카오",
+          "네이버"
+        ]
+      }
+    },
+    {
       "stock_code": "383800",
       "name": "LX홀딩스",
       "sector_raw": "코스피",
-      "mktcap_eok": 6201.6201,
-      "close": 8130.0,
-      "per": 7.8839,
-      "pbr": 0.558,
+      "mktcap_eok": 6270.2727,
+      "close": 8220.0,
+      "per": 7.9712,
+      "pbr": 0.5642,
       "roe_3y_avg": 6.01,
       "debt_ratio": 29.4105,
-      "div_yield": 3.6353,
+      "div_yield": 3.5955,
       "payout_ratio_pct": 16.6,
-      "score": 0.6729,
+      "score": 0.6726,
       "profile": {
         "business": "LX홀딩스는 화학 및 에너지 관련 사업을 영위하는 종합 화학기업입니다. 석유화학, 화학제품, 에너지 솔루션 등 다양한 분야에서 사업을 전개하고 있습니다.",
         "sector": "화학/에너지",
@@ -134,15 +206,15 @@
       "stock_code": "200670",
       "name": "휴메딕스",
       "sector_raw": "코스닥",
-      "mktcap_eok": 2723.258,
-      "close": 24250.0,
-      "per": 5.8764,
-      "pbr": 0.8837,
+      "mktcap_eok": 2768.1777,
+      "close": 24650.0,
+      "per": 5.9733,
+      "pbr": 0.8983,
       "roe_3y_avg": 15.6654,
       "debt_ratio": 8.5969,
-      "div_yield": 3.5399,
+      "div_yield": 3.4824,
       "payout_ratio_pct": 18.62,
-      "score": 0.6729,
+      "score": 0.6718,
       "profile": {
         "business": "휴메딕스는 의료기기 및 진단 솔루션을 개발·제조하는 기업입니다. 체외진단(IVD) 제품과 의료기기를 주력으로 하며, 임상진단 시장에서 사업을 영위하고 있습니다.",
         "sector": "의료기기/진단기기",
@@ -158,15 +230,15 @@
       "stock_code": "205100",
       "name": "엑셈",
       "sector_raw": "코스닥",
-      "mktcap_eok": 930.6926,
-      "close": 1378.0,
-      "per": 4.6157,
-      "pbr": 0.7096,
+      "mktcap_eok": 960.4099,
+      "close": 1422.0,
+      "per": 4.7631,
+      "pbr": 0.7323,
       "roe_3y_avg": 7.3478,
       "debt_ratio": 10.4546,
-      "div_yield": 3.2245,
+      "div_yield": 3.1247,
       "payout_ratio_pct": 45.4,
-      "score": 0.6715,
+      "score": 0.67,
       "profile": {
         "business": "엑셈은 IT 소프트웨어 및 시스템 통합 서비스를 제공하는 기업입니다. 데이터베이스 성능 관리, 클라우드 솔루션, IT 컨설팅 등 엔터프라이즈 소프트웨어 솔루션을 개발·공급합니다.",
         "sector": "정보기술(소프트웨어/SI)",
@@ -179,26 +251,50 @@
       }
     },
     {
-      "stock_code": "214180",
-      "name": "헥토이노베이션",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1822.9694,
-      "close": 14030.0,
-      "per": 7.3411,
-      "pbr": 0.8683,
-      "roe_3y_avg": 12.2616,
-      "debt_ratio": 14.1567,
-      "div_yield": 3.4515,
-      "payout_ratio_pct": 20.6,
-      "score": 0.6686,
+      "stock_code": "033270",
+      "name": "유나이티드제약",
+      "sector_raw": "코스피",
+      "mktcap_eok": 2805.0696,
+      "close": 17630.0,
+      "per": 3.7484,
+      "pbr": 0.5643,
+      "roe_3y_avg": 9.7201,
+      "debt_ratio": 14.8139,
+      "div_yield": 3.4491,
+      "payout_ratio_pct": 25.26,
+      "score": 0.6697,
       "profile": {
-        "business": "헥토이노베이션은 반도체 및 디스플레이 장비 제조 업체로 LCD/OLED 패널 검사 및 측정 장비를 공급합니다. 국내외 디스플레이 제조사들을 주요 고객으로 하는 B2B 기업입니다.",
-        "sector": "반도체/디스플레이 장비",
-        "products": "디스플레이 검사 장비, 측정 시스템",
+        "business": "유나이티드제약은 의약품 제조 및 판매를 주업으로 하는 제약회사입니다. 처방약과 일반의약품 중심으로 사업을 영위하고 있습니다.",
+        "sector": "제약",
+        "products": "일반의약품, 처방약",
         "competitors": [
-          "코그넥스",
-          "네오비젼",
-          "뷰웍스"
+          "종로제약",
+          "영진약품",
+          "보령제약"
+        ]
+      }
+    },
+    {
+      "stock_code": "264660",
+      "name": "씨앤지하이테크",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 1329.8563,
+      "close": 13680.0,
+      "per": 5.7381,
+      "pbr": 0.9084,
+      "roe_3y_avg": 10.2343,
+      "debt_ratio": 23.0182,
+      "div_yield": 3.8959,
+      "payout_ratio_pct": 26.5,
+      "score": 0.6683,
+      "profile": {
+        "business": "씨앤지하이테크는 반도체 및 디스플레이 산업용 화학물질과 소재를 제조·공급하는 기업입니다. 고순도 화학물질, 특수가스, 반도체 공정용 재료 등을 생산하여 국내외 주요 반도체 및 디스플레이 제조사에 납품합니다.",
+        "sector": "화학/신소재",
+        "products": "반도체용 화학물질, 디스플레이용 소재, 특수가스",
+        "competitors": [
+          "케이씨씨",
+          "미래컴퍼니",
+          "엔케이"
         ]
       }
     },
@@ -206,167 +302,23 @@
       "stock_code": "049430",
       "name": "코메론",
       "sector_raw": "코스닥",
-      "mktcap_eok": 2090.088,
-      "close": 23100.0,
-      "per": 8.4423,
-      "pbr": 0.8633,
+      "mktcap_eok": 2026.752,
+      "close": 22400.0,
+      "per": 8.1865,
+      "pbr": 0.8372,
       "roe_3y_avg": 9.737,
       "debt_ratio": 4.336,
-      "div_yield": 3.009,
+      "div_yield": 3.103,
       "payout_ratio_pct": 27.88,
-      "score": 0.6648,
+      "score": 0.6681,
       "profile": {
-        "business": "코메론은 의료기기 및 진단기기 제조업체입니다. 주로 임상진단검사장비와 관련 시약을 개발·제조·판매하고 있습니다.",
-        "sector": "의료기기",
-        "products": "자동화학분석기, 임상검사시약",
+        "business": "코메론은 카메라 및 광학기기 제조업체입니다. 산업용 카메라, 렌즈 등 정밀광학제품을 생산하여 공급합니다.",
+        "sector": "전자/광학기기",
+        "products": "산업용 카메라, 광학렌즈",
         "competitors": [
-          "삼성메디슨",
-          "지멘스헬시니어스",
-          "로슈"
-        ]
-      }
-    },
-    {
-      "stock_code": "461300",
-      "name": "아이스크림미디어",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 2477.4448,
-      "close": 18580.0,
-      "per": 3.4424,
-      "pbr": 1.036,
-      "roe_3y_avg": 25.7315,
-      "debt_ratio": 28.0158,
-      "div_yield": 7.9235,
-      "payout_ratio_pct": 39.92,
-      "score": 0.6638,
-      "profile": {
-        "business": "아이스크림미디어는 디지털 광고 및 마케팅 서비스를 제공하는 기업입니다. 모바일 광고 플랫폼과 성과기반 마케팅 솔루션을 통해 광고주와 매체사를 연결하는 중개 역할을 수행합니다.",
-        "sector": "광고/마케팅/디지털미디어",
-        "products": "모바일 광고 플랫폼, 성과기반 광고 솔루션",
-        "competitors": [
-          "카카오",
-          "네이버",
-          "팬택"
-        ]
-      }
-    },
-    {
-      "stock_code": "037710",
-      "name": "광주신세계",
-      "sector_raw": "코스피",
-      "mktcap_eok": 2642.8151,
-      "close": 34650.0,
-      "per": 5.6155,
-      "pbr": 0.3045,
-      "roe_3y_avg": 5.5154,
-      "debt_ratio": 38.9404,
-      "div_yield": 6.9263,
-      "payout_ratio_pct": 41.17,
-      "score": 0.6626,
-      "profile": {
-        "business": "광주지역 대표 백화점으로 의류, 신발, 화장품, 식품 등 다양한 상품을 판매하는 유통업체입니다. 신세계그룹의 계열사로서 오프라인 소매 유통사업을 주력으로 영위하고 있습니다.",
-        "sector": "유통/백화점",
-        "products": "신세계 백화점(광주점) - 의류, 신발, 화장품, 식품, 생활용품",
-        "competitors": [
-          "현대백화점",
-          "롯데백화점",
-          "이마트"
-        ]
-      }
-    },
-    {
-      "stock_code": "010690",
-      "name": "화신",
-      "sector_raw": "코스피",
-      "mktcap_eok": 2563.1581,
-      "close": 7340.0,
-      "per": 4.1729,
-      "pbr": 0.4139,
-      "roe_3y_avg": 12.6453,
-      "debt_ratio": 102.2729,
-      "div_yield": 2.3046,
-      "payout_ratio_pct": 8.9,
-      "score": 0.6626,
-      "profile": {
-        "business": "화신은 한국의 전통 있는 백화점 기업으로, 소매 유통업을 주요 사업으로 영위하고 있습니다. 의류, 화장품, 생활용품 등 다양한 상품을 판매하며, 오프라인 매장 기반의 유통 사업을 운영하고 있습니다.",
-        "sector": "소매업/유통",
-        "products": "의류, 화장품, 생활용품 등 백화점 판매 상품",
-        "competitors": [
-          "현대백화점",
-          "신세계",
-          "롯데쇼핑"
-        ]
-      }
-    },
-    {
-      "stock_code": "243840",
-      "name": "신흥에스이씨",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 2097.568,
-      "close": 5440.0,
-      "per": 3.9699,
-      "pbr": 0.5571,
-      "roe_3y_avg": 10.2085,
-      "debt_ratio": 56.5558,
-      "div_yield": 0.0,
-      "payout_ratio_pct": 0.0,
-      "score": 0.6618,
-      "profile": {
-        "business": "신흥에스이씨는 반도체 후공정(패키징, 테스트) 장비를 제조하는 기업입니다. 반도체 칩을 기판에 부착하고 테스트하는 장비 및 솔루션을 공급합니다.",
-        "sector": "반도체 장비",
-        "products": "반도체 패키징 장비, 테스트 장비",
-        "competitors": [
-          "디에이씨",
-          "칩스앤미디어",
-          "큐엘씨"
-        ]
-      }
-    },
-    {
-      "stock_code": "004490",
-      "name": "세방전지",
-      "sector_raw": "코스피",
-      "mktcap_eok": 8218.98,
-      "close": 59300.0,
-      "per": 5.1408,
-      "pbr": 0.4983,
-      "roe_3y_avg": 8.9421,
-      "debt_ratio": 22.064,
-      "div_yield": 4.3045,
-      "payout_ratio_pct": 25.01,
-      "score": 0.6616,
-      "profile": {
-        "business": "세방전지는 건전지, 배터리 등 1차 전지(Primary Battery)를 주력으로 생산하는 배터리 전문 제조사입니다. 가정용 건전지부터 산업용 배터리까지 다양한 제품을 공급하고 있습니다.",
-        "sector": "전기·전자",
-        "products": "망간건전지, 알카라인건전지, 산업용 배터리",
-        "competitors": [
-          "에너토크",
-          "한국배터리산업",
-          "삼성SDI"
-        ]
-      }
-    },
-    {
-      "stock_code": "019180",
-      "name": "티에이치엔",
-      "sector_raw": "코스피",
-      "mktcap_eok": 883.8,
-      "close": 4910.0,
-      "per": 1.4636,
-      "pbr": 0.3315,
-      "roe_3y_avg": 20.8884,
-      "debt_ratio": 127.2867,
-      "div_yield": 2.444,
-      "payout_ratio_pct": 3.1,
-      "score": 0.6601,
-      "profile": {
-        "business": "티에이치엔은 호텔, 리조트, 레지던스 등 숙박시설을 운영하는 관광 및 숙박 서비스 업체입니다. 국내 주요 관광지에서 숙박 시설을 보유하고 관광객들을 대상으로 서비스를 제공합니다.",
-        "sector": "호텔/숙박/관광",
-        "products": "호텔, 리조트, 레지던스",
-        "competitors": [
-          "롯데호텔",
-          "호텔신라",
-          "그랜드호텔"
+          "비전시스템",
+          "탑이미징",
+          "일반 광학기기 제조사"
         ]
       }
     },
@@ -374,15 +326,15 @@
       "stock_code": "004800",
       "name": "효성",
       "sector_raw": "코스피",
-      "mktcap_eok": 27487.7483,
-      "close": 164200.0,
-      "per": 6.058,
-      "pbr": 1.0083,
+      "mktcap_eok": 26449.8431,
+      "close": 158000.0,
+      "per": 5.8293,
+      "pbr": 0.9702,
       "roe_3y_avg": 11.4366,
       "debt_ratio": 36.2192,
-      "div_yield": 3.0409,
+      "div_yield": 3.1602,
       "payout_ratio_pct": 25.3,
-      "score": 0.6599,
+      "score": 0.6644,
       "profile": {
         "business": "효성은 화학, 정유, 무역 등 다양한 사업 부문을 영위하는 종합 화학 및 에너지 기업입니다. 석유 화학, 합성 섬유, 첨단 소재 등을 생산하며 에너지 사업도 운영하고 있습니다.",
         "sector": "화학/정유/에너지",
@@ -395,18 +347,138 @@
       }
     },
     {
+      "stock_code": "037710",
+      "name": "광주신세계",
+      "sector_raw": "코스피",
+      "mktcap_eok": 2654.2559,
+      "close": 34800.0,
+      "per": 5.6398,
+      "pbr": 0.3059,
+      "roe_3y_avg": 5.5154,
+      "debt_ratio": 38.9404,
+      "div_yield": 6.8965,
+      "payout_ratio_pct": 41.17,
+      "score": 0.6627,
+      "profile": {
+        "business": "광주지역 대표 백화점으로 의류, 신발, 화장품, 식품 등 다양한 상품을 판매하는 유통업체입니다. 신세계그룹의 계열사로서 오프라인 소매 유통사업을 주력으로 영위하고 있습니다.",
+        "sector": "유통/백화점",
+        "products": "신세계 백화점(광주점) - 의류, 신발, 화장품, 식품, 생활용품",
+        "competitors": [
+          "현대백화점",
+          "롯데백화점",
+          "이마트"
+        ]
+      }
+    },
+    {
+      "stock_code": "461300",
+      "name": "아이스크림미디어",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 2528.1137,
+      "close": 18960.0,
+      "per": 3.5128,
+      "pbr": 1.0572,
+      "roe_3y_avg": 25.7315,
+      "debt_ratio": 28.0158,
+      "div_yield": 7.7647,
+      "payout_ratio_pct": 39.92,
+      "score": 0.6627,
+      "profile": {
+        "business": "아이스크림미디어는 디지털 광고 및 마케팅 서비스를 제공하는 기업입니다. 모바일 광고 플랫폼과 성과기반 마케팅 솔루션을 통해 광고주와 매체사를 연결하는 중개 역할을 수행합니다.",
+        "sector": "광고/마케팅/디지털미디어",
+        "products": "모바일 광고 플랫폼, 성과기반 광고 솔루션",
+        "competitors": [
+          "카카오",
+          "네이버",
+          "팬택"
+        ]
+      }
+    },
+    {
+      "stock_code": "010690",
+      "name": "화신",
+      "sector_raw": "코스피",
+      "mktcap_eok": 2601.5705,
+      "close": 7450.0,
+      "per": 4.2354,
+      "pbr": 0.4201,
+      "roe_3y_avg": 12.6453,
+      "debt_ratio": 102.2729,
+      "div_yield": 2.2706,
+      "payout_ratio_pct": 8.9,
+      "score": 0.6622,
+      "profile": {
+        "business": "화신은 한국의 전통 있는 백화점 기업으로, 소매 유통업을 주요 사업으로 영위하고 있습니다. 의류, 화장품, 생활용품 등 다양한 상품을 판매하며, 오프라인 매장 기반의 유통 사업을 운영하고 있습니다.",
+        "sector": "소매업/유통",
+        "products": "의류, 화장품, 생활용품 등 백화점 판매 상품",
+        "competitors": [
+          "현대백화점",
+          "신세계",
+          "롯데쇼핑"
+        ]
+      }
+    },
+    {
+      "stock_code": "004490",
+      "name": "세방전지",
+      "sector_raw": "코스피",
+      "mktcap_eok": 8232.84,
+      "close": 59400.0,
+      "per": 5.1495,
+      "pbr": 0.4992,
+      "roe_3y_avg": 8.9421,
+      "debt_ratio": 22.064,
+      "div_yield": 4.2973,
+      "payout_ratio_pct": 25.01,
+      "score": 0.6621,
+      "profile": {
+        "business": "세방전지는 건전지, 배터리 등 1차 전지(Primary Battery)를 주력으로 생산하는 배터리 전문 제조사입니다. 가정용 건전지부터 산업용 배터리까지 다양한 제품을 공급하고 있습니다.",
+        "sector": "전기·전자",
+        "products": "망간건전지, 알카라인건전지, 산업용 배터리",
+        "competitors": [
+          "에너토크",
+          "한국배터리산업",
+          "삼성SDI"
+        ]
+      }
+    },
+    {
+      "stock_code": "243840",
+      "name": "신흥에스이씨",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 2143.8379,
+      "close": 5560.0,
+      "per": 4.0575,
+      "pbr": 0.5694,
+      "roe_3y_avg": 10.2085,
+      "debt_ratio": 56.5558,
+      "div_yield": 0.0,
+      "payout_ratio_pct": 0.0,
+      "score": 0.6608,
+      "profile": {
+        "business": "신흥에스이씨는 반도체 후공정(패키징, 테스트) 장비를 제조하는 기업입니다. 반도체 칩을 기판에 부착하고 테스트하는 장비 및 솔루션을 공급합니다.",
+        "sector": "반도체 장비",
+        "products": "반도체 패키징 장비, 테스트 장비",
+        "competitors": [
+          "디에이씨",
+          "칩스앤미디어",
+          "큐엘씨"
+        ]
+      }
+    },
+    {
       "stock_code": "013580",
       "name": "계룡건설",
       "sector_raw": "코스피",
-      "mktcap_eok": 2004.9886,
-      "close": 22450.0,
-      "per": 1.5472,
-      "pbr": 0.2059,
+      "mktcap_eok": 2022.8504,
+      "close": 22650.0,
+      "per": 1.561,
+      "pbr": 0.2077,
       "roe_3y_avg": 7.9982,
       "debt_ratio": 152.2293,
-      "div_yield": 3.1137,
+      "div_yield": 3.0862,
       "payout_ratio_pct": 6.25,
-      "score": 0.6598,
+      "score": 0.6596,
       "profile": {
         "business": "계룡건설은 일반 건설업을 영위하는 종합 건설 회사입니다. 주택, 상업용 건물, 토목 공사 등 다양한 건설 프로젝트를 수행하고 있습니다.",
         "sector": "건설/건축",
@@ -419,18 +491,42 @@
       }
     },
     {
+      "stock_code": "187870",
+      "name": "디바이스",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 1567.8795,
+      "close": 11310.0,
+      "per": 7.3116,
+      "pbr": 0.9069,
+      "roe_3y_avg": 7.0307,
+      "debt_ratio": 37.9809,
+      "div_yield": 2.791,
+      "payout_ratio_pct": 25.86,
+      "score": 0.6591,
+      "profile": {
+        "business": "디바이스는 반도체 및 전자 부품 관련 사업을 영위하는 기업입니다. 반도체 검사 및 측정 장비, 또는 전자 부품 제조 및 공급 사업을 주력으로 하고 있습니다.",
+        "sector": "반도체/전자부품",
+        "products": "반도체 검사장비, 전자 부품",
+        "competitors": [
+          "엘엠지이노텍",
+          "LG이노텍",
+          "삼성전기"
+        ]
+      }
+    },
+    {
       "stock_code": "264450",
       "name": "유비쿼스",
       "sector_raw": "코스닥",
-      "mktcap_eok": 1663.0669,
-      "close": 11340.0,
-      "per": 5.969,
-      "pbr": 0.8075,
+      "mktcap_eok": 1671.8662,
+      "close": 11400.0,
+      "per": 6.0005,
+      "pbr": 0.8118,
       "roe_3y_avg": 13.2868,
       "debt_ratio": 16.4035,
-      "div_yield": 4.1448,
+      "div_yield": 4.1229,
       "payout_ratio_pct": 28.66,
-      "score": 0.6582,
+      "score": 0.6584,
       "profile": {
         "business": "유비쿼스는 반도체 및 전자부품 설계 및 제조를 주요 사업으로 영위하고 있습니다. IC 칩셋, 마이크로컨트롤러 등 다양한 반도체 제품을 개발·생산하여 통신, 산업용 전자기기 등 다양한 분야에 공급합니다.",
         "sector": "반도체",
@@ -446,15 +542,15 @@
       "stock_code": "236200",
       "name": "슈프리마",
       "sector_raw": "코스닥",
-      "mktcap_eok": 3849.8197,
-      "close": 55200.0,
-      "per": 7.8667,
-      "pbr": 1.3087,
+      "mktcap_eok": 3870.7426,
+      "close": 55500.0,
+      "per": 7.9095,
+      "pbr": 1.3158,
       "roe_3y_avg": 12.1363,
       "debt_ratio": 8.7676,
       "div_yield": 0.0,
       "payout_ratio_pct": 0.0,
-      "score": 0.657,
+      "score": 0.6575,
       "profile": {
         "business": "슈프리마는 생물의약품 및 의료기기 분야에서 활동하는 기업입니다. 주로 의약품 개발, 제조 및 판매를 중심으로 사업을 영위하고 있습니다.",
         "sector": "의약품/생물공학",
@@ -467,90 +563,18 @@
       }
     },
     {
-      "stock_code": "015230",
-      "name": "대창단조",
-      "sector_raw": "코스피",
-      "mktcap_eok": 1788.7646,
-      "close": 6590.0,
-      "per": 6.0709,
-      "pbr": 0.6499,
-      "roe_3y_avg": 10.7743,
-      "debt_ratio": 10.1488,
-      "div_yield": 2.5375,
-      "payout_ratio_pct": 16.52,
-      "score": 0.6547,
-      "profile": {
-        "business": "대창단조는 자동차 부품 및 산업 기계 부품 제조 전문업체입니다. 단조 기술을 기반으로 엔진 부품, 변속기 부품 등 자동차 핵심 부품을 생산하고 있습니다.",
-        "sector": "자동차부품/기계",
-        "products": "자동차 단조 부품, 엔진 부품, 변속기 부품",
-        "competitors": [
-          "현대기술",
-          "자동차부품업체",
-          "산업기계부품업체"
-        ]
-      }
-    },
-    {
-      "stock_code": "187870",
-      "name": "디바이스",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1655.215,
-      "close": 11940.0,
-      "per": 7.7189,
-      "pbr": 0.9574,
-      "roe_3y_avg": 7.0307,
-      "debt_ratio": 37.9809,
-      "div_yield": 2.6438,
-      "payout_ratio_pct": 25.86,
-      "score": 0.6523,
-      "profile": {
-        "business": "디바이스는 반도체 및 전자 부품 관련 사업을 영위하는 기업입니다. 반도체 검사 및 측정 장비, 또는 전자 부품 제조 및 공급 사업을 주력으로 하고 있습니다.",
-        "sector": "반도체/전자부품",
-        "products": "반도체 검사장비, 전자 부품",
-        "competitors": [
-          "엘엠지이노텍",
-          "LG이노텍",
-          "삼성전기"
-        ]
-      }
-    },
-    {
-      "stock_code": "348350",
-      "name": "위드텍",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 907.9674,
-      "close": 9290.0,
-      "per": 9.0119,
-      "pbr": 0.7059,
-      "roe_3y_avg": 5.4858,
-      "debt_ratio": 28.4804,
-      "div_yield": 2.1532,
-      "payout_ratio_pct": 30.33,
-      "score": 0.6509,
-      "profile": {
-        "business": "위드텍은 반도체 검사 및 측정 장비를 제조하는 기업입니다. 반도체 생산 과정에서 필요한 검사 및 품질 관리 솔루션을 공급하고 있습니다.",
-        "sector": "반도체 장비",
-        "products": "반도체 검사 장비, 측정 시스템",
-        "competitors": [
-          "KLA",
-          "ASML",
-          "Applied Materials"
-        ]
-      }
-    },
-    {
       "stock_code": "340570",
       "name": "티앤엘",
       "sector_raw": "코스닥",
-      "mktcap_eok": 4563.9141,
-      "close": 28400.0,
-      "per": 9.0954,
-      "pbr": 2.0355,
+      "mktcap_eok": 4499.6336,
+      "close": 28000.0,
+      "per": 8.9673,
+      "pbr": 2.0068,
       "roe_3y_avg": 22.3925,
       "debt_ratio": 13.2284,
-      "div_yield": 2.635,
+      "div_yield": 2.6727,
       "payout_ratio_pct": 31.6,
-      "score": 0.6493,
+      "score": 0.6518,
       "profile": {
         "business": "티앤엘은 의류 및 패션 제품의 제조와 판매를 주력으로 하는 기업입니다. 국내 의류 시장에서 자체 브랜드를 통해 의류 상품을 유통하고 있습니다.",
         "sector": "섬유/의류",
@@ -566,23 +590,47 @@
       "stock_code": "445180",
       "name": "퓨릿",
       "sector_raw": "코스닥",
-      "mktcap_eok": 1547.0269,
-      "close": 9000.0,
-      "per": 9.2841,
-      "pbr": 1.3396,
+      "mktcap_eok": 1562.4972,
+      "close": 9090.0,
+      "per": 9.377,
+      "pbr": 1.353,
       "roe_3y_avg": 13.7655,
       "debt_ratio": 13.6462,
-      "div_yield": 1.3329,
+      "div_yield": 1.3197,
       "payout_ratio_pct": 13.6,
-      "score": 0.6471,
+      "score": 0.6469,
       "profile": {
-        "business": "퓨릿은 반도체 및 디스플레이 제조 공정에 필요한 초고순도 화학물질과 특수가스를 생산·공급하는 회사입니다. 반도체 팹과 디스플레이 제조업체들을 주요 고객으로 하며, 국내 및 해외 시장에 제품을 공급하고 있습니다.",
-        "sector": "화학/반도체소재",
-        "products": "초고순도 화학물질, 특수가스, 반도체용 재료",
+        "business": "퓨릿은 수처리 및 정수 솔루션을 제공하는 기업입니다. 정수기, 정수 필터 등 먹는 물 관련 제품을 주로 제조·판매합니다.",
+        "sector": "환경/정수기",
+        "products": "정수기, 정수 필터",
         "competitors": [
-          "와이엠텍",
-          "케이씨테크",
-          "이엔플러스"
+          "코웨이",
+          "청호나이샤",
+          "홈매직"
+        ]
+      }
+    },
+    {
+      "stock_code": "035000",
+      "name": "HS애드",
+      "sector_raw": "코스피",
+      "mktcap_eok": 995.1493,
+      "close": 6140.0,
+      "per": 3.2325,
+      "pbr": 0.5837,
+      "roe_3y_avg": 10.6362,
+      "debt_ratio": 120.68,
+      "div_yield": 8.9574,
+      "payout_ratio_pct": 51.3,
+      "score": 0.6466,
+      "profile": {
+        "business": "HS애드는 광고 대행 및 마케팅 서비스를 제공하는 기업입니다. 디지털 광고, 미디어 플래닝, 크리에이티브 제작 등 통합 광고 솔루션을 제공합니다.",
+        "sector": "광고/마케팅",
+        "products": "광고 대행 서비스, 디지털 마케팅, 미디어 플래닝",
+        "competitors": [
+          "제일기획",
+          "이노션",
+          "OMD코리아"
         ]
       }
     },
@@ -590,38 +638,47 @@
       "stock_code": "007980",
       "name": "TP",
       "sector_raw": "코스피",
-      "mktcap_eok": 839.4626,
-      "close": 1790.0,
-      "per": 2.7313,
-      "pbr": 0.2688,
+      "mktcap_eok": 854.9387,
+      "close": 1823.0,
+      "per": 2.7817,
+      "pbr": 0.2737,
       "roe_3y_avg": 8.5504,
       "debt_ratio": 147.916,
-      "div_yield": 4.0264,
+      "div_yield": 3.9535,
       "payout_ratio_pct": 8.9,
-      "score": 0.6469,
-      "profile": null
+      "score": 0.6463,
+      "profile": {
+        "business": "TP는 한국의 주요 에너지 및 화학 기업입니다. 석유 정제, 석유화학, 에너지 사업을 주력으로 영위하고 있습니다.",
+        "sector": "에너지/화학",
+        "products": "휘발유, 경유, 중유, 석유화학제품",
+        "competitors": [
+          "SK에너지",
+          "GS칼텍스",
+          "현대오일뱅크"
+        ]
+      }
     },
     {
-      "stock_code": "019010",
-      "name": "베뉴지",
+      "stock_code": "123410",
+      "name": "코리아에프티",
       "sector_raw": "코스닥",
-      "mktcap_eok": 2371.44,
-      "close": 4920.0,
-      "per": 0.8542,
-      "pbr": 0.4066,
-      "roe_3y_avg": 7.9306,
-      "debt_ratio": 41.6785,
-      "div_yield": 1.1866,
-      "payout_ratio_pct": 3.0,
-      "score": 0.6439,
+      "mktcap_eok": 1684.3844,
+      "close": 6050.0,
+      "per": 5.1371,
+      "pbr": 0.9049,
+      "roe_3y_avg": 16.1927,
+      "debt_ratio": 89.3429,
+      "div_yield": 3.3057,
+      "payout_ratio_pct": 13.0,
+      "score": 0.6455,
       "profile": {
-        "business": "베뉴지는 온라인 쇼핑몰 운영 및 전자상거래 사업을 주력으로 하는 기업입니다. 의류, 패션용품 등 다양한 상품을 온라인 플랫폼을 통해 판매하고 있습니다.",
-        "sector": "유통/전자상거래",
-        "products": "의류, 패션용품, 액세서리 등 온라인 쇼핑몰 상품",
+        "business": "코리아에프티는 ETF(상장지수펀드) 상품을 설계하고 운용하는 자산운용사입니다. 국내 주식, 채권, 해외자산 등 다양한 ETF 상품을 제공하며 투자자들의 자산관리를 돕습니다.",
+        "sector": "금융 - 자산운용",
+        "products": "ETF(Exchange Traded Funds)",
         "competitors": [
-          "쿠팡",
-          "지마켓",
-          "옥션"
+          "삼성자산운용",
+          "KB자산운용",
+          "미래에셋자산운용"
         ]
       }
     },
@@ -629,15 +686,15 @@
       "stock_code": "108320",
       "name": "LX세미콘",
       "sector_raw": "코스피",
-      "mktcap_eok": 5944.6016,
-      "close": 36550.0,
-      "per": 6.133,
-      "pbr": 0.5269,
+      "mktcap_eok": 5912.073,
+      "close": 36350.0,
+      "per": 6.0995,
+      "pbr": 0.524,
       "roe_3y_avg": 9.8526,
       "debt_ratio": 27.0568,
-      "div_yield": 4.1039,
+      "div_yield": 4.1265,
       "payout_ratio_pct": 29.5,
-      "score": 0.6433,
+      "score": 0.6446,
       "profile": {
         "business": "반도체 소재 및 부품을 제조·공급하는 기업입니다. 디스플레이, 반도체 제조 공정에 필요한 화학물질과 소재를 생산합니다.",
         "sector": "화학/반도체 소재",
@@ -650,18 +707,66 @@
       }
     },
     {
+      "stock_code": "019010",
+      "name": "베뉴지",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 2330.47,
+      "close": 4835.0,
+      "per": 0.8394,
+      "pbr": 0.3996,
+      "roe_3y_avg": 7.9306,
+      "debt_ratio": 41.6785,
+      "div_yield": 1.2075,
+      "payout_ratio_pct": 3.0,
+      "score": 0.6444,
+      "profile": {
+        "business": "베뉴지는 온라인 쇼핑몰 운영 및 전자상거래 사업을 주력으로 하는 기업입니다. 의류, 패션용품 등 다양한 상품을 온라인 플랫폼을 통해 판매하고 있습니다.",
+        "sector": "유통/전자상거래",
+        "products": "의류, 패션용품, 액세서리 등 온라인 쇼핑몰 상품",
+        "competitors": [
+          "쿠팡",
+          "지마켓",
+          "옥션"
+        ]
+      }
+    },
+    {
+      "stock_code": "002810",
+      "name": "삼영무역",
+      "sector_raw": "코스피",
+      "mktcap_eok": 3961.1603,
+      "close": 21450.0,
+      "per": 9.1359,
+      "pbr": 0.8729,
+      "roe_3y_avg": 8.2955,
+      "debt_ratio": 7.4562,
+      "div_yield": 5.2934,
+      "payout_ratio_pct": 35.8,
+      "score": 0.6437,
+      "profile": {
+        "business": "삼영무역은 식품, 화학, 기계 등 다양한 분야의 수입 수출 및 무역업을 영위하는 종합 무역회사입니다. 국내외 기업들의 중개 및 유통을 통해 수익을 창출하고 있습니다.",
+        "sector": "일반무역업",
+        "products": "수입식품, 화학제품, 기계장비 등",
+        "competitors": [
+          "대한무역",
+          "동양물산",
+          "현대상선"
+        ]
+      }
+    },
+    {
       "stock_code": "013030",
       "name": "하이록코리아",
       "sector_raw": "코스닥",
-      "mktcap_eok": 4436.5903,
-      "close": 37700.0,
-      "per": 8.6594,
-      "pbr": 0.9862,
+      "mktcap_eok": 4471.8947,
+      "close": 38000.0,
+      "per": 8.7283,
+      "pbr": 0.994,
       "roe_3y_avg": 10.9865,
       "debt_ratio": 7.9,
-      "div_yield": 3.5809,
+      "div_yield": 3.5526,
       "payout_ratio_pct": 30.7,
-      "score": 0.6415,
+      "score": 0.6416,
       "profile": {
         "business": "하이록코리아는 락(lock) 및 힌지 등 건축 및 가구용 금속 부품을 제조하고 판매하는 회사입니다. 건설, 가구, 자동차 등 다양한 산업의 고객사에 부품을 공급합니다.",
         "sector": "기계·장비",
@@ -670,30 +775,6 @@
           "동부금속",
           "KCC",
           "신대방통신"
-        ]
-      }
-    },
-    {
-      "stock_code": "108380",
-      "name": "대양전기공업",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1754.6489,
-      "close": 18340.0,
-      "per": 6.6121,
-      "pbr": 0.6486,
-      "roe_3y_avg": 6.9947,
-      "debt_ratio": 22.1995,
-      "div_yield": 1.0561,
-      "payout_ratio_pct": 7.5,
-      "score": 0.641,
-      "profile": {
-        "business": "대양전기공업은 전기 기계 및 장비 제조업체입니다. 산업용 전기기기, 제어기기 등을 생산하여 국내외 산업체에 공급하고 있습니다.",
-        "sector": "기계/전기전자",
-        "products": "산업용 전기기기, 제어기기",
-        "competitors": [
-          "LS일렉트릭",
-          "현대일렉트릭",
-          "효성중공업"
         ]
       }
     },
@@ -709,7 +790,7 @@
       "debt_ratio": 69.7889,
       "div_yield": 6.9094,
       "payout_ratio_pct": 41.27,
-      "score": 0.6409,
+      "score": 0.6411,
       "profile": {
         "business": "의류 및 패션 제품 제조·판매 업체입니다. 스포츠웨어, 캐주얼 의류 등을 생산하며 국내외 시장에 유통하고 있습니다.",
         "sector": "섬유·의류",
@@ -722,26 +803,74 @@
       }
     },
     {
-      "stock_code": "064820",
-      "name": "케이프",
+      "stock_code": "108380",
+      "name": "대양전기공업",
       "sector_raw": "코스닥",
-      "mktcap_eok": 2345.3763,
-      "close": 7600.0,
-      "per": 5.3319,
-      "pbr": 0.7612,
-      "roe_3y_avg": 12.89,
-      "debt_ratio": 34.0246,
-      "div_yield": 9.2032,
-      "payout_ratio_pct": 36.3,
-      "score": 0.6391,
+      "mktcap_eok": 1762.3027,
+      "close": 18420.0,
+      "per": 6.641,
+      "pbr": 0.6515,
+      "roe_3y_avg": 6.9947,
+      "debt_ratio": 22.1995,
+      "div_yield": 1.0515,
+      "payout_ratio_pct": 7.5,
+      "score": 0.6409,
       "profile": {
-        "business": "케이프는 의류 및 패션 제품을 제조·판매하는 기업입니다. 캐주얼 의류와 액세서리를 중심으로 사업을 영위하고 있습니다.",
-        "sector": "섬유·의류",
-        "products": "캐주얼 의류, 셔츠, 바지 등",
+        "business": "대양전기공업은 전기 기계 및 장비 제조업체입니다. 산업용 전기기기, 제어기기 등을 생산하여 국내외 산업체에 공급하고 있습니다.",
+        "sector": "기계/전기전자",
+        "products": "산업용 전기기기, 제어기기",
         "competitors": [
-          "삼성물산",
-          "LF",
-          "코오롱인더스트리"
+          "LS일렉트릭",
+          "현대일렉트릭",
+          "효성중공업"
+        ]
+      }
+    },
+    {
+      "stock_code": "194700",
+      "name": "노바렉스",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 1885.7258,
+      "close": 10330.0,
+      "per": 5.4204,
+      "pbr": 0.7028,
+      "roe_3y_avg": 11.6902,
+      "debt_ratio": 40.109,
+      "div_yield": 3.7662,
+      "payout_ratio_pct": 20.1,
+      "score": 0.6408,
+      "profile": {
+        "business": "노바렉스는 반도체 검사 및 측정 장비를 개발, 제조하는 기업입니다. 반도체 제조 공정에서 품질 관리와 불량 검사를 위한 검사 장비를 공급합니다.",
+        "sector": "반도체 장비",
+        "products": "반도체 검사 장비, 측정 장비",
+        "competitors": [
+          "KLA",
+          "어플라이드머티리얼즈",
+          "어센드"
+        ]
+      }
+    },
+    {
+      "stock_code": "352090",
+      "name": "스톰테크",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 974.1462,
+      "close": 3625.0,
+      "per": 7.4213,
+      "pbr": 1.0467,
+      "roe_3y_avg": 13.4717,
+      "debt_ratio": 29.6163,
+      "div_yield": 12.4139,
+      "payout_ratio_pct": 118.47,
+      "score": 0.6346,
+      "profile": {
+        "business": "스톰테크는 반도체 및 전자부품 제조 관련 사업을 영위하는 회사입니다. 주로 산업용 전자제품과 부품을 생산 및 공급하고 있습니다.",
+        "sector": "전자부품",
+        "products": "산업용 전자부품, 반도체 관련 제품",
+        "competitors": [
+          "삼성전자",
+          "SK하이닉스",
+          "LG이노텍"
         ]
       }
     },
@@ -749,15 +878,15 @@
       "stock_code": "005430",
       "name": "한국공항",
       "sector_raw": "코스피",
-      "mktcap_eok": 2675.57,
-      "close": 84500.0,
-      "per": 7.262,
-      "pbr": 0.652,
+      "mktcap_eok": 2767.3943,
+      "close": 87400.0,
+      "per": 7.5113,
+      "pbr": 0.6744,
       "roe_3y_avg": 8.9748,
       "debt_ratio": 33.0755,
-      "div_yield": 1.1429,
+      "div_yield": 1.105,
       "payout_ratio_pct": 7.5,
-      "score": 0.6369,
+      "score": 0.6343,
       "profile": {
         "business": "한국공항은 인천국제공항과 김포공항 등 주요 공항의 운영 및 관리를 담당하는 공기업입니다. 항공사 운항 지원, 여객 터미널 운영, 지상 조업 서비스 등을 제공합니다.",
         "sector": "교통/물류 - 공항운영",
@@ -770,18 +899,42 @@
       }
     },
     {
+      "stock_code": "092730",
+      "name": "네오팜",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 3686.4375,
+      "close": 23000.0,
+      "per": 12.6055,
+      "pbr": 1.8338,
+      "roe_3y_avg": 13.9705,
+      "debt_ratio": 12.5392,
+      "div_yield": 3.1819,
+      "payout_ratio_pct": 42.2,
+      "score": 0.6329,
+      "profile": {
+        "business": "네오팜은 동물용 의약품 및 사료첨가제 등을 개발·생산·판매하는 동물약품 전문 기업입니다. 축산업 분야에서 가축의 질병 치료 및 예방을 위한 제품을 공급하고 있습니다.",
+        "sector": "동물약품/제약",
+        "products": "동물용 의약품, 사료첨가제",
+        "competitors": [
+          "케이바이오",
+          "메디안",
+          "보령바이오"
+        ]
+      }
+    },
+    {
       "stock_code": "241520",
       "name": "DSC인베스트먼트",
       "sector_raw": "코스닥",
-      "mktcap_eok": 2154.6,
-      "close": 8100.0,
-      "per": 9.7016,
-      "pbr": 1.5613,
+      "mktcap_eok": 2186.52,
+      "close": 8220.0,
+      "per": 9.8454,
+      "pbr": 1.5844,
       "roe_3y_avg": 12.4679,
       "debt_ratio": 42.5499,
-      "div_yield": 0.479,
+      "div_yield": 0.472,
       "payout_ratio_pct": 5.96,
-      "score": 0.6332,
+      "score": 0.6328,
       "profile": {
         "business": "DSC인베스트먼트는 투자금융 및 자산운용 사업을 영위하는 회사입니다. 주로 부동산, 증권, 기타 금융자산에 대한 투자 및 운용을 통해 수익을 창출합니다.",
         "sector": "금융/투자",
@@ -794,18 +947,42 @@
       }
     },
     {
+      "stock_code": "061090",
+      "name": "세나테크놀로지",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 1987.4544,
+      "close": 36350.0,
+      "per": 9.443,
+      "pbr": 1.2117,
+      "roe_3y_avg": 12.0659,
+      "debt_ratio": 14.2439,
+      "div_yield": 0.0,
+      "payout_ratio_pct": 0.0,
+      "score": 0.6324,
+      "profile": {
+        "business": "세나테크놀로지는 반도체 검사 및 측정 장비를 개발하고 제조하는 기업입니다. 반도체 제조 공정에서 품질 관리와 검증에 필요한 핵심 장비를 공급합니다.",
+        "sector": "반도체 장비",
+        "products": "반도체 검사 장비, 측정 장비",
+        "competitors": [
+          "KLA-Tencor",
+          "Applied Materials",
+          "ASML"
+        ]
+      }
+    },
+    {
       "stock_code": "011780",
       "name": "금호석유화학",
       "sector_raw": "코스피",
-      "mktcap_eok": 29408.9129,
-      "close": 116900.0,
-      "per": 8.9053,
-      "pbr": 0.7909,
+      "mktcap_eok": 29786.2728,
+      "close": 118400.0,
+      "per": 9.0196,
+      "pbr": 0.801,
       "roe_3y_avg": 7.4987,
       "debt_ratio": 33.9127,
-      "div_yield": 1.4824,
+      "div_yield": 1.4637,
       "payout_ratio_pct": 15.0,
-      "score": 0.6317,
+      "score": 0.6318,
       "profile": {
         "business": "금호석유화학은 석유화학 기초 원료 및 화학제품 생산을 주요 사업으로 영위하고 있습니다. 에틸렌, 프로필렌 등 기초 화학품부터 폴리에틸렌, 폴리프로필렌 등 합성수지 제품을 생산하여 국내외 시장에 공급합니다.",
         "sector": "화학",
@@ -818,40 +995,16 @@
       }
     },
     {
-      "stock_code": "389260",
-      "name": "대명에너지",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 2298.6645,
-      "close": 12830.0,
-      "per": 8.577,
-      "pbr": 1.0204,
-      "roe_3y_avg": 7.2184,
-      "debt_ratio": 45.6772,
-      "div_yield": 0.0,
-      "payout_ratio_pct": 0.0,
-      "score": 0.6316,
-      "profile": {
-        "business": "대명에너지는 에너지 및 자원 개발 사업을 영위하는 기업입니다. 석유, 가스 등 에너지 자원의 탐사, 개발, 생산 및 판매를 주요 사업으로 하고 있습니다.",
-        "sector": "에너지/자원개발",
-        "products": "석유, 천연가스",
-        "competitors": [
-          "SK에너지",
-          "GS에너지",
-          "현대오일뱅크"
-        ]
-      }
-    },
-    {
       "stock_code": "147830",
       "name": "제룡산업",
       "sector_raw": "코스닥",
-      "mktcap_eok": 1420.0,
-      "close": 7100.0,
-      "per": 7.9834,
-      "pbr": 1.4915,
+      "mktcap_eok": 1428.0,
+      "close": 7140.0,
+      "per": 8.0284,
+      "pbr": 1.4999,
       "roe_3y_avg": 10.2788,
       "debt_ratio": 12.2397,
-      "div_yield": 4.0465,
+      "div_yield": 4.0238,
       "payout_ratio_pct": 50.0,
       "score": 0.6307,
       "profile": {
@@ -866,66 +1019,18 @@
       }
     },
     {
-      "stock_code": "092730",
-      "name": "네오팜",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 3790.6194,
-      "close": 23650.0,
-      "per": 12.9618,
-      "pbr": 1.8857,
-      "roe_3y_avg": 13.9705,
-      "debt_ratio": 12.5392,
-      "div_yield": 3.0945,
-      "payout_ratio_pct": 42.2,
-      "score": 0.6302,
-      "profile": {
-        "business": "네오팜은 동물용 의약품 및 사료첨가제 등을 개발·생산·판매하는 동물약품 전문 기업입니다. 축산업 분야에서 가축의 질병 치료 및 예방을 위한 제품을 공급하고 있습니다.",
-        "sector": "동물약품/제약",
-        "products": "동물용 의약품, 사료첨가제",
-        "competitors": [
-          "케이바이오",
-          "메디안",
-          "보령바이오"
-        ]
-      }
-    },
-    {
-      "stock_code": "035510",
-      "name": "신세계 I&C",
-      "sector_raw": "코스피",
-      "mktcap_eok": 2174.03,
-      "close": 15550.0,
-      "per": 7.282,
-      "pbr": 0.4863,
-      "roe_3y_avg": 7.5737,
-      "debt_ratio": 29.9349,
-      "div_yield": 3.3863,
-      "payout_ratio_pct": 26.0,
-      "score": 0.63,
-      "profile": {
-        "business": "신세계 I&C는 신세계그룹의 계열사로 정보통신 및 IT 솔루션 사업을 영위하고 있습니다. 유통, 백화점, 마트 등 신세계 계열사의 IT 인프라 구축 및 시스템 개발을 주력으로 하고 있습니다.",
-        "sector": "정보기술(IT)",
-        "products": "유통 정보화 시스템, 전산 인프라 구축",
-        "competitors": [
-          "LG CNS",
-          "삼성SDS",
-          "CJ올리브영"
-        ]
-      }
-    },
-    {
       "stock_code": "033500",
       "name": "동성화인텍",
       "sector_raw": "코스닥",
-      "mktcap_eok": 4777.3264,
-      "close": 15930.0,
-      "per": 6.6584,
-      "pbr": 1.6557,
+      "mktcap_eok": 4789.3222,
+      "close": 15970.0,
+      "per": 6.6752,
+      "pbr": 1.6598,
       "roe_3y_avg": 19.2565,
       "debt_ratio": 75.145,
-      "div_yield": 2.5062,
+      "div_yield": 2.4999,
       "payout_ratio_pct": 21.4,
-      "score": 0.6298,
+      "score": 0.6301,
       "profile": {
         "business": "동성화인텍은 화학 및 화학제품 제조업체로, 주로 전자산업용 화학재료 및 특수화학품을 생산합니다. 반도체, 디스플레이 등 첨단산업의 공정에 필요한 화학약품을 공급하고 있습니다.",
         "sector": "화학",
@@ -938,26 +1043,50 @@
       }
     },
     {
-      "stock_code": "071200",
-      "name": "인피니트헬스케어",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 2883.6613,
-      "close": 11820.0,
-      "per": 5.6489,
-      "pbr": 1.3311,
-      "roe_3y_avg": 16.9632,
-      "debt_ratio": 15.463,
-      "div_yield": 1.6906,
-      "payout_ratio_pct": 18.0,
-      "score": 0.6286,
+      "stock_code": "035510",
+      "name": "신세계 I&C",
+      "sector_raw": "코스피",
+      "mktcap_eok": 2211.7784,
+      "close": 15820.0,
+      "per": 7.4085,
+      "pbr": 0.4947,
+      "roe_3y_avg": 7.5737,
+      "debt_ratio": 29.9349,
+      "div_yield": 3.3285,
+      "payout_ratio_pct": 26.0,
+      "score": 0.629,
       "profile": {
-        "business": "인피니트헬스케어는 의료기기 및 헬스케어 솔루션을 개발·제조·판매하는 기업입니다. 진단기기와 의료용 소모품 등을 주력으로 하고 있습니다.",
-        "sector": "의료기기/헬스케어",
-        "products": "진단기기, 의료용 소모품",
+        "business": "신세계 I&C는 신세계그룹의 계열사로 정보통신 및 IT 서비스를 제공합니다. 유통 및 백화점 관련 IT 인프라 구축, 시스템 운영, 소프트웨어 개발 등을 주요 사업으로 영위하고 있습니다.",
+        "sector": "정보통신/IT 서비스",
+        "products": "유통 관련 IT 솔루션, 시스템 운영 서비스",
         "competitors": [
-          "지오젠",
-          "메디젠휴먼",
-          "바이오메드"
+          "LG CNS",
+          "SK C&C",
+          "현대IT&E"
+        ]
+      }
+    },
+    {
+      "stock_code": "389260",
+      "name": "대명에너지",
+      "sector_raw": "코스닥",
+      "mktcap_eok": 2381.0796,
+      "close": 13290.0,
+      "per": 8.8845,
+      "pbr": 1.057,
+      "roe_3y_avg": 7.2184,
+      "debt_ratio": 45.6772,
+      "div_yield": 0.0,
+      "payout_ratio_pct": 0.0,
+      "score": 0.629,
+      "profile": {
+        "business": "대명에너지는 에너지 및 자원 개발 사업을 영위하는 기업입니다. 석유, 가스 등 에너지 자원의 탐사, 개발, 생산 및 판매를 주요 사업으로 하고 있습니다.",
+        "sector": "에너지/자원개발",
+        "products": "석유, 천연가스",
+        "competitors": [
+          "SK에너지",
+          "GS에너지",
+          "현대오일뱅크"
         ]
       }
     },
@@ -965,15 +1094,15 @@
       "stock_code": "439260",
       "name": "대한조선",
       "sector_raw": "코스피",
-      "mktcap_eok": 17330.3721,
-      "close": 45500.0,
-      "per": 6.1094,
-      "pbr": 1.4461,
+      "mktcap_eok": 17349.4165,
+      "close": 45550.0,
+      "per": 6.1162,
+      "pbr": 1.4477,
       "roe_3y_avg": 27.7221,
       "debt_ratio": 46.7841,
-      "div_yield": 0.5558,
+      "div_yield": 0.5552,
       "payout_ratio_pct": 3.9,
-      "score": 0.6277,
+      "score": 0.6284,
       "profile": {
         "business": "대한민국의 주요 조선사로 선박 건조, 수리, 개조 사업을 영위하고 있습니다. 대형 컨테이너선, 유조선, LNG선 등 다양한 선종을 건조합니다.",
         "sector": "조선/중공업",
@@ -986,98 +1115,26 @@
       }
     },
     {
-      "stock_code": "058860",
-      "name": "KTis",
-      "sector_raw": "코스피",
-      "mktcap_eok": 896.1515,
-      "close": 2575.0,
-      "per": 2.4435,
-      "pbr": 0.3678,
-      "roe_3y_avg": 9.2567,
-      "debt_ratio": 85.4895,
-      "div_yield": 4.776,
-      "payout_ratio_pct": 11.8,
-      "score": 0.6249,
-      "profile": {
-        "business": "KT의 자회사로서 정보통신 기술(IT) 서비스 및 솔루션을 제공합니다. 클라우드, 빅데이터, 보안 등 기업용 IT 서비스를 주력으로 영위하고 있습니다.",
-        "sector": "정보통신 서비스",
-        "products": "클라우드 서비스, IT 아웃소싱, 보안 솔루션",
-        "competitors": [
-          "SK C&C",
-          "LG CNS",
-          "삼성SDS"
-        ]
-      }
-    },
-    {
-      "stock_code": "259960",
-      "name": "크래프톤",
-      "sector_raw": "코스피",
-      "mktcap_eok": 90914.0522,
-      "close": 198000.0,
-      "per": 13.5024,
-      "pbr": 1.2357,
-      "roe_3y_avg": 14.427,
-      "debt_ratio": 15.9663,
-      "div_yield": 1.0953,
-      "payout_ratio_pct": 13.6,
-      "score": 0.6243,
-      "profile": {
-        "business": "크래프톤은 모바일 게임 개발 및 퍼블리싱을 주요 사업으로 하는 게임사입니다. 배틀그라운드 시리즈를 중심으로 글로벌 시장에서 높은 매출을 창출하고 있습니다.",
-        "sector": "게임",
-        "products": "배틀그라운드, 배틀그라운드 모바일",
-        "competitors": [
-          "넥슨",
-          "엔씨소프트",
-          "넷마블"
-        ]
-      }
-    },
-    {
-      "stock_code": "260970",
-      "name": "에스앤디",
+      "stock_code": "071200",
+      "name": "인피니트헬스케어",
       "sector_raw": "코스닥",
-      "mktcap_eok": 1654.6553,
-      "close": 57200.0,
-      "per": 7.4347,
-      "pbr": 1.76,
-      "roe_3y_avg": 20.773,
-      "debt_ratio": 39.0468,
-      "div_yield": 3.1294,
-      "payout_ratio_pct": 25.13,
-      "score": 0.6239,
+      "mktcap_eok": 2961.73,
+      "close": 12140.0,
+      "per": 5.8018,
+      "pbr": 1.3671,
+      "roe_3y_avg": 16.9632,
+      "debt_ratio": 15.463,
+      "div_yield": 1.646,
+      "payout_ratio_pct": 18.0,
+      "score": 0.6273,
       "profile": {
-        "business": "에스앤디는 반도체 및 디스플레이 관련 소재 및 부품을 제조·공급하는 기업입니다. 반도체 산업의 핵심 소재 공급자로서 국내외 주요 반도체 제조사에 제품을 납품하고 있습니다.",
-        "sector": "소재/부품",
-        "products": "반도체 소재, 디스플레이 부품",
+        "business": "인피니트헬스케어는 의료기기 및 헬스케어 솔루션을 개발·제조·판매하는 기업입니다. 진단기기와 의료용 소모품 등을 주력으로 하고 있습니다.",
+        "sector": "의료기기/헬스케어",
+        "products": "진단기기, 의료용 소모품",
         "competitors": [
-          "KCC",
-          "LG화학",
-          "삼성정밀화학"
-        ]
-      }
-    },
-    {
-      "stock_code": "240550",
-      "name": "동방메디컬",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 1268.5968,
-      "close": 6060.0,
-      "per": 8.4617,
-      "pbr": 1.0289,
-      "roe_3y_avg": 12.7186,
-      "debt_ratio": 33.3002,
-      "div_yield": 0.0,
-      "payout_ratio_pct": 0.0,
-      "score": 0.6228,
-      "profile": {
-        "business": "동방메디컬은 의료기기 제조 및 판매를 주력으로 하는 기업입니다. 정형외과 및 척추 관련 의료기기를 중심으로 제품을 개발·생산하고 있습니다.",
-        "sector": "의료기기",
-        "products": "정형외과 의료기기, 척추 관련 임플란트 및 기구",
-        "competitors": [
-          "오스템임플란트",
-          "메디아나",
-          "센트럴바이오"
+          "지오젠",
+          "메디젠휴먼",
+          "바이오메드"
         ]
       }
     },
@@ -1085,119 +1142,23 @@
       "stock_code": "011560",
       "name": "세보엠이씨",
       "sector_raw": "코스닥",
-      "mktcap_eok": 2450.6239,
-      "close": 24300.0,
-      "per": 5.9447,
-      "pbr": 0.8232,
+      "mktcap_eok": 2354.8176,
+      "close": 23350.0,
+      "per": 5.7123,
+      "pbr": 0.7911,
       "roe_3y_avg": 14.2012,
       "debt_ratio": 70.1693,
-      "div_yield": 2.3859,
+      "div_yield": 2.483,
       "payout_ratio_pct": 16.4,
-      "score": 0.6228,
+      "score": 0.6272,
       "profile": {
-        "business": "세보엠이씨는 반도체 검사 및 측정 장비를 제조하는 회사입니다. 반도체 생산 과정에서 필요한 검사 장비와 솔루션을 공급하고 있습니다.",
-        "sector": "반도체장비",
-        "products": "반도체 검사장비, 측정 솔루션",
+        "business": "세보엠이씨는 반도체 패키징 및 테스트 서비스를 제공하는 기업입니다. 반도체 제조 후 최종 검사 및 패키징 공정을 담당하며, 국내외 반도체 제조사에 서비스를 공급합니다.",
+        "sector": "반도체 소재·부품",
+        "products": "반도체 패키징, 테스트 서비스, 번 인 테스트",
         "competitors": [
-          "테스나",
-          "나노신소재",
-          "원익투자증권"
-        ]
-      }
-    },
-    {
-      "stock_code": "011760",
-      "name": "현대코퍼레이션",
-      "sector_raw": "코스피",
-      "mktcap_eok": 3320.4705,
-      "close": 25100.0,
-      "per": 3.0427,
-      "pbr": 0.4362,
-      "roe_3y_avg": 15.2485,
-      "debt_ratio": 195.8556,
-      "div_yield": 2.5322,
-      "payout_ratio_pct": 9.7,
-      "score": 0.6221,
-      "profile": {
-        "business": "현대코퍼레이션은 구리와 동 관련 제품을 생산하는 비철금속 제조업체입니다. 전선, 동판, 동관 등 다양한 동 가공 제품을 생산하여 전력, 통신, 건설 등 산업에 공급하고 있습니다.",
-        "sector": "비철금속",
-        "products": "구리 제련품, 동선, 동판, 동관",
-        "competitors": [
-          "LS CABLE",
-          "효성",
-          "유미코어"
-        ]
-      }
-    },
-    {
-      "stock_code": "036890",
-      "name": "진성티이씨",
-      "sector_raw": "코스닥",
-      "mktcap_eok": 2637.305,
-      "close": 11970.0,
-      "per": 4.0069,
-      "pbr": 0.8786,
-      "roe_3y_avg": 11.5061,
-      "debt_ratio": 27.2997,
-      "div_yield": 2.5166,
-      "payout_ratio_pct": 20.3,
-      "score": 0.6218,
-      "profile": {
-        "business": "진성티이씨는 반도체 및 디스플레이 제조 공정에 필요한 특수 화학약품과 소재를 공급하는 기업입니다. 반도체 생산 라인의 세정, 식각, 성막 등 다양한 공정에 사용되는 화학용품을 제조·판매합니다.",
-        "sector": "화학 / 반도체 소재",
-        "products": "반도체 공정용 화학약품, 디스플레이 소재",
-        "competitors": [
-          "대양화성",
-          "SK머티리얼즈",
-          "케이씨텍"
-        ]
-      }
-    },
-    {
-      "stock_code": "161390",
-      "name": "한국타이어앤테크놀로지",
-      "sector_raw": "코스피",
-      "mktcap_eok": 70980.4145,
-      "close": 57300.0,
-      "per": 5.237,
-      "pbr": 1.013,
-      "roe_3y_avg": 13.062,
-      "debt_ratio": 31.7128,
-      "div_yield": 3.9528,
-      "payout_ratio_pct": 25.8,
-      "score": 0.6206,
-      "profile": {
-        "business": "한국타이어앤테크놀로지는 타이어 제조 및 판매를 주사업으로 하는 기업입니다. 승용차, 트럭, 버스 등 다양한 차종용 타이어를 생산하며, 국내외 시장에서 판매하고 있습니다.",
-        "sector": "자동차 부품/타이어 제조업",
-        "products": "한국타이어 브랜드 타이어(승용차용, 상용차용)",
-        "competitors": [
-          "금호타이어",
-          "넥센타이어",
-          "한국미쉐린타이어"
-        ]
-      }
-    },
-    {
-      "stock_code": "453340",
-      "name": "현대그린푸드",
-      "sector_raw": "코스피",
-      "mktcap_eok": 6280.0049,
-      "close": 19340.0,
-      "per": 6.8859,
-      "pbr": 0.8135,
-      "roe_3y_avg": 9.8486,
-      "debt_ratio": 33.8635,
-      "div_yield": 3.4994,
-      "payout_ratio_pct": 25.21,
-      "score": 0.6203,
-      "profile": {
-        "business": "현대그린푸드는 식품 제조 및 유통을 주요 사업으로 영위하는 회사입니다. 건강식품, 가공식품 등 다양한 식품 상품을 생산 및 판매하고 있습니다.",
-        "sector": "식품",
-        "products": "건강식품, 가공식품",
-        "competitors": [
-          "CJ제일제당",
-          "대상",
-          "풀무원"
+          "삼성전자",
+          "SK하이닉스",
+          "한미반도체"
         ]
       }
     },
@@ -1205,15 +1166,15 @@
       "stock_code": "110990",
       "name": "디아이티",
       "sector_raw": "코스닥",
-      "mktcap_eok": 3350.97,
-      "close": 17730.0,
-      "per": 9.4848,
-      "pbr": 1.2951,
+      "mktcap_eok": 3222.45,
+      "close": 17050.0,
+      "per": 9.121,
+      "pbr": 1.2454,
       "roe_3y_avg": 10.9189,
       "debt_ratio": 15.3359,
-      "div_yield": 2.3244,
+      "div_yield": 2.4171,
       "payout_ratio_pct": 25.6,
-      "score": 0.6197,
+      "score": 0.6248,
       "profile": {
         "business": "디아이티는 정보통신기술(ICT) 솔루션과 서비스를 제공하는 기업입니다. 엔터프라이즈 소프트웨어, 시스템 통합, IT 컨설팅 등 다양한 IT 서비스를 제공하고 있습니다.",
         "sector": "정보통신기술(ICT) / IT 서비스",
@@ -1222,6 +1183,54 @@
           "LG CNS",
           "SK C&C",
           "삼성SDS"
+        ]
+      }
+    },
+    {
+      "stock_code": "058860",
+      "name": "KTis",
+      "sector_raw": "코스피",
+      "mktcap_eok": 901.3718,
+      "close": 2590.0,
+      "per": 2.4577,
+      "pbr": 0.3699,
+      "roe_3y_avg": 9.2567,
+      "debt_ratio": 85.4895,
+      "div_yield": 4.7483,
+      "payout_ratio_pct": 11.8,
+      "score": 0.6246,
+      "profile": {
+        "business": "KTis는 KT의 자회사로 정보통신기술(ICT) 솔루션 및 서비스를 제공하는 기업입니다. 클라우드, 보안, 네트워크 등 다양한 IT 서비스를 통해 기업고객을 대상으로 사업을 영위하고 있습니다.",
+        "sector": "정보통신기술(ICT) 서비스",
+        "products": "클라우드 서비스, IT 보안솔루션, 네트워크 서비스",
+        "competitors": [
+          "삼성SDS",
+          "LG CNS",
+          "SK C&C"
+        ]
+      }
+    },
+    {
+      "stock_code": "259960",
+      "name": "크래프톤",
+      "sector_raw": "코스피",
+      "mktcap_eok": 92750.6998,
+      "close": 202000.0,
+      "per": 13.7752,
+      "pbr": 1.2607,
+      "roe_3y_avg": 14.427,
+      "debt_ratio": 15.9663,
+      "div_yield": 1.0736,
+      "payout_ratio_pct": 13.6,
+      "score": 0.6235,
+      "profile": {
+        "business": "크래프톤은 모바일 게임 개발 및 배급을 주력으로 하는 게임사입니다. 배틀로얄 게임 '플레이언노운스 배틀그라운드(PUBG)'로 글로벌 시장에서 큰 성공을 거두었으며, 다양한 게임 타이틀을 개발·운영하고 있습니다.",
+        "sector": "정보기술/게임",
+        "products": "PUBG, PUBG Mobile, PUBG New State, 언와인드 마운틴 스토리 등",
+        "competitors": [
+          "넥슨",
+          "엔씨소프트",
+          "펄어비스"
         ]
       }
     }
